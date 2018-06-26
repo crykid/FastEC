@@ -20,7 +20,7 @@ public enum ConfigTypes {
      */
     CONFIG_READY,
     /**
-     *
+     *自定义图标、文字
      */
     ICON
 }

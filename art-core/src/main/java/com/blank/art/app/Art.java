@@ -7,7 +7,7 @@ import java.util.HashMap;
 /**
  * Created by : blank
  * Created on : 2018/6/26 at 10:27
- * Description:
+ * Description: 对外工具类
  */
 
 public final class Art {
@@ -23,6 +23,6 @@ public final class Art {
     }
 
     public static Context getApplicationContext() {
-        return (Context) getConfigurations().get(ConfigTypes.APPLICATION_CONTEXT);
+        return (Context) getConfigurations().get(ConfigTypes.APPLICATION_CONTEXT.name());
     }
 }

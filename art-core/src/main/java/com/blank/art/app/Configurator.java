@@ -9,7 +9,7 @@ import java.util.HashMap;
 /**
  * Created by : blank
  * Created on : 2018/6/26 at 10:33
- * Description:项目配置文件
+ * Description:项目配置文件的存储、获取
  */
 
 public class Configurator {

@@ -1,16 +1,21 @@
 package com.blank.fastec;
 
+import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+
 import com.blank.art.activities.ProxyActivity;
 import com.blank.art.delegates.ArtDelegate;
 
 public class MainActivity extends ProxyActivity {
-
+    private static final String TAG = "MainActivity";
 //    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
+//    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
 //
-//        Toast.makeText(this, "传入 context", Toast.LENGTH_SHORT).show();
+//        Log.d(TAG, "onCreate:执行了 ");
+//        super.onCreate(savedInstanceState, persistentState);
 //    }
 
     @Override

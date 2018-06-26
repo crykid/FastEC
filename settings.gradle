@@ -1,1 +1,1 @@
-include ':app', ':latte-annotations', ':latte-compiler', ':latte-core', ':latte-ec'
+include ':app', ':art-annotations', ':art-compiler', ':art-core', ':art-ec'

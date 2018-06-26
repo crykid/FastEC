@@ -1,4 +1,4 @@
-package com.blank.latte.app;
+package com.blank.art.app;
 
 /**
  * Created by : blank

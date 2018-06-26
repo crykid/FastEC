@@ -1,4 +1,4 @@
-package com.blank.latte;
+package com.blank.art;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

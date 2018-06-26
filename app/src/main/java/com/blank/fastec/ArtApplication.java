@@ -3,7 +3,7 @@ package com.blank.fastec;
 import android.app.Application;
 
 import com.blank.art.ec.icon.FontEcModule;
-import com.blank.latte.app.Art;
+import com.blank.art.app.Art;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
 /**

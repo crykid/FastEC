@@ -1,4 +1,4 @@
-package com.blank.latte.app;
+package com.blank.art.app;
 
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
@@ -14,12 +14,12 @@ import java.util.HashMap;
 
 public class Configurator {
 
-    private static final HashMap<String, Object> LATTE_CONFIGS = new HashMap<>();
+    private static final HashMap<String, Object> CONFIGS = new HashMap<>();
 
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
 
     private Configurator() {
-        LATTE_CONFIGS.put(ConfigTypes.CONFIG_READY.name(), false);
+        CONFIGS.put(ConfigTypes.CONFIG_READY.name(), false);
     }
 
     /**
@@ -39,16 +39,16 @@ public class Configurator {
 
     public final void configure() {
         initIcons();
-        LATTE_CONFIGS.put(ConfigTypes.CONFIG_READY.name(), true);
+        CONFIGS.put(ConfigTypes.CONFIG_READY.name(), true);
     }
 
 
-    public static HashMap<String, Object> getLatteConfigs() {
-        return LATTE_CONFIGS;
+    public static HashMap<String, Object> getConfigs() {
+        return CONFIGS;
     }
 
     public final Configurator withApiHost(String host) {
-        LATTE_CONFIGS.put(ConfigTypes.API_HOST.name(), host);
+        CONFIGS.put(ConfigTypes.API_HOST.name(), host);
         return this;
     }
 
@@ -75,7 +75,7 @@ public class Configurator {
      * 检查是否配置完成
      */
     private void checkConfiguration() {
-        final boolean isReady = (boolean) LATTE_CONFIGS.get(ConfigTypes.CONFIG_READY.name());
+        final boolean isReady = (boolean) CONFIGS.get(ConfigTypes.CONFIG_READY.name());
         if (!isReady) {
             throw new RuntimeException("Configruation is not ready,call configure");
         }
@@ -84,6 +84,6 @@ public class Configurator {
     @SuppressWarnings("unchecked")
     final <T> T getConfigruation(Enum<ConfigTypes> key) {
         checkConfiguration();
-        return (T) LATTE_CONFIGS.get(key);
+        return (T) CONFIGS.get(key);
     }
 }

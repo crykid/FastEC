@@ -1,4 +1,4 @@
-package com.blank.latte;
+package com.blank.art;
 
 import org.junit.Test;
 

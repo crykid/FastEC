@@ -1,4 +1,4 @@
-package com.blank.latte.app;
+package com.blank.art.app;
 
 import android.content.Context;
 
@@ -11,6 +11,7 @@ import java.util.HashMap;
  */
 
 public final class Art {
+
     public static Configurator init(Context context) {
         getConfigurations().put(ConfigTypes.APPLICATION_CONTEXT.name(), context.getApplicationContext());
         return Configurator.getInstance();
@@ -18,7 +19,7 @@ public final class Art {
 
     private static HashMap<String, Object> getConfigurations() {
 
-        return Configurator.getLatteConfigs();
+        return Configurator.getConfigs();
     }
 
     public static Context getApplicationContext() {

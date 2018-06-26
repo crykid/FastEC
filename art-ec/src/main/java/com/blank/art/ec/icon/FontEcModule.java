@@ -6,7 +6,7 @@ import com.joanzapata.iconify.IconFontDescriptor;
 /**
  * Created by : blank
  * Created on : 2018/6/26 at 15:51
- * Description:
+ * Description:自定义字体库（图片）
  */
 
 public class FontEcModule implements IconFontDescriptor {

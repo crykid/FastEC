@@ -1,4 +1,4 @@
-package com.blank.latte.ec;
+package com.blank.art.ec;
 
 /**
  * Created by : blank

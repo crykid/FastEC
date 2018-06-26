@@ -2,7 +2,7 @@ package com.blank.latte.app;
 
 import android.content.Context;
 
-import java.util.WeakHashMap;
+import java.util.HashMap;
 
 /**
  * Created by : blank
@@ -16,8 +16,12 @@ public final class Art {
         return Configurator.getInstance();
     }
 
-    private static WeakHashMap<String, Object> getConfigurations() {
+    private static HashMap<String, Object> getConfigurations() {
 
         return Configurator.getLatteConfigs();
+    }
+
+    public static Context getApplicationContext() {
+        return (Context) getConfigurations().get(ConfigTypes.APPLICATION_CONTEXT);
     }
 }

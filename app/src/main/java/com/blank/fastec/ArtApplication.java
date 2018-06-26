@@ -19,6 +19,7 @@ public class ArtApplication extends Application {
 
         Art.init(this)
                 .withApiHost("http://127.0.0.1")
+                //引入默认的iconfont
                 .withIcon(new FontAwesomeModule())
                 //引入自己的字体图标
                 .withIcon(new FontEcModule())

@@ -24,10 +24,14 @@ public class RequestCallbacks implements Callback<String> {
     private final IError ERROR;
 
     private final IFailure FAILURE;
+
     private final LoaderStyle LOADER_STYLE;
 
     private static final Handler HANDLER = new Handler();
 
+    /**
+     * loader小时延长时间
+     */
     private final int TIME_LOADER_CANCLE = 1000;
 
     public RequestCallbacks(IRequest mRequest, ISuccess mSuccess, IError mError, IFailure mFailure, LoaderStyle loaderStyle) {

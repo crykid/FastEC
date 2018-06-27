@@ -20,7 +20,6 @@ public abstract class BaseDelegate extends SwipeBackFragment {
 
     private Unbinder mUnbinder = null;
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

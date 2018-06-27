@@ -8,6 +8,7 @@ import com.blank.art.retrofit.callback.IRequest;
 import com.blank.art.retrofit.callback.ISuccess;
 import com.blank.art.ui.LoaderStyle;
 
+import java.io.File;
 import java.util.Map;
 import java.util.WeakHashMap;
 
@@ -36,6 +37,8 @@ public class RestClientBuilder {
 
     private RequestBody mBody = null;
 
+    private File mFile = null;
+
     private LoaderStyle mLoaderstyle = null;
     private Context mContext = null;
 
@@ -56,6 +59,17 @@ public class RestClientBuilder {
     public final RestClientBuilder params(String key, Object value) {
 
         this.mParams.put(key, value);
+        return this;
+    }
+
+    public final RestClientBuilder file(File file) {
+        this.mFile = file;
+        return this;
+    }
+
+    public final RestClientBuilder file(String filePath) {
+
+        this.mFile = new File(filePath);
         return this;
     }
 
@@ -108,7 +122,7 @@ public class RestClientBuilder {
 
     //String URL, Map<String, Object> PARAMS, IRequest REQUEST, ISuccess SUCCESS, IError ERROR, IFailure FAILURE, RequestBody BODY)
     public final RestClient build() {
-        return new RestClient(mUrl, mParams, mRequest, mSuccess, mError, mFailure, mBody, mContext, mLoaderstyle);
+        return new RestClient(mUrl, mParams, mRequest, mSuccess, mError, mFailure, mBody, mFile, mContext, mLoaderstyle);
     }
 
 

@@ -10,8 +10,11 @@ import com.blank.art.retrofit.callback.RequestCallbacks;
 import com.blank.art.ui.Loader;
 import com.blank.art.ui.LoaderStyle;
 
+import java.io.File;
 import java.util.WeakHashMap;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,9 +43,11 @@ public class RestClient {
     private final RequestBody BODY;
 
     private final LoaderStyle LOADER_STYLE;
+
+    private final File FILE;
     private final Context CONTEXT;
 
-    public RestClient(String url, WeakHashMap<String, Object> params, IRequest request, ISuccess success, IError error, IFailure failure, RequestBody body, Context context, LoaderStyle loaderStyle) {
+    public RestClient(String url, WeakHashMap<String, Object> params, IRequest request, ISuccess success, IError error, IFailure failure, RequestBody body, File file, Context context, LoaderStyle loaderStyle) {
         this.URL = url;
         this.PARAMS.putAll(params);
         this.REQUEST = request;
@@ -50,6 +55,7 @@ public class RestClient {
         this.ERROR = error;
         this.FAILURE = failure;
         this.BODY = body;
+        this.FILE = file;
         this.CONTEXT = context;
         this.LOADER_STYLE = loaderStyle;
     }
@@ -84,10 +90,15 @@ public class RestClient {
                 call = SERVICE.put(URL, PARAMS);
                 break;
             case UPLOAD:
+                final RequestBody requestBody = RequestBody.create(MediaType.parse(MultipartBody.FORM.toString()), FILE);
+                final MultipartBody.Part body = MultipartBody.Part.createFormData("file", FILE.getName());
+                call = SERVICE.upLoad(URL, body);
                 break;
             case PUT_RAW:
+                call = SERVICE.putRaw(URL, BODY);
                 break;
             case POST_RAW:
+                call = SERVICE.postRaw(URL, BODY);
                 break;
             default:
                 break;
@@ -109,11 +120,25 @@ public class RestClient {
     }
 
     public final void post() {
-        request(HttpMethod.POST);
+        if (BODY == null) {
+            request(HttpMethod.POST);
+        } else {
+            if (!PARAMS.isEmpty()) {
+                throw new RuntimeException("params must be null !");
+            }
+            request(HttpMethod.POST_RAW);
+        }
     }
 
     public final void put() {
-        request(HttpMethod.PUT);
+        if (BODY == null) {
+            request(HttpMethod.PUT);
+        } else {
+            if (!PARAMS.isEmpty()) {
+                throw new RuntimeException("params must be null !");
+            }
+            request(HttpMethod.PUT_RAW);
+        }
     }
 
     public final void delete() {

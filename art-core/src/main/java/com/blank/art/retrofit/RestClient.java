@@ -1,10 +1,14 @@
 package com.blank.art.retrofit;
 
+import android.content.Context;
+
 import com.blank.art.retrofit.callback.IError;
 import com.blank.art.retrofit.callback.IFailure;
 import com.blank.art.retrofit.callback.IRequest;
 import com.blank.art.retrofit.callback.ISuccess;
 import com.blank.art.retrofit.callback.RequestCallbacks;
+import com.blank.art.ui.Loader;
+import com.blank.art.ui.LoaderStyle;
 
 import java.util.WeakHashMap;
 
@@ -35,7 +39,10 @@ public class RestClient {
 
     private final RequestBody BODY;
 
-    public RestClient(String url, WeakHashMap<String, Object> params, IRequest request, ISuccess success, IError error, IFailure failure, RequestBody body) {
+    private final LoaderStyle LOADER_STYLE;
+    private final Context CONTEXT;
+
+    public RestClient(String url, WeakHashMap<String, Object> params, IRequest request, ISuccess success, IError error, IFailure failure, RequestBody body, Context context, LoaderStyle loaderStyle) {
         this.URL = url;
         this.PARAMS.putAll(params);
         this.REQUEST = request;
@@ -43,6 +50,8 @@ public class RestClient {
         this.ERROR = error;
         this.FAILURE = failure;
         this.BODY = body;
+        this.CONTEXT = context;
+        this.LOADER_STYLE = loaderStyle;
     }
 
     public static RestClientBuilder builder() {
@@ -54,8 +63,11 @@ public class RestClient {
         final RestService SERVICE = RestCreator.getRestService();
 
         Call<String> call = null;
-        if (SERVICE != null) {
+        if (REQUEST != null) {
             REQUEST.onReqestStart();
+        }
+        if (LOADER_STYLE != null) {
+            Loader.showLoading(CONTEXT, LOADER_STYLE);
         }
 
         switch (method) {
@@ -88,7 +100,7 @@ public class RestClient {
 
     private Callback<String> getRequestCallback() {
         return new RequestCallbacks(
-                REQUEST, SUCCESS, ERROR, FAILURE
+                REQUEST, SUCCESS, ERROR, FAILURE, LOADER_STYLE
         );
     }
 

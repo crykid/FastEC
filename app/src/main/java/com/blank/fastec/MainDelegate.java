@@ -39,6 +39,7 @@ public class MainDelegate extends ArtDelegate {
     private void clientTest() {
         RestClient.builder()
                 .url("http://www.baidu.com")
+                .loader(getContext())
                 .request(new IRequest() {
                     @Override
                     public void onReqestStart() {

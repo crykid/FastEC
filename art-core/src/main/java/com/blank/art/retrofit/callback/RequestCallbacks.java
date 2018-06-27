@@ -1,5 +1,10 @@
 package com.blank.art.retrofit.callback;
 
+import android.os.Handler;
+
+import com.blank.art.ui.Loader;
+import com.blank.art.ui.LoaderStyle;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -19,12 +24,16 @@ public class RequestCallbacks implements Callback<String> {
     private final IError ERROR;
 
     private final IFailure FAILURE;
+    private final LoaderStyle LOADER_STYLE;
 
-    public RequestCallbacks(IRequest mRequest, ISuccess mSuccess, IError mError, IFailure mFailure) {
+    private static final Handler HANDLER = new Handler();
+
+    public RequestCallbacks(IRequest mRequest, ISuccess mSuccess, IError mError, IFailure mFailure, LoaderStyle loaderStyle) {
         this.REQUEST = mRequest;
         this.SUCCESS = mSuccess;
         this.ERROR = mError;
         this.FAILURE = mFailure;
+        this.LOADER_STYLE = loaderStyle;
     }
 
     @Override
@@ -42,9 +51,7 @@ public class RequestCallbacks implements Callback<String> {
                 ERROR.onError(response.code(), response.message());
             }
         }
-//        if (REQUEST != null) {
-//            REQUEST.onRequestEnd();
-//        }
+        stopLoading();
     }
 
     @Override
@@ -54,6 +61,19 @@ public class RequestCallbacks implements Callback<String> {
         }
         if (REQUEST != null) {
             REQUEST.onRequestEnd();
+        }
+        stopLoading();
+    }
+
+    private void stopLoading() {
+        if (LOADER_STYLE != null) {
+            HANDLER.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Loader.stopLoading();
+                }
+            }, 1000);
+
         }
     }
 }

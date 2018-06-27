@@ -1,9 +1,12 @@
 package com.blank.art.retrofit;
 
+import android.content.Context;
+
 import com.blank.art.retrofit.callback.IError;
 import com.blank.art.retrofit.callback.IFailure;
 import com.blank.art.retrofit.callback.IRequest;
 import com.blank.art.retrofit.callback.ISuccess;
+import com.blank.art.ui.LoaderStyle;
 
 import java.util.Map;
 import java.util.WeakHashMap;
@@ -19,19 +22,22 @@ import okhttp3.RequestBody;
 
 public class RestClientBuilder {
 
-    private String mUrl;
+    private String mUrl = null;
 
     private static final WeakHashMap<String, Object> mParams = RestCreator.getParams();
 
-    private IRequest mRequest;
+    private IRequest mRequest = null;
 
-    private ISuccess mSuccess;
+    private ISuccess mSuccess = null;
 
-    private IError mError;
+    private IError mError = null;
 
-    private IFailure mFailure;
+    private IFailure mFailure = null;
 
-    private RequestBody mBody;
+    private RequestBody mBody = null;
+
+    private LoaderStyle mLoaderstyle = null;
+    private Context mContext = null;
 
 
     RestClientBuilder() {
@@ -58,6 +64,20 @@ public class RestClientBuilder {
         this.mBody = RequestBody.create(MediaType.parse("application/json;charset=UTF-8"), raw);
         return this;
     }
+
+    public final RestClientBuilder loader(Context context) {
+        this.mContext = context;
+        this.mLoaderstyle = LoaderStyle.BallTrianglePathIndicator;
+        return this;
+    }
+
+
+    public final RestClientBuilder loader(Context context, LoaderStyle loaderstyle) {
+        this.mContext = context;
+        this.mLoaderstyle = loaderstyle;
+        return this;
+    }
+
 
     public final RestClientBuilder success(ISuccess iSuccess) {
         this.mSuccess = iSuccess;
@@ -88,7 +108,7 @@ public class RestClientBuilder {
 
     //String URL, Map<String, Object> PARAMS, IRequest REQUEST, ISuccess SUCCESS, IError ERROR, IFailure FAILURE, RequestBody BODY)
     public final RestClient build() {
-        return new RestClient(mUrl, mParams, mRequest, mSuccess, mError, mFailure, mBody);
+        return new RestClient(mUrl, mParams, mRequest, mSuccess, mError, mFailure, mBody, mContext, mLoaderstyle);
     }
 
 

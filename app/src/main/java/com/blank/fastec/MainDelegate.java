@@ -69,6 +69,9 @@ public class MainDelegate extends ArtDelegate {
 //                        Log.d(TAG, "onError: code=" + code + " message:" + message);
                     }
                 })
-                .build().get();
+                .dir("")
+                .extension("")
+                .name("")
+                .build().downLoad();
     }
 }

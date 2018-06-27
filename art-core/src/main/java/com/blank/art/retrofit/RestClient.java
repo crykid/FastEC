@@ -7,6 +7,7 @@ import com.blank.art.retrofit.callback.IFailure;
 import com.blank.art.retrofit.callback.IRequest;
 import com.blank.art.retrofit.callback.ISuccess;
 import com.blank.art.retrofit.callback.RequestCallbacks;
+import com.blank.art.retrofit.download.DownloadHandler;
 import com.blank.art.ui.Loader;
 import com.blank.art.ui.LoaderStyle;
 
@@ -47,9 +48,33 @@ public class RestClient {
     private final File FILE;
     private final Context CONTEXT;
 
-    public RestClient(String url, WeakHashMap<String, Object> params, IRequest request, ISuccess success, IError error, IFailure failure, RequestBody body, File file, Context context, LoaderStyle loaderStyle) {
+    /**
+     * 文件下载相关
+     */
+    private final String DOWNLOAD_DIR;
+    private final String EXTENSION;
+    private final String NAME;
+
+    public RestClient(
+            String url,
+            WeakHashMap<String, Object> params,
+            String downloaddir,
+            String extension,
+            String name,
+            IRequest request,
+            ISuccess success,
+            IError error,
+            IFailure failure,
+            RequestBody body,
+            File file,
+            Context context,
+            LoaderStyle loaderStyle) {
+
         this.URL = url;
         this.PARAMS.putAll(params);
+        this.DOWNLOAD_DIR = downloaddir;
+        this.EXTENSION = extension;
+        this.NAME = name;
         this.REQUEST = request;
         this.SUCCESS = success;
         this.ERROR = error;
@@ -115,10 +140,16 @@ public class RestClient {
         );
     }
 
+    /**
+     * get请求
+     */
     public final void get() {
         request(HttpMethod.GET);
     }
 
+    /**
+     * post/postRaw请求
+     */
     public final void post() {
         if (BODY == null) {
             request(HttpMethod.POST);
@@ -130,6 +161,9 @@ public class RestClient {
         }
     }
 
+    /**
+     * put/putRaw
+     */
     public final void put() {
         if (BODY == null) {
             request(HttpMethod.PUT);
@@ -141,7 +175,14 @@ public class RestClient {
         }
     }
 
+    /**
+     * delete请求
+     */
     public final void delete() {
         request(HttpMethod.DELETE);
+    }
+
+    public final void downLoad() {
+        new DownloadHandler(URL, REQUEST, SUCCESS, ERROR, FAILURE, DOWNLOAD_DIR, EXTENSION, NAME).handlerDownload();
     }
 }

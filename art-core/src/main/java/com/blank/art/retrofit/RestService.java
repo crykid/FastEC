@@ -50,7 +50,7 @@ public interface RestService {
 
     /**
      * retrofit download默认下载文件时候先下载到内存再存储到文件，
-     * 添加@Streaming注解实现边下载边写入文件系统
+     * 添加@Streaming注解实现边下载边写入文件系统,这也意味着这必须是异步的
      *
      * @param url
      * @param params

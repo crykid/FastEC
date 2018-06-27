@@ -6,6 +6,8 @@ import com.joanzapata.iconify.Iconify;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import okhttp3.Interceptor;
+
 /**
  * Created by : blank
  * Created on : 2018/6/26 at 10:33
@@ -14,9 +16,19 @@ import java.util.HashMap;
 
 public class Configurator {
 
-    private static final HashMap<String, Object> CONFIGS = new HashMap<>();
+    /**
+     * 各项配置map
+     */
+    private static final HashMap<Object, Object> CONFIGS = new HashMap<>();
 
+    /**
+     * 自定义文字图库集合
+     */
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
+    /**
+     * 自定义拦截器集合
+     */
+    private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
 
     private Configurator() {
         CONFIGS.put(ConfigTypes.CONFIG_READY.name(), false);
@@ -43,7 +55,7 @@ public class Configurator {
     }
 
 
-    public static HashMap<String, Object> getConfigs() {
+    public static HashMap<Object, Object> getConfigs() {
         return CONFIGS;
     }
 
@@ -67,6 +79,18 @@ public class Configurator {
 
     public final Configurator withIcon(IconFontDescriptor descriptor) {
         ICONS.add(descriptor);
+        return this;
+    }
+
+    /**
+     * 添加拦截器
+     *
+     * @param interceptor
+     * @return
+     */
+    public final Configurator withInterceptor(Interceptor interceptor) {
+        INTERCEPTORS.add(interceptor);
+        CONFIGS.put(ConfigTypes.INTERCEPTOR, INTERCEPTORS);
         return this;
     }
 

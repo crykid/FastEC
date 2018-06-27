@@ -22,5 +22,11 @@ public enum ConfigTypes {
     /**
      *自定义图标、文字
      */
-    ICON
+    ICON,
+
+    /**
+     * 拦截器配置
+     */
+    INTERCEPTOR
+
 }

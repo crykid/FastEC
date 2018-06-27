@@ -2,10 +2,16 @@ package com.blank.fastec;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.blank.art.delegates.ArtDelegate;
+import com.blank.art.retrofit.RestClient;
+import com.blank.art.retrofit.callback.IError;
+import com.blank.art.retrofit.callback.IFailure;
+import com.blank.art.retrofit.callback.IRequest;
+import com.blank.art.retrofit.callback.ISuccess;
 
 /**
  * Created by : blank
@@ -14,6 +20,7 @@ import com.blank.art.delegates.ArtDelegate;
  */
 
 public class MainDelegate extends ArtDelegate {
+    private static final String TAG = "MainDelegate";
 
     @Override
     public Object getLyout() {
@@ -22,6 +29,45 @@ public class MainDelegate extends ArtDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-        Toast.makeText(getContext(),"hello",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "hello", Toast.LENGTH_SHORT).show();
+
+        clientTest();
+
+
+    }
+
+    private void clientTest() {
+        RestClient.builder()
+                .url("http://www.baidu.com")
+                .request(new IRequest() {
+                    @Override
+                    public void onReqestStart() {
+                        Log.d(TAG, "onReqestStart: ");
+                    }
+
+                    @Override
+                    public void onRequestEnd() {
+
+                    }
+                })
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+                        Log.d(TAG, "onSuccess: " + response);
+                    }
+                })
+                .failure(new IFailure() {
+                    @Override
+                    public void onFailure() {
+                        Log.d(TAG, "onFailure: ");
+                    }
+                })
+                .error(new IError() {
+                    @Override
+                    public void onError(int code, String message) {
+//                        Log.d(TAG, "onError: code=" + code + " message:" + message);
+                    }
+                })
+                .build().get();
     }
 }

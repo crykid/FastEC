@@ -24,6 +24,10 @@ public class DebugInterceptor extends BaseInterceptor {
     private final String DEBUG_URL;
     private final int DEBUG_RAW_ID;
 
+    /**
+     * @param debugUrl   需要拦截的url
+     * @param debugRawId 该请求需要返回的json资源id
+     */
     public DebugInterceptor(String debugUrl, int debugRawId) {
         this.DEBUG_URL = debugUrl;
         this.DEBUG_RAW_ID = debugRawId;
@@ -42,11 +46,25 @@ public class DebugInterceptor extends BaseInterceptor {
         return chain.proceed(chain.request());
     }
 
+    /**
+     * 拦截到请求的情况下，将对应的返回内容包装返回
+     *
+     * @param chain 请求
+     * @param rawId 返回内容（json数据）资源id
+     * @return
+     */
     private Response debugResponse(Chain chain, @RawRes int rawId) {
         final String json = FileUtil.getRawFile(rawId);
         return getResponse(chain, json);
     }
 
+    /**
+     * 构建返回体
+     *
+     * @param chain
+     * @param json  返回内容，资源id对应的资源
+     * @return
+     */
     private Response getResponse(Chain chain, String json) {
         return new Response.Builder()
                 .code(200)

@@ -28,6 +28,8 @@ public class RequestCallbacks implements Callback<String> {
 
     private static final Handler HANDLER = new Handler();
 
+    private final int TIME_LOADER_CANCLE = 1000;
+
     public RequestCallbacks(IRequest mRequest, ISuccess mSuccess, IError mError, IFailure mFailure, LoaderStyle loaderStyle) {
         this.REQUEST = mRequest;
         this.SUCCESS = mSuccess;
@@ -72,7 +74,7 @@ public class RequestCallbacks implements Callback<String> {
                 public void run() {
                     Loader.stopLoading();
                 }
-            }, 1000);
+            }, TIME_LOADER_CANCLE);
 
         }
     }

@@ -29,16 +29,14 @@ public class MainDelegate extends ArtDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-        Toast.makeText(getContext(), "hello", Toast.LENGTH_SHORT).show();
 
         clientTest();
-
 
     }
 
     private void clientTest() {
         RestClient.builder()
-                .url("http://www.baidu.com")
+                .url("http://127.0.0.1/index")
                 .loader(getContext())
                 .request(new IRequest() {
                     @Override
@@ -54,6 +52,7 @@ public class MainDelegate extends ArtDelegate {
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
+                        Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
                         Log.d(TAG, "onSuccess: " + response);
                     }
                 })
@@ -69,9 +68,11 @@ public class MainDelegate extends ArtDelegate {
 //                        Log.d(TAG, "onError: code=" + code + " message:" + message);
                     }
                 })
-                .dir("")
-                .extension("")
-                .name("")
-                .build().downLoad();
+//                .dir("")
+//                .extension("")
+//                .name("")
+                .build()
+//                .downLoad();
+                .get();
     }
 }

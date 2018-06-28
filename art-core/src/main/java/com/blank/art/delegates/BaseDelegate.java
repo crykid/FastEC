@@ -24,7 +24,7 @@ public abstract class BaseDelegate extends SwipeBackFragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    final public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = null;
 
         if (getLyout() instanceof Integer) {
@@ -41,7 +41,7 @@ public abstract class BaseDelegate extends SwipeBackFragment {
     }
 
     @Override
-    public void onDestroyView() {
+    final public void onDestroyView() {
         super.onDestroyView();
         if (mUnbinder != null) {
             mUnbinder.unbind();

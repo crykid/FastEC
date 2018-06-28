@@ -3,13 +3,12 @@ package com.blank.art.ec.launcher;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.blank.art.delegates.ArtDelegate;
 import com.blank.art.ec.R;
 import com.blank.art.ec.R2;
+import com.blank.art.ec.sign.SignUpDelegate;
 import com.blank.art.ui.launcher.ScrollLauncherTag;
 import com.blank.art.util.storage.ArtPreference;
 import com.blank.art.util.timer.BaseTimerTask;
@@ -19,7 +18,6 @@ import java.text.MessageFormat;
 import java.util.Timer;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
@@ -59,6 +57,7 @@ public class LauncherDelegate extends ArtDelegate implements ITimerListener {
             pop();
         } else {
             //检查用户是否登录
+            startWithPop(new SignUpDelegate());
         }
     }
 
@@ -90,19 +89,6 @@ public class LauncherDelegate extends ArtDelegate implements ITimerListener {
         });
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder = ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
 
     @OnClick(R2.id.tv_launcher_timer)
     public void onViewClicked() {
@@ -110,7 +96,6 @@ public class LauncherDelegate extends ArtDelegate implements ITimerListener {
             mTimer.cancel();
             mTimer = null;
         }
-
         checkIsShowScroll();
 
     }

@@ -1,4 +1,4 @@
-package com.blank.art.util;
+package com.blank.art.util.dimen;
 
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
@@ -13,13 +13,19 @@ import com.blank.art.app.Art;
 
 public class DemenUtil {
 
-    public static int getScreenWidth(){
+    /**
+     * 获取屏幕尺寸
+     *
+     * @return
+     */
+    public static int getScreenWidth() {
         final Resources resources = Art.getApplicationContext().getResources();
 
         final DisplayMetrics dm = resources.getDisplayMetrics();
         return dm.widthPixels;
     }
-    public static int getScreenHeight(){
+
+    public static int getScreenHeight() {
         final Resources resources = Art.getApplicationContext().getResources();
 
         final DisplayMetrics dm = resources.getDisplayMetrics();

@@ -3,8 +3,6 @@
     package="com.blank.fastec">
 
 
-
-
     <application
         android:name=".ArtApplication"
         android:allowBackup="true"

@@ -2,11 +2,10 @@ package com.blank.art.retrofit.intercepter;
 
 import android.support.annotation.RawRes;
 
-import com.blank.art.util.FileUtil;
+import com.blank.art.util.file.FileUtil;
 
 import java.io.IOException;
 
-import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.Protocol;
 import okhttp3.Response;

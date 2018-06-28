@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.blank.art.activities.ProxyActivity;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.yokeyword.fragmentation_swipeback.SwipeBackFragment;
@@ -44,6 +46,10 @@ public abstract class BaseDelegate extends SwipeBackFragment {
         if (mUnbinder != null) {
             mUnbinder.unbind();
         }
+    }
+
+    public ProxyActivity getProxyActivity(){
+        return (ProxyActivity) _mActivity;
     }
 
     /**

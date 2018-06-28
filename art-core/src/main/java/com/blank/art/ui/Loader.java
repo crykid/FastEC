@@ -7,7 +7,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.blank.art.R;
-import com.blank.art.util.DemenUtil;
+import com.blank.art.util.dimen.DemenUtil;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;

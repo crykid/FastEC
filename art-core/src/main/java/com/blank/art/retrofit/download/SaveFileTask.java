@@ -8,7 +8,7 @@ import android.text.TextUtils;
 import com.blank.art.app.Art;
 import com.blank.art.retrofit.callback.IRequest;
 import com.blank.art.retrofit.callback.ISuccess;
-import com.blank.art.util.FileUtil;
+import com.blank.art.util.file.FileUtil;
 
 import java.io.File;
 import java.io.InputStream;

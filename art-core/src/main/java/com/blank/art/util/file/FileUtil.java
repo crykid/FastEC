@@ -1,4 +1,4 @@
-package com.blank.art.util;
+package com.blank.art.util.file;
 
 import android.content.ContentResolver;
 import android.content.Context;

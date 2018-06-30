@@ -1,6 +1,7 @@
 package com.blank.art.retrofit.callback;
 
 import android.os.Handler;
+import android.util.Log;
 
 import com.blank.art.ui.Loader;
 import com.blank.art.ui.LoaderStyle;
@@ -16,6 +17,7 @@ import retrofit2.Response;
  */
 
 public class RequestCallbacks implements Callback<String> {
+    private static final String TAG = "RequestCallbacks";
 
     private final IRequest REQUEST;
 
@@ -44,11 +46,13 @@ public class RequestCallbacks implements Callback<String> {
 
     @Override
     public void onResponse(Call<String> call, Response<String> response) {
+        Log.d(TAG, "onResponse: "+response.toString());
         //如果请求成功
         if (response.isSuccessful()) {
             //如果call已经执行了
             if (call.isExecuted()) {
                 if (SUCCESS != null) {
+
                     SUCCESS.onSuccess(response.body());
                 }
             }

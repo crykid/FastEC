@@ -19,6 +19,7 @@ public class ArtPreference {
      * 缓存名字
      */
     private static final String APP_PREFERENCES_KEY = "profile";
+    private static final String PREFERENCES_KEY_TOKEN = "jwt_token";
     private static final SharedPreferences PREFERENCES = PreferenceManager.getDefaultSharedPreferences(Art.getApplicationContext());
 
     private static final SharedPreferences getAppPreference() {
@@ -78,5 +79,16 @@ public class ArtPreference {
     public static boolean getAppFlag(String key) {
         return getAppPreference()
                 .getBoolean(key, false);
+    }
+
+    public static String getToken() {
+        return getAppPreference().getString(PREFERENCES_KEY_TOKEN, "");
+    }
+
+    public static void setToken(String token) {
+        getAppPreference()
+                .edit()
+                .putString(PREFERENCES_KEY_TOKEN, token)
+                .apply();
     }
 }

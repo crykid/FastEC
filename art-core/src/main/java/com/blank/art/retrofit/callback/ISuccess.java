@@ -6,7 +6,7 @@ package com.blank.art.retrofit.callback;
  * Description:请求成功的回调
  */
 
-public interface ISuccess {
+public interface ISuccess<T> {
 
-    void onSuccess(String response);
+    void onSuccess(T response);
 }

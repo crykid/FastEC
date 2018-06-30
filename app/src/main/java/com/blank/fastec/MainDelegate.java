@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.blank.art.delegates.ArtDelegate;
 import com.blank.art.retrofit.RestClient;
@@ -49,12 +48,11 @@ public class MainDelegate extends ArtDelegate {
 
                     }
                 })
-                .success(new ISuccess() {
+                .success(new ISuccess<String>() {
                     @Override
                     public void onSuccess(String response) {
-                        Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, "onSuccess: " + response);
                     }
+
                 })
                 .failure(new IFailure() {
                     @Override

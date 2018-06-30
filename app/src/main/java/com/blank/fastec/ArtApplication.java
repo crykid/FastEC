@@ -20,7 +20,7 @@ public class ArtApplication extends Application {
         super.onCreate();
 
         Art.init(this)
-                .withApiHost("http://192.168.1.197:8000/")
+                .withApiHost("http://192.168.1.104:8000/")
                 //引入默认的iconfont
                 .withIcon(new FontAwesomeModule())
                 //引入自己的字体图标

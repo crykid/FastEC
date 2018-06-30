@@ -1,1 +1,1 @@
-include ':app', ':art-annotations', ':art-compiler', ':art-core', ':art-ec'
+include ':app', ':art-annotations', ':art-core', ':art-ec', ':art-compiler'

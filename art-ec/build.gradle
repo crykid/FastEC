@@ -1,4 +1,9 @@
 apply plugin: 'com.android.library'
+//butterknife 插件，生成R2文件
+apply plugin: 'com.jakewharton.butterknife'
+
+apply plugin: 'org.greenrobot.greendao'
+
 
 android {
     compileSdkVersion 26
@@ -27,6 +32,9 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':art-core')
+
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+
 
 
 }

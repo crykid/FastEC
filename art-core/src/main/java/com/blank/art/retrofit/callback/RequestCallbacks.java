@@ -3,8 +3,14 @@ package com.blank.art.retrofit.callback;
 import android.os.Handler;
 import android.util.Log;
 
+import com.alibaba.fastjson.JSON;
 import com.blank.art.ui.Loader;
 import com.blank.art.ui.LoaderStyle;
+
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,6 +37,9 @@ public class RequestCallbacks implements Callback<String> {
 
     private static final Handler HANDLER = new Handler();
 
+
+    private final Type mType;
+
     /**
      * loader小时延长时间
      */
@@ -42,18 +51,48 @@ public class RequestCallbacks implements Callback<String> {
         this.ERROR = mError;
         this.FAILURE = mFailure;
         this.LOADER_STYLE = loaderStyle;
+
+
+        final Type[] types = SUCCESS.getClass().getGenericInterfaces();
+
+        if (MethodHandler(types) == null || MethodHandler(types).size() == 0) {
+
+        }
+        mType = MethodHandler(types).get(0);
+
+    }
+
+    private List<Type> MethodHandler(Type[] types) {
+        List<Type> needTypes = new ArrayList<>();
+
+        for (Type paramType : types) {
+            System.out.println("  " + paramType);
+            if (paramType instanceof ParameterizedType) {
+                Type[] parenTypes = ((ParameterizedType) paramType).getActualTypeArguments();
+                for (Type childType : parenTypes) {
+                    needTypes.add(childType);
+                    if (childType instanceof ParameterizedType) {
+                        Type[] childTypes = ((ParameterizedType) childType).getActualTypeArguments();
+                        for (Type type : childTypes) {
+                            needTypes.add(type);
+                        }
+                    }
+                }
+            }
+        }
+        return needTypes;
     }
 
     @Override
     public void onResponse(Call<String> call, Response<String> response) {
-        Log.d(TAG, "onResponse: "+response.toString());
+        Log.d(TAG, "onResponse: " + response.toString());
         //如果请求成功
         if (response.isSuccessful()) {
             //如果call已经执行了
             if (call.isExecuted()) {
                 if (SUCCESS != null) {
 
-                    SUCCESS.onSuccess(response.body());
+                    SUCCESS.onSuccess(JSON.parseObject(response.body(), mType));
                 }
             }
         } else {

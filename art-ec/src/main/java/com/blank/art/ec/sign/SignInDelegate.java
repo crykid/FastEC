@@ -82,9 +82,9 @@ public class SignInDelegate extends ArtDelegate {
                     .success(new ISuccess<LoginEntry>() {
                         @Override
                         public void onSuccess(LoginEntry response) {
-                            ArtPreference.setToken();
+                            ArtPreference.setToken(response.token);
+                            Log.d(TAG, "onSuccess: " + response.token);
                         }
-
                     })
                     .failure(new IFailure() {
                         @Override

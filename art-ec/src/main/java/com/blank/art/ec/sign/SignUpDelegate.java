@@ -107,7 +107,7 @@ public class SignUpDelegate extends ArtDelegate {
                 RestClient.builder()
                         .url("sign_up")
                         .params("", "")
-                        .success(new ISuccess() {
+                        .success(new ISuccess<String>() {
                             @Override
                             public void onSuccess(String response) {
 

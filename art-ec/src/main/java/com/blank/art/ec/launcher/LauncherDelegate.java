@@ -1,14 +1,20 @@
 package com.blank.art.ec.launcher;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
+import com.blank.art.app.AccountManager;
+import com.blank.art.app.IUserChecker;
 import com.blank.art.delegates.ArtDelegate;
 import com.blank.art.ec.R;
 import com.blank.art.ec.R2;
+import com.blank.art.ec.sign.SignInDelegate;
 import com.blank.art.ec.sign.SignUpDelegate;
+import com.blank.art.ui.launcher.ILauncherListener;
+import com.blank.art.ui.launcher.OnLuncherFinishTag;
 import com.blank.art.ui.launcher.ScrollLauncherTag;
 import com.blank.art.util.storage.ArtPreference;
 import com.blank.art.util.timer.BaseTimerTask;
@@ -39,6 +45,8 @@ public class LauncherDelegate extends ArtDelegate implements ITimerListener {
 
     private int mCount = 5;
 
+    private ILauncherListener mILauncherListener = null;
+
     @Override
     public Object getLyout() {
         return R.layout.delegate_launcher;
@@ -54,16 +62,31 @@ public class LauncherDelegate extends ArtDelegate implements ITimerListener {
         //如果是第一次启动
         if (!ArtPreference.getAppFlag(ScrollLauncherTag.FIRST_LAUNCHER.name())) {
             ArtPreference.setAppFlag(ScrollLauncherTag.FIRST_LAUNCHER.name(), true);
-            //检查用户是否已经登录
             startWithPop(new LauncherScrollDelegate());
 
         } else {
             //检查用户是否登录
-            startWithPop(new SignUpDelegate());
+            AccountManager.checkAccount(new IUserChecker() {
+                @Override
+                public void onSignIn() {
+                    if (mILauncherListener != null) {
+                        mILauncherListener.onLauncherFinish(OnLuncherFinishTag.SIGNED);
+                    }
+                }
+
+                @Override
+                public void onNotSignIn() {
+                    if (mILauncherListener != null) {
+                        mILauncherListener.onLauncherFinish(OnLuncherFinishTag.NOT_SIGNED);
+                    }
+                }
+            });
         }
     }
 
-
+    /**
+     * 初始化计时器功能
+     */
     private void initTimer() {
         mTimer = new Timer();
         final BaseTimerTask timerTask = new BaseTimerTask(this);
@@ -91,6 +114,14 @@ public class LauncherDelegate extends ArtDelegate implements ITimerListener {
         });
     }
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ILauncherListener) {
+            mILauncherListener = (ILauncherListener) activity;
+        }
+
+    }
 
     @OnClick(R2.id.tv_launcher_timer)
     public void onViewClicked() {

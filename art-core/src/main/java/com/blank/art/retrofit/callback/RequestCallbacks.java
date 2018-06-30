@@ -4,8 +4,8 @@ import android.os.Handler;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
-import com.blank.art.ui.Loader;
-import com.blank.art.ui.LoaderStyle;
+import com.blank.art.ui.loader.Loader;
+import com.blank.art.ui.loader.LoaderStyle;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;

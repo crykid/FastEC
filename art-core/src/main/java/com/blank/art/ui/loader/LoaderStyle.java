@@ -1,4 +1,4 @@
-package com.blank.art.ui;
+package com.blank.art.ui.loader;
 
 /**
  * Created by : blank

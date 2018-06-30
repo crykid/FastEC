@@ -1,5 +1,6 @@
 package com.blank.art.ec.sign;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
@@ -10,7 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSON;
+import com.blank.art.app.ISignListener;
 import com.blank.art.delegates.ArtDelegate;
 import com.blank.art.ec.R;
 import com.blank.art.ec.R2;
@@ -21,10 +22,9 @@ import com.blank.art.retrofit.callback.IError;
 import com.blank.art.retrofit.callback.IFailure;
 import com.blank.art.retrofit.callback.IRequest;
 import com.blank.art.retrofit.callback.ISuccess;
-import com.blank.art.ui.Loader;
+import com.blank.art.ui.loader.Loader;
 import com.blank.art.util.storage.ArtPreference;
 import com.joanzapata.iconify.widget.IconTextView;
-import com.orhanobut.logger.Logger;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -50,6 +50,8 @@ public class SignInDelegate extends ArtDelegate {
     @BindView(R2.id.tv_sign_in_signup)
     AppCompatTextView tvSignInSignup;
 
+    private ISignListener mISignListener = null;
+
     @Override
     public Object getLyout() {
         return R.layout.delegate_signin;
@@ -65,7 +67,6 @@ public class SignInDelegate extends ArtDelegate {
     public void onViewClicked(View view) {
         int id = view.getId();
         if (id == R.id.btn_sign_up_signin) {
-            Toast.makeText(getContext(), "登录", Toast.LENGTH_SHORT).show();
             RestClient
                     .builder()
                     .url("login/")
@@ -109,14 +110,14 @@ public class SignInDelegate extends ArtDelegate {
             Toast.makeText(getContext(), "微信登录", Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.tv_sign_in_signup) {
-            Toast.makeText(getContext(), "去注册", Toast.LENGTH_SHORT).show();
             start(new SignUpDelegate());
         }
 
     }
 
     private void fetchUserProfile() {
-        RestClient.builder().url("users/1/")
+        RestClient.builder()
+                .url("users/1/")
                 .request(new IRequest() {
                     @Override
                     public void onReqestStart() {
@@ -125,13 +126,14 @@ public class SignInDelegate extends ArtDelegate {
 
                     @Override
                     public void onRequestEnd() {
+                        Loader.stopLoading();
 
                     }
                 })
                 .success(new ISuccess<UserProfileEntry>() {
                     @Override
                     public void onSuccess(UserProfileEntry response) {
-                        SignHandler.onSignUp(response);
+                        SignHandler.onSignIn(response, mISignListener);
                     }
                 })
                 .failure(new IFailure() {
@@ -148,6 +150,14 @@ public class SignInDelegate extends ArtDelegate {
                 })
                 .build()
                 .get();
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ISignListener) {
+            mISignListener = (ISignListener) activity;
+        }
     }
 
 

@@ -23,4 +23,8 @@ dependencies {
     implementation project(':art-ec')
     implementation project(':art-core')
     annotationProcessor project(':art-compiler')
+
+    //Stetho is a sophisticated debug bridge for Android applications.
+    compile 'com.facebook.stetho:stetho:1.5.0'
+    compile 'com.facebook.stetho:stetho-okhttp3:1.5.0'
 }

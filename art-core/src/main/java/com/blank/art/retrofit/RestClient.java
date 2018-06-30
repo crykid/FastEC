@@ -8,9 +8,8 @@ import com.blank.art.retrofit.callback.IRequest;
 import com.blank.art.retrofit.callback.ISuccess;
 import com.blank.art.retrofit.callback.RequestCallbacks;
 import com.blank.art.retrofit.download.DownloadHandler;
-import com.blank.art.ui.Loader;
-import com.blank.art.ui.LoaderStyle;
-import com.blank.art.util.storage.ArtPreference;
+import com.blank.art.ui.loader.Loader;
+import com.blank.art.ui.loader.LoaderStyle;
 
 import java.io.File;
 import java.util.WeakHashMap;

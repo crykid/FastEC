@@ -53,6 +53,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="用户名"
+                    android:text="13511111111"
                     android:inputType="textPersonName"
                     tools:ignore="HardcodedText" />
 
@@ -69,6 +70,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="密码"
+                    android:text="123456"
                     android:inputType="textPassword"
                     tools:ignore="HardcodedText" />
 
@@ -85,6 +87,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="重复密码"
+                    android:text="123456"
                     android:inputType="textPassword"
                     tools:ignore="HardcodedText" />
 

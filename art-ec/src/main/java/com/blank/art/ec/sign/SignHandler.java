@@ -1,5 +1,7 @@
 package com.blank.art.ec.sign;
 
+import com.blank.art.app.AccountManager;
+import com.blank.art.app.ISignListener;
 import com.blank.art.ec.database.DatabaseManager;
 import com.blank.art.ec.database.UserProfileEntry;
 
@@ -9,9 +11,9 @@ import com.blank.art.ec.database.UserProfileEntry;
  * Description: 持久化个人信息
  */
 
-public class  SignHandler {
+public class SignHandler {
 
-    public static void onSignUp(UserProfileEntry profileEntry) {
+    public static void onSignUp(UserProfileEntry profileEntry, ISignListener iSignListener) {
 //        final JSONObject profileJson = JSON.parseObject(response).getJSONObject("dada");
 //        final long userId = profileJson.getLong("userId");
 //        final String name = profileJson.getString("name");
@@ -24,5 +26,14 @@ public class  SignHandler {
 
         DatabaseManager.getInstance().getDao().insert(profileEntry);
 
+        //已经注册并登录成功了
+        AccountManager.setSignState(true);
+        iSignListener.onSignUpSuccess();
+    }
+
+    public static void onSignIn(UserProfileEntry response, ISignListener iSignListener) {
+        DatabaseManager.getInstance().getDao().insert(response);
+        AccountManager.setSignState(true);
+        iSignListener.onSignInSuccess();
     }
 }

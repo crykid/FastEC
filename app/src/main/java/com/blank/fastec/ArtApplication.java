@@ -9,6 +9,7 @@ import com.blank.art.retrofit.intercepter.DebugInterceptor;
 import com.blank.art.util.logutil.ParamsLogInterceptor;
 import com.blank.art.util.logutil.HttpLogger;
 import com.blank.art.util.logutil.LogUtil;
+import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
 /**
@@ -35,5 +36,22 @@ public class ArtApplication extends Application {
 
         //初始化数据库
         DatabaseManager.getInstance().init(this);
+
+//        Stetho.initializeWithDefaults(this);
+
+//        initStetho();
+
+    }
+
+    /**
+     * 初始化Stetho,web调试工具<br>
+     * <p>此处主要作用查看数据库、缓存等数据，ui映射</p>
+     * <p>用法，chrome地址栏输入：chrome://inspect</p>
+     */
+    private void initStetho() {
+        Stetho.initialize(Stetho.newInitializerBuilder(this)
+                .enableDumpapp(Stetho.defaultDumperPluginsProvider(this)
+                ).enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+                .build());
     }
 }

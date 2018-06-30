@@ -6,7 +6,7 @@ import com.blank.art.retrofit.callback.IError;
 import com.blank.art.retrofit.callback.IFailure;
 import com.blank.art.retrofit.callback.IRequest;
 import com.blank.art.retrofit.callback.ISuccess;
-import com.blank.art.ui.LoaderStyle;
+import com.blank.art.ui.loader.LoaderStyle;
 
 import java.io.File;
 import java.util.Map;

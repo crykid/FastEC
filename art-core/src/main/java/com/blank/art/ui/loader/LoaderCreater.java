@@ -1,4 +1,4 @@
-package com.blank.art.ui;
+package com.blank.art.ui.loader;
 
 import android.content.Context;
 import android.text.TextUtils;

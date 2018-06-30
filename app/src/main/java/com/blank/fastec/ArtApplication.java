@@ -6,6 +6,9 @@ import com.blank.art.ec.database.DatabaseManager;
 import com.blank.art.ec.icon.FontEcModule;
 import com.blank.art.app.Art;
 import com.blank.art.retrofit.intercepter.DebugInterceptor;
+import com.blank.art.util.logutil.ParamsLogInterceptor;
+import com.blank.art.util.logutil.HttpLogger;
+import com.blank.art.util.logutil.LogUtil;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
 /**
@@ -27,8 +30,10 @@ public class ArtApplication extends Application {
                 .withIcon(new FontEcModule())
                 //取到了res-raw-rest.json文件
                 .withInterceptor(new DebugInterceptor("index", R.raw.test))
+                .withInterceptor(new ParamsLogInterceptor(new HttpLogger()).setLevel(ParamsLogInterceptor.Level.BODY))
                 .configure();
 
+        //初始化数据库
         DatabaseManager.getInstance().init(this);
     }
 }

@@ -2,12 +2,14 @@ package com.blank.art.ec.launcher;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.blank.art.delegates.ArtDelegate;
 import com.blank.art.ec.R;
+import com.blank.art.ec.sign.SignUpDelegate;
 import com.blank.art.ui.launcher.LauncherHolderCreater;
 import com.blank.art.ui.launcher.ScrollLauncherTag;
 import com.blank.art.util.storage.ArtPreference;
@@ -21,6 +23,7 @@ import java.util.ArrayList;
  */
 
 public class LauncherScrollDelegate extends ArtDelegate {
+    private static final String TAG = "LauncherScrollDelegate";
     private ConvenientBanner<Integer> mConvenientBanner = null;
     private static final ArrayList<Integer> INTEGERS = new ArrayList<>();
 
@@ -37,6 +40,7 @@ public class LauncherScrollDelegate extends ArtDelegate {
     }
 
     private void initBanner() {
+        Log.d(TAG, "initBanner: ");
         INTEGERS.add(R.drawable.launcher_00);
         INTEGERS.add(R.drawable.launcher_01);
         INTEGERS.add(R.drawable.launcher_02);
@@ -49,8 +53,7 @@ public class LauncherScrollDelegate extends ArtDelegate {
                     @Override
                     public void onItemClick(int position) {
                         if (position == INTEGERS.size() - 1) {
-                            ArtPreference.setAppFlag(ScrollLauncherTag.FIRST_LAUNCHER.name(), true);
-                            //检查用户是否已经登录
+                            startWithPop(new SignUpDelegate());
                         }
                     }
                 })

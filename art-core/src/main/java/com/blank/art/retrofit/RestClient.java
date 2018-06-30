@@ -10,6 +10,7 @@ import com.blank.art.retrofit.callback.RequestCallbacks;
 import com.blank.art.retrofit.download.DownloadHandler;
 import com.blank.art.ui.Loader;
 import com.blank.art.ui.LoaderStyle;
+import com.blank.art.util.storage.ArtPreference;
 
 import java.io.File;
 import java.util.WeakHashMap;
@@ -31,7 +32,7 @@ public class RestClient {
     //finale 修饰的变量声明时候没有赋值必须在构造器中赋值
     private final String URL;
 
-    private static final WeakHashMap<String, Object> PARAMS = RestCreator.getParams();
+    private final WeakHashMap<String, Object> PARAMS;
 
     private final IRequest REQUEST;
 
@@ -71,7 +72,10 @@ public class RestClient {
             LoaderStyle loaderStyle) {
 
         this.URL = url;
-        this.PARAMS.putAll(params);
+//        if (!this.PARAMS.isEmpty()) {
+//            this.PARAMS.clear();
+//        }
+        this.PARAMS = params;
         this.DOWNLOAD_DIR = downloaddir;
         this.EXTENSION = extension;
         this.NAME = name;
@@ -128,6 +132,10 @@ public class RestClient {
             default:
                 break;
         }
+//        call.request().newBuilder()
+//                .header("Authorization", "JWT " + ArtPreference.getToken())
+//                .build();
+
         if (call != null) {
             call.enqueue(getRequestCallback());
         }

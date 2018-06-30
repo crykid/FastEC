@@ -1,13 +1,16 @@
 package com.blank.art.retrofit.intercepter;
 
 import android.support.annotation.RawRes;
+import android.util.Log;
 
 import com.blank.art.util.file.FileUtil;
+import com.blank.art.util.storage.ArtPreference;
 
 import java.io.IOException;
 
 import okhttp3.MediaType;
 import okhttp3.Protocol;
+import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
@@ -19,7 +22,7 @@ import okhttp3.ResponseBody;
  */
 
 public class DebugInterceptor extends BaseInterceptor {
-
+    private static final String TAG = "DebugInterceptor";
     private final String DEBUG_URL;
     private final int DEBUG_RAW_ID;
 
@@ -35,14 +38,19 @@ public class DebugInterceptor extends BaseInterceptor {
 
     @Override
     public Response intercept(Chain chain) throws IOException {
-
         //得到我们需要拦截的url
         final String url = chain.request().url().toString();
-
         if (url.contains(DEBUG_URL)) {
             return debugResponse(chain, DEBUG_RAW_ID);
         }
-        return chain.proceed(chain.request());
+        Request original = chain.request();
+        Request request = original.newBuilder()
+                .header("Authorization", "JWT " + ArtPreference.getToken())
+                .build();
+        Log.d(TAG, "intercept: "+ArtPreference.getToken());
+        Log.d(TAG, "intercept: " + request.headers().size());
+
+        return chain.proceed(request);
     }
 
     /**

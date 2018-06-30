@@ -53,8 +53,10 @@ public class LauncherDelegate extends ArtDelegate implements ITimerListener {
     private void checkIsShowScroll() {
         //如果是第一次启动
         if (!ArtPreference.getAppFlag(ScrollLauncherTag.FIRST_LAUNCHER.name())) {
-            start(new LauncherScrollDelegate(), SINGLETASK);
-            pop();
+            ArtPreference.setAppFlag(ScrollLauncherTag.FIRST_LAUNCHER.name(), true);
+            //检查用户是否已经登录
+            startWithPop(new LauncherScrollDelegate());
+
         } else {
             //检查用户是否登录
             startWithPop(new SignUpDelegate());

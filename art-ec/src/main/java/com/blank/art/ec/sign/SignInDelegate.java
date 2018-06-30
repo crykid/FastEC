@@ -10,9 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.blank.art.delegates.ArtDelegate;
 import com.blank.art.ec.R;
 import com.blank.art.ec.R2;
+import com.blank.art.ec.database.UserProfileEntry;
 import com.blank.art.ec.entry.LoginEntry;
 import com.blank.art.retrofit.RestClient;
 import com.blank.art.retrofit.callback.IError;
@@ -22,6 +24,7 @@ import com.blank.art.retrofit.callback.ISuccess;
 import com.blank.art.ui.Loader;
 import com.blank.art.util.storage.ArtPreference;
 import com.joanzapata.iconify.widget.IconTextView;
+import com.orhanobut.logger.Logger;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -84,6 +87,7 @@ public class SignInDelegate extends ArtDelegate {
                         public void onSuccess(LoginEntry response) {
                             ArtPreference.setToken(response.token);
                             Log.d(TAG, "onSuccess: " + response.token);
+                            fetchUserProfile();
                         }
                     })
                     .failure(new IFailure() {
@@ -109,6 +113,41 @@ public class SignInDelegate extends ArtDelegate {
             start(new SignUpDelegate());
         }
 
+    }
+
+    private void fetchUserProfile() {
+        RestClient.builder().url("users/1/")
+                .request(new IRequest() {
+                    @Override
+                    public void onReqestStart() {
+
+                    }
+
+                    @Override
+                    public void onRequestEnd() {
+
+                    }
+                })
+                .success(new ISuccess<UserProfileEntry>() {
+                    @Override
+                    public void onSuccess(UserProfileEntry response) {
+                        SignHandler.onSignUp(response);
+                    }
+                })
+                .failure(new IFailure() {
+                    @Override
+                    public void onFailure() {
+
+                    }
+                })
+                .error(new IError() {
+                    @Override
+                    public void onError(int code, String message) {
+
+                    }
+                })
+                .build()
+                .get();
     }
 
 

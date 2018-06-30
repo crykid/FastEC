@@ -25,7 +25,7 @@ public class RestClientBuilder {
 
     private String mUrl = null;
 
-    private static final WeakHashMap<String, Object> mParams = RestCreator.getParams();
+    private final WeakHashMap<String, Object> mParams;
 
     private IRequest mRequest = null;
 
@@ -48,12 +48,14 @@ public class RestClientBuilder {
     private String mName;
 
     RestClientBuilder() {
+        mParams = new WeakHashMap<>();
     }
 
     public final RestClientBuilder url(String url) {
         this.mUrl = url;
         return this;
     }
+
 
     /**
      * 添加多个请求参数

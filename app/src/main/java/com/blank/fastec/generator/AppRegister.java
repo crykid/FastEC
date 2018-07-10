@@ -1,6 +1,6 @@
 package com.blank.fastec.generator;
 
-import com.blank.art.templates.AppRegisterTemplate;
+import com.blank.art.wechat.templates.AppRegisterTemplate;
 import com.blank.art_annotations.annotations.AppRegisterGenerator;
 
 /**

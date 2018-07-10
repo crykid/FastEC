@@ -2,7 +2,7 @@ package com.blank.art_compiler.compiler;
 
 import com.blank.art_annotations.annotations.AppRegisterGenerator;
 import com.blank.art_annotations.annotations.EntryGenerator;
-import com.blank.art_annotations.annotations.EntryPayGenerator;
+import com.blank.art_annotations.annotations.PayEntryGenerator;
 import com.google.auto.service.AutoService;
 
 import java.lang.annotation.Annotation;
@@ -30,7 +30,19 @@ import javax.lang.model.element.TypeElement;
 @AutoService(Processor.class)
 public class ArtProcessor extends AbstractProcessor {
 
+    @Override
+    public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
+        generateEntryCode(roundEnv);
+        generatePayEntryCode(roundEnv);
+        generateRegisterEntryCode(roundEnv);
+        return true;
+    }
 
+    /**
+     * 获取整个类的注解类型
+     *
+     * @return
+     */
     @Override
     public Set<String> getSupportedAnnotationTypes() {
         final Set<String> types = new LinkedHashSet<>();
@@ -41,24 +53,18 @@ public class ArtProcessor extends AbstractProcessor {
         return types;
     }
 
+
     private Set<Class<? extends Annotation>> getSupportedAnnotations() {
         final Set<Class<? extends Annotation>> annotations = new LinkedHashSet<>();
         annotations.add(EntryGenerator.class);
-        annotations.add(EntryPayGenerator.class);
+        annotations.add(PayEntryGenerator.class);
         annotations.add(AppRegisterGenerator.class);
         return annotations;
     }
 
-    @Override
-    public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
-        generateEntryCode(roundEnv);
-        generatePayEntryCode(roundEnv);
-        generateRegisterEntryCode(roundEnv);
-        return true;
-    }
 
     /**
-     * 扫描类注解
+     * 扫描每个类注解
      *
      * @param env        整个代码的环境
      * @param annotation
@@ -74,6 +80,7 @@ public class ArtProcessor extends AbstractProcessor {
                     = typeElement.getAnnotationMirrors();
 
             for (AnnotationMirror annotationMirror : annotationMirrors) {
+                //获取类型键值对
                 final Map<? extends ExecutableElement, ? extends AnnotationValue> elementValues
                         = annotationMirror.getElementValues();
 
@@ -105,7 +112,7 @@ public class ArtProcessor extends AbstractProcessor {
     private void generatePayEntryCode(RoundEnvironment env) {
         final PayEntryVisitor payEntryVisitor = new PayEntryVisitor();
         payEntryVisitor.setFilter(processingEnv.getFiler());
-        scan(env, EntryPayGenerator.class, payEntryVisitor);
+        scan(env, PayEntryGenerator.class, payEntryVisitor);
     }
 
     /**

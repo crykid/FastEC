@@ -22,6 +22,11 @@ public final class Art {
         return Configurator.getConfigs();
     }
 
+    public static Configurator getConfigurator() {
+
+        return Configurator.getInstance();
+    }
+
     public static Context getApplicationContext() {
         return (Context) getConfigurations().get(ConfigTypes.APPLICATION_CONTEXT.name());
     }

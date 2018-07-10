@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 /**
  * Created by blank.
  * Created on 7/1/2018.
- * Description:用来传入包名，微信所需要得模板代码
+ * Description:用来传入包名，微信所需要得模板代码，绕过微信的限制，不在主程序中写微信相关代码
  */
 
 /**

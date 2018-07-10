@@ -1,8 +1,12 @@
 package com.blank.fastec;
 
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import com.blank.art.activities.ProxyActivity;
+import com.blank.art.app.Art;
 import com.blank.art.app.ISignListener;
 import com.blank.art.delegates.ArtDelegate;
 import com.blank.art.ec.launcher.LauncherDelegate;
@@ -15,6 +19,13 @@ public class MainActivity extends ProxyActivity implements
         ISignListener,
         ILauncherListener {
     private static final String TAG = "MainActivity";
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //将全局的activity加入配置文件中
+        Art.getConfigurator().withActivity(this);
+    }
 
     @Override
     public ArtDelegate getRootDelegate() {

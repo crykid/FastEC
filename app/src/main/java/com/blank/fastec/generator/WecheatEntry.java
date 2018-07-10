@@ -1,6 +1,6 @@
 package com.blank.fastec.generator;
 
-import com.blank.art.templates.WXEntryTemplate;
+import com.blank.art.wechat.templates.WXEntryTemplate;
 import com.blank.art_annotations.annotations.EntryGenerator;
 
 /**

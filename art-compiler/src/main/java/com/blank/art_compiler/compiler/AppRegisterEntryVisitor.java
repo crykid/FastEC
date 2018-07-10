@@ -36,6 +36,7 @@ public final class AppRegisterEntryVisitor extends SimpleAnnotationValueVisitor7
     public Void visitType(TypeMirror t, Void aVoid) {
 
         mTypeMirror = t;
+        generateJavaCode();
         return aVoid;
     }
 

@@ -36,6 +36,7 @@ public final class PayEntryVisitor extends SimpleAnnotationValueVisitor7<Void, V
     public Void visitType(TypeMirror t, Void aVoid) {
 
         mTypeMirror = t;
+        generateJavaCode();
         return aVoid;
     }
 

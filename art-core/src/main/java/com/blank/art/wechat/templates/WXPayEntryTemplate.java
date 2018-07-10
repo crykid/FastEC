@@ -1,4 +1,4 @@
-package com.blank.art.templates;
+package com.blank.art.wechat.templates;
 
 import com.blank.art.activities.ProxyActivity;
 import com.blank.art.delegates.ArtDelegate;

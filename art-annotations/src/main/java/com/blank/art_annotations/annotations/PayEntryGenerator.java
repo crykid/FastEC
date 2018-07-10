@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.SOURCE)
-public @interface EntryPayGenerator {
+public @interface PayEntryGenerator {
     String packageName();
 
     Class<?> payEntryTemplete();

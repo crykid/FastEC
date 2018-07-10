@@ -1,11 +1,8 @@
-package com.blank.art.templates;
+package com.blank.art.wechat.templates;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-
-import com.blank.art.activities.ProxyActivity;
-import com.blank.art.delegates.ArtDelegate;
 
 /**
  * Created by blank.

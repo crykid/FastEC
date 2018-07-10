@@ -24,6 +24,8 @@ import com.blank.art.retrofit.callback.IRequest;
 import com.blank.art.retrofit.callback.ISuccess;
 import com.blank.art.ui.loader.Loader;
 import com.blank.art.util.storage.ArtPreference;
+import com.blank.art.wechat.ArtWechat;
+import com.blank.art.wechat.callbacks.IWeChatSigninCallback;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import butterknife.BindView;
@@ -108,6 +110,13 @@ public class SignInDelegate extends ArtDelegate {
 
         } else if (id == R.id.itv_sign_in_wechat) {
             Toast.makeText(getContext(), "微信登录", Toast.LENGTH_SHORT).show();
+            ArtWechat.getInstance().onSigninSuccess(new IWeChatSigninCallback() {
+                @Override
+                public void onSignInSuccess(String userInfo) {
+
+                }
+            }).signIn();
+
 
         } else if (id == R.id.tv_sign_in_signup) {
             start(new SignUpDelegate());

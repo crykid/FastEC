@@ -1,5 +1,7 @@
 package com.blank.art.app;
 
+import android.app.Activity;
+
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 
@@ -79,6 +81,38 @@ public class Configurator {
 
     public final Configurator withIcon(IconFontDescriptor descriptor) {
         ICONS.add(descriptor);
+        return this;
+    }
+
+    /**
+     * 使用当前activity
+     * @param activity
+     * @return
+     */
+    public final Configurator withActivity(Activity activity) {
+        CONFIGS.put(ConfigTypes.ACTIVITY, activity);
+        return this;
+    }
+
+    /**
+     * 初始化微信，添加微信appId
+     *
+     * @param appid 微信appId
+     * @return
+     */
+    public final Configurator withWechatAppId(String appid) {
+        CONFIGS.put(ConfigTypes.WECHAT_APP_ID, appid);
+        return this;
+    }
+
+    /**
+     * 初始化微信，添加微信appSecret
+     *
+     * @param appSecret 微信appSecret
+     * @return
+     */
+    public final Configurator withWechatAppSecret(String appSecret) {
+        CONFIGS.put(ConfigTypes.WECHAT_APP_SECRET, appSecret);
         return this;
     }
 

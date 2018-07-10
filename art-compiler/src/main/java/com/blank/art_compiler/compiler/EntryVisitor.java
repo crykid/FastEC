@@ -16,9 +16,11 @@ import javax.annotation.processing.Filer;
  * Created on 7/1/2018.
  * Description:
  */
-public final class EntryVisitor extends SimpleAnnotationValueVisitor7<Void, Void> {
+public final class  EntryVisitor extends SimpleAnnotationValueVisitor7<Void, Void> {
 
+    //需要遍历的对象
     private Filer mFilter = null;
+    //类型
     private TypeMirror mTypeMirror = null;
     private String mPackagaName = null;
 
@@ -36,6 +38,7 @@ public final class EntryVisitor extends SimpleAnnotationValueVisitor7<Void, Void
     public Void visitType(TypeMirror t, Void aVoid) {
 
         mTypeMirror = t;
+        generateJavaCode();
         return aVoid;
     }
 
@@ -47,6 +50,7 @@ public final class EntryVisitor extends SimpleAnnotationValueVisitor7<Void, Void
         final TypeSpec targetActivity = TypeSpec.classBuilder("WXEntryActivity")
                 .addModifiers(Modifier.PUBLIC)
                 .addModifiers(Modifier.FINAL)
+                //继承的类
                 .superclass(TypeName.get(mTypeMirror))
                 .build();
         final JavaFile javaFile = JavaFile.builder(mPackagaName + ".wxapi", targetActivity)

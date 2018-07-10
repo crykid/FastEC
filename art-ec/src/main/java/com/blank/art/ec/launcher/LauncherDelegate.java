@@ -43,7 +43,7 @@ public class LauncherDelegate extends ArtDelegate implements ITimerListener {
 
     private Timer mTimer = null;
 
-    private int mCount = 5;
+    private int mCount = 3;
 
     private ILauncherListener mILauncherListener = null;
 

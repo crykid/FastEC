@@ -10,6 +10,7 @@ import com.blank.art.app.Art;
 import com.blank.art.app.ISignListener;
 import com.blank.art.delegates.ArtDelegate;
 import com.blank.art.ec.launcher.LauncherDelegate;
+import com.blank.art.ec.main.EcBottomDelegate;
 import com.blank.art.ec.sign.SignInDelegate;
 import com.blank.art.ec.sign.SignUpDelegate;
 import com.blank.art.ui.launcher.ILauncherListener;
@@ -49,6 +50,7 @@ public class MainActivity extends ProxyActivity implements
         switch (tag) {
             case SIGNED:
                 Toast.makeText(this, "启动结束，登录成功了", Toast.LENGTH_SHORT).show();
+                startWithPop(new EcBottomDelegate());
                 break;
             case NOT_SIGNED:
                 startWithPop(new SignInDelegate());

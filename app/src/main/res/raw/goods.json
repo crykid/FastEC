@@ -1,0 +1,405 @@
+{
+  "count": 104,
+  "next": "http://192.168.1.104:8000/goods/?page=2",
+  "previous": null,
+  "results": [
+    {
+      "id": 1,
+      "category": {
+        "id": 20,
+        "sub_cat": [],
+        "name": "根茎类",
+        "code": "gjl",
+        "desc": "",
+        "category_type": 2,
+        "is_tab": false,
+        "add_time": "2018-01-22T18:48:50.780881",
+        "parent_category": 1
+      },
+      "images": [
+        {
+          "image": "http://192.168.1.104:8000/media/goods/images/1_P_1449024889889.jpg"
+        }
+      ],
+      "goods_sn": "",
+      "name": "新鲜水果甜蜜香脆单果约800克",
+      "click_num": 0,
+      "sold_num": 0,
+      "fav_num": 0,
+      "goods_num": 0,
+      "market_price": 232.0,
+      "shop_price": 156.0,
+      "goods_brief": "",
+      "goods_desc": "<p><img src=\"/media/goods/images/2_20170719161405_249.jpg\" title=\"\" alt=\"2.jpg\"/></p><p><img src=\"/media/goods/images/2_20170719161414_628.jpg\" title=\"\" alt=\"2.jpg\"/></p><p><img src=\"/media/goods/images/2_20170719161435_381.jpg\" title=\"\" alt=\"2.jpg\"/></p>",
+      "ship_free": true,
+      "goods_front_image": "",
+      "is_new": false,
+      "is_hot": false,
+      "add_time": "2018-01-22T19:12:25.577566"
+    },
+    {
+      "id": 2,
+      "category": {
+        "id": 7,
+        "sub_cat": [
+          {
+            "id": 11,
+            "sub_cat": [],
+            "name": "蟹/贝",
+            "code": "xb",
+            "desc": "",
+            "category_type": 3,
+            "is_tab": false,
+            "add_time": "2018-01-22T18:48:50.773573",
+            "parent_category": 7
+          }
+        ],
+        "name": "海鲜水产",
+        "code": "hxsc",
+        "desc": "",
+        "category_type": 2,
+        "is_tab": false,
+        "add_time": "2018-01-22T18:48:50.770044",
+        "parent_category": 1
+      },
+      "images": [
+        {
+          "image": "http://192.168.1.104:8000/media/goods/images/2_P_1448945810202.jpg"
+        },
+        {
+          "image": "http://192.168.1.104:8000/media/goods/images/2_P_1448945810814.jpg"
+        }
+      ],
+      "goods_sn": "",
+      "name": "田然牛肉大黄瓜条生鲜牛肉冷冻真空黄牛",
+      "click_num": 0,
+      "sold_num": 0,
+      "fav_num": 0,
+      "goods_num": 0,
+      "market_price": 106.0,
+      "shop_price": 88.0,
+      "goods_brief": "前腿+后腿+羊排共8斤，原生态大山放牧羊羔，曾经的皇室贡品，央视推荐，2005年北京招待全球财金首脑。五层专用包装箱+真空包装+冰袋+保鲜箱+顺丰冷链发货，路途保质期8天",
+      "goods_desc": "<p><img src=\"/media/goods/images/2_20170719161405_249.jpg\" title=\"\" alt=\"2.jpg\"/></p><p><img src=\"/media/goods/images/2_20170719161414_628.jpg\" title=\"\" alt=\"2.jpg\"/></p><p><img src=\"/media/goods/images/2_20170719161435_381.jpg\" title=\"\" alt=\"2.jpg\"/></p>",
+      "ship_free": true,
+      "goods_front_image": "http://192.168.1.104:8000/media/goods/images/2_P_1448945810202.jpg",
+      "is_new": false,
+      "is_hot": false,
+      "add_time": "2018-01-22T19:12:25.606197"
+    },
+    {
+      "id": 3,
+      "category": {
+        "id": 15,
+        "sub_cat": [
+          {
+            "id": 16,
+            "sub_cat": [],
+            "name": "生菜",
+            "code": "sc",
+            "desc": "",
+            "category_type": 3,
+            "is_tab": false,
+            "add_time": "2018-01-22T18:48:50.777398",
+            "parent_category": 15
+          }
+        ],
+        "name": "叶菜类",
+        "code": "ycl",
+        "desc": "",
+        "category_type": 2,
+        "is_tab": false,
+        "add_time": "2018-01-22T18:48:50.776652",
+        "parent_category": 1
+      },
+      "images": [
+        {
+          "image": "http://192.168.1.104:8000/media/goods/images/7_P_1448945104883.jpg"
+        }
+      ],
+      "goods_sn": "",
+      "name": "酣畅家庭菲力牛排10片澳洲生鲜牛肉团购套餐",
+      "click_num": 0,
+      "sold_num": 0,
+      "fav_num": 0,
+      "goods_num": 0,
+      "market_price": 286.0,
+      "shop_price": 238.0,
+      "goods_brief": "",
+      "goods_desc": "<p><img src=\"/media/goods/images/2_20170719161405_249.jpg\" title=\"\" alt=\"2.jpg\"/></p><p><img src=\"/media/goods/images/2_20170719161414_628.jpg\" title=\"\" alt=\"2.jpg\"/></p><p><img src=\"/media/goods/images/2_20170719161435_381.jpg\" title=\"\" alt=\"2.jpg\"/></p>",
+      "ship_free": true,
+      "goods_front_image": "http://192.168.1.104:8000/media/goods/images/7_P_1448945104883.jpg",
+      "is_new": false,
+      "is_hot": false,
+      "add_time": "2018-01-22T19:12:25.609748"
+    },
+    {
+      "id": 4,
+      "category": {
+        "id": 20,
+        "sub_cat": [],
+        "name": "根茎类",
+        "code": "gjl",
+        "desc": "",
+        "category_type": 2,
+        "is_tab": false,
+        "add_time": "2018-01-22T18:48:50.780881",
+        "parent_category": 1
+      },
+      "images": [
+        {
+          "image": "http://192.168.1.104:8000/media/goods/images/47_P_1448946213263.jpg"
+        },
+        {
+          "image": "http://192.168.1.104:8000/media/goods/images/47_P_1448946213157.jpg"
+        }
+      ],
+      "goods_sn": "",
+      "name": "日本蒜蓉粉丝扇贝270克6只装",
+      "click_num": 0,
+      "sold_num": 0,
+      "fav_num": 0,
+      "goods_num": 0,
+      "market_price": 156.0,
+      "shop_price": 108.0,
+      "goods_brief": "從前有座山，山上有座廟",
+      "goods_desc": "<p><img src=\"/media/goods/images/2_20170719161405_249.jpg\" title=\"\" alt=\"2.jpg\"/></p><p><img src=\"/media/goods/images/2_20170719161414_628.jpg\" title=\"\" alt=\"2.jpg\"/></p><p><img src=\"/media/goods/images/2_20170719161435_381.jpg\" title=\"\" alt=\"2.jpg\"/></p>",
+      "ship_free": true,
+      "goods_front_image": "http://192.168.1.104:8000/media/goods/images/47_P_1448946213263.jpg",
+      "is_new": false,
+      "is_hot": false,
+      "add_time": "2018-01-22T19:12:25.613058"
+    },
+    {
+      "id": 5,
+      "category": {
+        "id": 7,
+        "sub_cat": [
+        ],
+        "name": "海鲜水产",
+        "code": "hxsc",
+        "desc": "",
+        "category_type": 2,
+        "is_tab": false,
+        "add_time": "2018-01-22T18:48:50.770044",
+        "parent_category": 1
+      },
+      "images": [
+        {
+          "image": "http://192.168.1.104:8000/media/goods/images/10_P_1448944572085.jpg"
+        }
+      ],
+      "goods_sn": "",
+      "name": "内蒙新鲜牛肉1斤清真生鲜牛肉火锅食材",
+      "click_num": 0,
+      "sold_num": 0,
+      "fav_num": 0,
+      "goods_num": 0,
+      "market_price": 106.0,
+      "shop_price": 88.0,
+      "goods_brief": "",
+      "goods_desc": "<p><img src=\"/media/goods/images/2_20170719161405_249.jpg\" title=\"\" alt=\"2.jpg\"/></p><p><img src=\"/media/goods/images/2_20170719161414_628.jpg\" title=\"\" alt=\"2.jpg\"/></p><p><img src=\"/media/goods/images/2_20170719161435_381.jpg\" title=\"\" alt=\"2.jpg\"/></p>",
+      "ship_free": true,
+      "goods_front_image": "http://192.168.1.104:8000/media/goods/images/10_P_1448944572085.jpg",
+      "is_new": false,
+      "is_hot": false,
+      "add_time": "2018-01-22T19:12:25.616580"
+    },
+    {
+      "id": 6,
+      "category": {
+        "id": 21,
+        "sub_cat": [],
+        "name": "茄果类",
+        "code": "qgl",
+        "desc": "",
+        "category_type": 2,
+        "is_tab": false,
+        "add_time": "2018-01-22T18:48:50.781665",
+        "parent_category": 1
+      },
+      "images": [
+        {
+          "image": "http://192.168.1.104:8000/media/goods/images/4_P_1448945381985.jpg"
+        },
+        {
+          "image": "http://192.168.1.104:8000/media/goods/images/4_P_1448945381013.jpg"
+        }
+      ],
+      "goods_sn": "",
+      "name": "乌拉圭进口牛肉卷特级肥牛卷",
+      "click_num": 0,
+      "sold_num": 0,
+      "fav_num": 0,
+      "goods_num": 0,
+      "market_price": 90.0,
+      "shop_price": 75.0,
+      "goods_brief": "",
+      "goods_desc": "<p><img src=\"/media/goods/images/2_20170719161405_249.jpg\" title=\"\" alt=\"2.jpg\"/></p><p><img src=\"/media/goods/images/2_20170719161414_628.jpg\" title=\"\" alt=\"2.jpg\"/></p><p><img src=\"/media/goods/images/2_20170719161435_381.jpg\" title=\"\" alt=\"2.jpg\"/></p>",
+      "ship_free": true,
+      "goods_front_image": "http://192.168.1.104:8000/media/goods/images/4_P_1448945381985.jpg",
+      "is_new": false,
+      "is_hot": false,
+      "add_time": "2018-01-22T19:12:25.620664"
+    },
+    {
+      "id": 7,
+      "category": {
+        "id": 23,
+        "sub_cat": [],
+        "name": "进口生鲜",
+        "code": "jksx",
+        "desc": "",
+        "category_type": 2,
+        "is_tab": false,
+        "add_time": "2018-01-22T18:48:50.783338",
+        "parent_category": 1
+      },
+      "images": [
+        {
+          "image": "http://192.168.1.104:8000/media/goods/images/8_P_1448945032810.jpg"
+        },
+        {
+          "image": "http://192.168.1.104:8000/media/goods/images/8_P_1448945032646.jpg"
+        }
+      ],
+      "goods_sn": "",
+      "name": "五星眼肉牛排套餐8片装原味原切生鲜牛肉",
+      "click_num": 0,
+      "sold_num": 0,
+      "fav_num": 0,
+      "goods_num": 0,
+      "market_price": 150.0,
+      "shop_price": 125.0,
+      "goods_brief": "",
+      "goods_desc": "<p><img src=\"/media/goods/images/2_20170719161405_249.jpg\" title=\"\" alt=\"2.jpg\"/></p><p><img src=\"/media/goods/images/2_20170719161414_628.jpg\" title=\"\" alt=\"2.jpg\"/></p><p><img src=\"/media/goods/images/2_20170719161435_381.jpg\" title=\"\" alt=\"2.jpg\"/></p>",
+      "ship_free": true,
+      "goods_front_image": "http://192.168.1.104:8000/media/goods/images/8_P_1448945032810.jpg",
+      "is_new": false,
+      "is_hot": false,
+      "add_time": "2018-01-22T19:12:25.623845"
+    },
+    {
+      "id": 8,
+      "category": {
+        "id": 7,
+        "sub_cat": [
+          {
+            "id": 11,
+            "sub_cat": [],
+            "name": "蟹/贝",
+            "code": "xb",
+            "desc": "",
+            "category_type": 3,
+            "is_tab": false,
+            "add_time": "2018-01-22T18:48:50.773573",
+            "parent_category": 7
+          }
+        ],
+        "name": "海鲜水产",
+        "code": "hxsc",
+        "desc": "",
+        "category_type": 2,
+        "is_tab": false,
+        "add_time": "2018-01-22T18:48:50.770044",
+        "parent_category": 1
+      },
+      "images": [
+        {
+          "image": "http://192.168.1.104:8000/media/goods/images/11_P_1448944388277.jpg"
+        },
+        {
+          "image": "http://192.168.1.104:8000/media/goods/images/11_P_1448944388034.jpg"
+        },
+        {
+          "image": "http://192.168.1.104:8000/media/goods/images/11_P_1448944388201.jpg"
+        }
+      ],
+      "goods_sn": "",
+      "name": "澳洲进口120天谷饲牛仔骨4份原味生鲜",
+      "click_num": 0,
+      "sold_num": 0,
+      "fav_num": 0,
+      "goods_num": 0,
+      "market_price": 31.0,
+      "shop_price": 26.0,
+      "goods_brief": "",
+      "goods_desc": "<p><img src=\"/media/goods/images/2_20170719161405_249.jpg\" title=\"\" alt=\"2.jpg\"/></p><p><img src=\"/media/goods/images/2_20170719161414_628.jpg\" title=\"\" alt=\"2.jpg\"/></p><p><img src=\"/media/goods/images/2_20170719161435_381.jpg\" title=\"\" alt=\"2.jpg\"/></p>",
+      "ship_free": true,
+      "goods_front_image": "http://192.168.1.104:8000/media/goods/images/11_P_1448944388277.jpg",
+      "is_new": false,
+      "is_hot": false,
+      "add_time": "2018-01-22T19:12:25.627097"
+    },
+    {
+      "id": 9,
+      "category": {
+        "id": 22,
+        "sub_cat": [],
+        "name": "菌菇类",
+        "code": "jgl",
+        "desc": "",
+        "category_type": 2,
+        "is_tab": false,
+        "add_time": "2018-01-22T18:48:50.782459",
+        "parent_category": 1
+      },
+      "images": [
+        {
+          "image": "http://192.168.1.104:8000/media/goods/images/6_P_1448945167279.jpg"
+        },
+        {
+          "image": "http://192.168.1.104:8000/media/goods/images/6_P_1448945167015.jpg"
+        }
+      ],
+      "goods_sn": "",
+      "name": "潮香村澳洲进口牛排家庭团购套餐20片",
+      "click_num": 0,
+      "sold_num": 0,
+      "fav_num": 0,
+      "goods_num": 0,
+      "market_price": 239.0,
+      "shop_price": 199.0,
+      "goods_brief": "",
+      "goods_desc": "<p><img src=\"/media/goods/images/2_20170719161405_249.jpg\" title=\"\" alt=\"2.jpg\"/></p><p><img src=\"/media/goods/images/2_20170719161414_628.jpg\" title=\"\" alt=\"2.jpg\"/></p><p><img src=\"/media/goods/images/2_20170719161435_381.jpg\" title=\"\" alt=\"2.jpg\"/></p>",
+      "ship_free": true,
+      "goods_front_image": "http://192.168.1.104:8000/media/goods/images/6_P_1448945167279.jpg",
+      "is_new": false,
+      "is_hot": false,
+      "add_time": "2018-01-22T19:12:25.632811"
+    },
+    {
+      "id": 10,
+      "category": {
+        "id": 20,
+        "sub_cat": [],
+        "name": "根茎类",
+        "code": "gjl",
+        "desc": "",
+        "category_type": 2,
+        "is_tab": false,
+        "add_time": "2018-01-22T18:48:50.780881",
+        "parent_category": 1
+      },
+      "images": [
+        {
+          "image": "http://192.168.1.104:8000/media/goods/images/9_P_1448944791617.jpg"
+        }
+      ],
+      "goods_sn": "",
+      "name": "爱食派内蒙古呼伦贝尔冷冻生鲜牛腱子肉1000g",
+      "click_num": 0,
+      "sold_num": 0,
+      "fav_num": 0,
+      "goods_num": 0,
+      "market_price": 202.0,
+      "shop_price": 168.0,
+      "goods_brief": "",
+      "goods_desc": "<p><img src=\"/media/goods/images/2_20170719161405_249.jpg\" title=\"\" alt=\"2.jpg\"/></p><p><img src=\"/media/goods/images/2_20170719161414_628.jpg\" title=\"\" alt=\"2.jpg\"/></p><p><img src=\"/media/goods/images/2_20170719161435_381.jpg\" title=\"\" alt=\"2.jpg\"/></p>",
+      "ship_free": true,
+      "goods_front_image": "http://192.168.1.104:8000/media/goods/images/9_P_1448944791617.jpg",
+      "is_new": false,
+      "is_hot": false,
+      "add_time": "2018-01-22T19:12:25.636512"
+    }
+  ]
+}

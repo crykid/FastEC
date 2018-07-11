@@ -47,8 +47,6 @@ public class DebugInterceptor extends BaseInterceptor {
         Request request = original.newBuilder()
                 .header("Authorization", "JWT " + ArtPreference.getToken())
                 .build();
-        Log.d(TAG, "intercept: "+ArtPreference.getToken());
-        Log.d(TAG, "intercept: " + request.headers().size());
 
         return chain.proceed(request);
     }

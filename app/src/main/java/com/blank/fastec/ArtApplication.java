@@ -30,7 +30,7 @@ public class ArtApplication extends Application {
                 //引入自己的字体图标
                 .withIcon(new FontEcModule())
                 //取到了res-raw-rest.json文件
-                .withInterceptor(new DebugInterceptor("index", R.raw.test))
+                .withInterceptor(new DebugInterceptor("goods/", R.raw.goods))
                 .withInterceptor(new ParamsLogInterceptor(new HttpLogger()).setLevel(ParamsLogInterceptor.Level.BODY))
 //                .withWechatAppId("")
 //                .withWechatAppSecret("")

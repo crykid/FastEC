@@ -60,8 +60,8 @@ dependencies {
     //banner轮播
     api 'com.bigkoo:ConvenientBanner:2.1.4'
     api 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
-    //json依赖
-    api 'com.alibaba:fastjson:1.2.31'
+    //json依赖,fastjson-android版，相比于java版本，做了相关的优化
+    api 'com.alibaba:fastjson:1.1.68.android'
     //RecyclerView
     api 'com.android.support:recyclerview-v7:26.1.0'
 
@@ -75,5 +75,9 @@ dependencies {
     //微信依赖（包含统计），下面一行注释表示不检查更新
     //noinspection GradleDynamicVersion
     api 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+
+    //RecyclerView adapter 依赖，加号表示动态寻找最新版本
+    //noinspection GradleDynamicVersion
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:+'
 
 }

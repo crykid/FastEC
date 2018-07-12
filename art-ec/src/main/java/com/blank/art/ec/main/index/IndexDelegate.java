@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -63,42 +64,14 @@ public class IndexDelegate extends BottomItemDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-        mRefreshHandler = new RefreshHandler(mSwipeRefreshLayout);
-        RestClient.builder()
-                .url("goods/")
-                .params("page", "1")
-                .success(new ISuccess<GoodsListEntity>() {
-                    @Override
-                    public void onSuccess(GoodsListEntity response) {
-
-                        final IndexDataConverter converter = new IndexDataConverter();
-                        converter.setData(response);
-
-                        ArrayList<MultipleItemEntity> list = converter.convert();
-                        final String image = list.get(2).getField(MultipleFields.IMAGE_URL);
-
-                        Toast.makeText(getContext(), image, Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .failure(new IFailure() {
-                    @Override
-                    public void onFailure() {
-                        Log.d(TAG, "onFailure: ");
-                    }
-                })
-                .error(new IError() {
-                    @Override
-                    public void onError(int code, String message) {
-                        Log.d(TAG, "onError: ");
-                    }
-                })
-                .build()
-                .get();
+        mRefreshHandler = RefreshHandler.create(mSwipeRefreshLayout, mRecyclerView, new IndexDataConverter());
+        mRefreshHandler.firstPage("goods/");
     }
 
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
+        initRecyclerView();
         initRefreshLayout();
 //        mRefreshHandler.firstPage("goods/");
     }
@@ -112,6 +85,10 @@ public class IndexDelegate extends BottomItemDelegate {
         mSwipeRefreshLayout.setProgressViewOffset(true, 120, 300);
     }
 
+    private void initRecyclerView() {
+        final GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
+        mRecyclerView.setLayoutManager(manager);
+    }
 
     @OnClick({R2.id.itv_index_scan, R2.id.itv_index_message})
     public void onViewClicked(View view) {

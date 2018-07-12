@@ -1,7 +1,5 @@
 package com.blank.art.ui.recycler;
 
-import android.text.TextUtils;
-
 import com.blank.art.entity.GoodsListEntity;
 
 import java.util.ArrayList;
@@ -9,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by blank.
  * Created on 7/11/2018.
- * Description:
+ * Description:数据转换基类
  */
 public abstract class DataConverter {
 

@@ -1,5 +1,7 @@
 package com.blank.art.ec.main.index;
 
+import android.text.TextUtils;
+
 import com.blank.art.entity.GoodsListEntity;
 import com.blank.art.ui.recycler.DataConverter;
 import com.blank.art.ui.recycler.ItemType;
@@ -28,12 +30,13 @@ public class IndexDataConverter extends DataConverter {
             String goodsFrontImage = resultEntity.goodsFrontImage;
             String goodsBrief = resultEntity.goodsBrief;
             String id = resultEntity.id + "";
+            int spanSize = resultEntity.category.subCat.size();
             List<GoodsListEntity.ResultsEntity.ImagesEntity> imagesEntity = resultEntity.images;
             final List<GoodsListEntity.ResultsEntity.ImagesEntity> imagesEntityes = resultEntity.images;
 
-            if (goodsFrontImage == null && goodsBrief != null) {
+            if (TextUtils.isEmpty(goodsFrontImage) && !TextUtils.isEmpty(goodsBrief)) {
                 type = ItemType.TEXT;
-            } else if (goodsFrontImage != null && goodsBrief == null) {
+            } else if (!TextUtils.isEmpty(goodsFrontImage) && TextUtils.isEmpty(goodsBrief)) {
                 type = ItemType.IMAGE;
             } else if (imagesEntity != null) {
                 type = ItemType.BANNER;
@@ -45,6 +48,7 @@ public class IndexDataConverter extends DataConverter {
                     .setField(MultipleFields.ID, id)
                     .setField(MultipleFields.TEXT, goodsBrief)
                     .setField(MultipleFields.IMAGE_URL, goodsFrontImage)
+                    .setField(MultipleFields.SPAN_SIZE, spanSize)
                     .setField(MultipleFields.BANNERS, imagesEntityes)
                     .build();
             ENTITIES.add(entity);

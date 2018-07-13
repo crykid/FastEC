@@ -1,7 +1,6 @@
 package com.blank.fastec;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
 
@@ -12,7 +11,6 @@ import com.blank.art.delegates.ArtDelegate;
 import com.blank.art.ec.launcher.LauncherDelegate;
 import com.blank.art.ec.main.EcBottomDelegate;
 import com.blank.art.ec.sign.SignInDelegate;
-import com.blank.art.ec.sign.SignUpDelegate;
 import com.blank.art.ui.launcher.ILauncherListener;
 import com.blank.art.ui.launcher.OnLuncherFinishTag;
 
@@ -26,6 +24,8 @@ public class MainActivity extends ProxyActivity implements
         super.onCreate(savedInstanceState);
         //将全局的activity加入配置文件中
         Art.getConfigurator().withActivity(this);
+        //设置沉浸式状态栏
+//        StatusBarCompat.translucentStatusBar(this,true);
     }
 
     @Override

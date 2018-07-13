@@ -15,7 +15,7 @@ import java.util.LinkedHashMap;
 /**
  * Created by blank.
  * Created on 7/11/2018.
- * Description:
+ * Description:app主页面
  */
 public class EcBottomDelegate extends BaseBottomDegelate {
     @Override

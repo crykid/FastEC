@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.blank.art.bottom.BottomItemDelegate;
 import com.blank.art.ec.R;
 import com.blank.art.ec.R2;
+import com.blank.art.ec.main.EcBottomDelegate;
 import com.blank.art.entity.GoodsListEntity;
 import com.blank.art.retrofit.RestClient;
 import com.blank.art.retrofit.callback.IError;
@@ -91,6 +92,13 @@ public class IndexDelegate extends BottomItemDelegate {
         final GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.addItemDecoration(BaseDecoration.create(ContextCompat.getColor(getContext(), R.color.app_background), 5));
+
+        //获取当前delegate（fragment）所依赖的delegate，即主页面
+        final EcBottomDelegate ecBottomDelegate = getParentDelegate();
+        //添加点击事件监听
+        // 注意！！！此处一定要传parent fragment（delegate），我们要实现整个页面的跳转，包括导航栏，
+        // 不传的话会出现主页面不跳转的现象！！！
+        mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(ecBottomDelegate));
     }
 
     @OnClick({R2.id.itv_index_scan, R2.id.itv_index_message})

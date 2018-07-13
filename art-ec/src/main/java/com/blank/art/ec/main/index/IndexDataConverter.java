@@ -30,6 +30,7 @@ public class IndexDataConverter extends DataConverter {
             String goodsFrontImage = resultEntity.goodsFrontImage;
             String goodsBrief = resultEntity.goodsBrief;
             String id = resultEntity.id + "";
+            //就是gridlayout里面占据的数量
             int spanSize = resultEntity.category.subCat.size();
             List<GoodsListEntity.ResultsEntity.ImagesEntity> imagesEntity = resultEntity.images;
             final List<GoodsListEntity.ResultsEntity.ImagesEntity> imagesEntityes = resultEntity.images;
@@ -38,7 +39,11 @@ public class IndexDataConverter extends DataConverter {
                 type = ItemType.TEXT;
             } else if (!TextUtils.isEmpty(goodsFrontImage) && TextUtils.isEmpty(goodsBrief)) {
                 type = ItemType.IMAGE;
-            } else if (imagesEntity != null) {
+                //要么都空，要么都不空,此处应该是都不空
+            } else if (!TextUtils.isEmpty(goodsFrontImage)) {
+                type = ItemType.TEXT_IMAGE;
+                //都空
+            } else if (imagesEntity.size() > 0) {
                 type = ItemType.BANNER;
                 imagesEntityes.addAll(imagesEntity);
 

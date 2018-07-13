@@ -62,8 +62,7 @@ dependencies {
     api 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
     //json依赖,fastjson-android版，相比于java版本，做了相关的优化
     api 'com.alibaba:fastjson:1.1.68.android'
-    //RecyclerView
-    api 'com.android.support:recyclerview-v7:26.1.0'
+
 
     //数据库依赖
     api 'org.greenrobot:greendao-generator:3.2.2'
@@ -75,10 +74,13 @@ dependencies {
     //微信依赖（包含统计），下面一行注释表示不检查更新
     //noinspection GradleDynamicVersion
     api 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
-
+    //RecyclerView
+    api 'com.android.support:recyclerview-v7:26.1.0'
     //RecyclerView adapter 依赖，加号表示动态寻找最新版本
     //noinspection GradleDynamicVersion
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:+'
+    //RecyclerView分割线
+    api 'com.choices.divider:RecyclerView_Divider:1.0.0'
 
     //glide
     api 'com.github.bumptech.glide:glide:4.0.0-RC0'
@@ -86,3 +88,4 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0-RC0'
 
 }
+

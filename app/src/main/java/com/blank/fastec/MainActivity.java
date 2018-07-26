@@ -14,6 +14,8 @@ import com.blank.art.ec.sign.SignInDelegate;
 import com.blank.art.ui.launcher.ILauncherListener;
 import com.blank.art.ui.launcher.OnLuncherFinishTag;
 
+import qiu.niorgai.StatusBarCompat;
+
 public class MainActivity extends ProxyActivity implements
         ISignListener,
         ILauncherListener {
@@ -25,7 +27,7 @@ public class MainActivity extends ProxyActivity implements
         //将全局的activity加入配置文件中
         Art.getConfigurator().withActivity(this);
         //设置沉浸式状态栏
-//        StatusBarCompat.translucentStatusBar(this,true);
+        StatusBarCompat.translucentStatusBar(this,true);
     }
 
     @Override

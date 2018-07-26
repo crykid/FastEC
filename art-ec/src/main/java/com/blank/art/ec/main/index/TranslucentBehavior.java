@@ -25,7 +25,7 @@ public class TranslucentBehavior extends CoordinatorLayout.Behavior<Toolbar> {
     private static final int SHOW_SPEED = 30;
 
     //定义变化的颜色
-    private final RgbValue RGB_VALUE = RgbValue.create(255, 124, 2);
+    private final RgbValue RGB_VALUE = RgbValue.create(57, 132, 255);
 
     /**
      * 必须重写两个参数的构造函数，因为在使用的时候调用了这个构造函数
@@ -61,7 +61,7 @@ public class TranslucentBehavior extends CoordinatorLayout.Behavior<Toolbar> {
     @Override
     public void onNestedPreScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull Toolbar child, @NonNull View target, int dx, int dy, @NonNull int[] consumed, int type) {
         super.onNestedPreScroll(coordinatorLayout, child, target, dx, dy, consumed, type);
-        //增加华东距离
+        //增加滑动距离
         mDistanceY += dy;
         //toolbar高度
         final int targetHeight = child.getBottom();

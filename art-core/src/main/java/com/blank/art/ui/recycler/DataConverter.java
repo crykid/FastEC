@@ -1,7 +1,5 @@
 package com.blank.art.ui.recycler;
 
-import com.blank.art.entity.GoodsListEntity;
-
 import java.util.ArrayList;
 
 /**
@@ -9,20 +7,20 @@ import java.util.ArrayList;
  * Created on 7/11/2018.
  * Description:数据转换基类
  */
-public abstract class DataConverter {
+public abstract class DataConverter<T> {
 
     protected final ArrayList<MultipleItemEntity> ENTITIES = new ArrayList<>();
 
-    private GoodsListEntity mGoodsListData = null;
+    private T mGoodsListData = null;
 
     public abstract ArrayList<MultipleItemEntity> convert();
 
-    public DataConverter setData(GoodsListEntity json) {
+    public DataConverter setData(T json) {
         this.mGoodsListData = json;
         return this;
     }
 
-    protected GoodsListEntity getJsonData() {
+    protected T getData() {
 
         if (mGoodsListData == null) {
             throw new NullPointerException("DATA IS NULL !");

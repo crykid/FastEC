@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llc_item_category"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:gravity="center_vertical">
+    <!--商品分类页面，左边列表item-->
+
+    <!--左边框-->
+    <View
+        android:id="@+id/view_item_catetory_line_left"
+        android:layout_width="3dp"
+        android:layout_height="match_parent"
+        android:background="@color/theme"
+        android:visibility="invisible" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/atv_item_category_name"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        tools:text="分类" />
+    <!--右边框-->
+    <View
+        android:id="@+id/view_item_catetory_line_right"
+        android:layout_width="3dp"
+        android:layout_height="match_parent"
+        android:background="@color/theme"
+        android:visibility="invisible" />
+</android.support.v7.widget.LinearLayoutCompat>

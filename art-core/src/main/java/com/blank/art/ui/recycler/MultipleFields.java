@@ -17,6 +17,7 @@ public enum MultipleFields {
     /**
      * 备用
      */
-    TAG
+    TAG,
+    LIST
 
 }

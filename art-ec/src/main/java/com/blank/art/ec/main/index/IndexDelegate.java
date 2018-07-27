@@ -8,33 +8,18 @@ import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.blank.art.bottom.BottomItemDelegate;
 import com.blank.art.ec.R;
 import com.blank.art.ec.R2;
 import com.blank.art.ec.main.EcBottomDelegate;
-import com.blank.art.entity.GoodsListEntity;
-import com.blank.art.retrofit.RestClient;
-import com.blank.art.retrofit.callback.IError;
-import com.blank.art.retrofit.callback.IFailure;
-import com.blank.art.retrofit.callback.ISuccess;
 import com.blank.art.ui.recycler.BaseDecoration;
-import com.blank.art.ui.recycler.MultipleFields;
-import com.blank.art.ui.recycler.MultipleItemEntity;
 import com.blank.art.ui.refresh.RefreshHandler;
 import com.joanzapata.iconify.widget.IconTextView;
 
-import java.util.ArrayList;
-
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 /**
  * Created by blank.

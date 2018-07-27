@@ -25,6 +25,10 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -35,14 +39,15 @@ dependencies {
     api 'com.android.support.constraint:constraint-layout:1.1.2'
     api 'com.android.support:appcompat-v7:26.1.0'
     api 'com.android.support:design:26.1.0'
-
     androidTestImplementation 'junit:junit:4.12'
+
     //字体图标
     api 'com.joanzapata.iconify:android-iconify-ionicons:2.2.2'
     api 'com.joanzapata.iconify:android-iconify-fontawesome:2.2.2'
 
     //开源基于fragment库
     api 'me.yokeyword:fragmentation:1.3.5'
+
     //滑动返回
     api 'me.yokeyword:fragmentation-swipeback:1.3.5'
 
@@ -53,16 +58,19 @@ dependencies {
     //retrofit
     api 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-scalars:2.0.0'
+
     //okHttp
     api 'com.squareup.okhttp3:okhttp:3.10.0'
+
     //第三方进度进度，加载显示AVLoadingIndicatorView https://github.com/81813780/AVLoadingIndicatorView
     api 'com.wang.avi:library:2.1.3'
+
     //banner轮播
     api 'com.bigkoo:ConvenientBanner:2.1.4'
     api 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
+
     //json依赖,fastjson-android版，相比于java版本，做了相关的优化
     api 'com.alibaba:fastjson:1.1.68.android'
-
 
     //数据库依赖
     api 'org.greenrobot:greendao-generator:3.2.2'
@@ -72,18 +80,25 @@ dependencies {
     api 'com.orhanobut:logger:1.15'
 
     //微信依赖（包含统计），下面一行注释表示不检查更新
+
     //noinspection GradleDynamicVersion
     api 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+
     //RecyclerView
     api 'com.android.support:recyclerview-v7:26.1.0'
+
     //RecyclerView adapter 依赖，加号表示动态寻找最新版本
+
     //noinspection GradleDynamicVersion
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:+'
+
     //RecyclerView分割线
     api 'com.choices.divider:RecyclerView_Divider:1.0.0'
 
     //沉浸式状态栏
-//    api 'com.github.niorgai:StatusBarCompat:2.1.4'
+    api('com.github.niorgai:StatusBarCompat:2.1.4', {
+        exclude group: 'com.android.support'
+    })
 
     //glide
     api 'com.github.bumptech.glide:glide:4.0.0-RC0'
@@ -91,14 +106,9 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0-RC0'
 
     //google auto-value
+
     //该方式表示仅在编译期间使用，打包时候废弃
-    provided "com.google.auto.value:auto-value-annotations:1.6.2"
+    provided 'com.google.auto.value:auto-value-annotations:1.6.2'
     annotationProcessor "com.google.auto.value:auto-value:1.6.2"
-
-
-
-
-
-
 }
 

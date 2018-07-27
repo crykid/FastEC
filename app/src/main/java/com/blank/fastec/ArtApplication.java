@@ -2,13 +2,12 @@ package com.blank.fastec;
 
 import android.app.Application;
 
+import com.blank.art.app.Art;
 import com.blank.art.ec.database.DatabaseManager;
 import com.blank.art.ec.icon.FontEcModule;
-import com.blank.art.app.Art;
 import com.blank.art.retrofit.intercepter.DebugInterceptor;
-import com.blank.art.util.logutil.ParamsLogInterceptor;
 import com.blank.art.util.logutil.HttpLogger;
-import com.blank.art.util.logutil.LogUtil;
+import com.blank.art.util.logutil.ParamsLogInterceptor;
 import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
@@ -24,7 +23,7 @@ public class ArtApplication extends Application {
         super.onCreate();
 
         Art.init(this)
-                .withApiHost("http://192.168.1.104:8000/")
+                .withApiHost("http://172.32.25.80:8000/")
                 //引入默认的iconfont
                 .withIcon(new FontAwesomeModule())
                 //引入自己的字体图标

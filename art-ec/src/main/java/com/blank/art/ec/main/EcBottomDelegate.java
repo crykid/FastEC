@@ -8,6 +8,7 @@ import com.blank.art.bottom.BottomTabBean;
 import com.blank.art.bottom.ItemBuilder;
 import com.blank.art.ec.main.cart.ShoppingCartDelegate;
 import com.blank.art.ec.main.index.IndexDelegate;
+import com.blank.art.ec.main.sort.SortDelegate;
 import com.blank.art.ec.main.user.UserDelegate;
 
 import java.util.LinkedHashMap;
@@ -23,6 +24,7 @@ public class EcBottomDelegate extends BaseBottomDegelate {
         final LinkedHashMap<BottomTabBean, BottomItemDelegate> items = new LinkedHashMap<>();
         //货物，购物车，个人中心
         items.put(new BottomTabBean("{fa-archive}", "商品"), new IndexDelegate());
+        items.put(new BottomTabBean("{fa-list-ul}", "分类"), new SortDelegate());
         items.put(new BottomTabBean("{fa-shopping-cart}", "购物车"), new ShoppingCartDelegate());
         items.put(new BottomTabBean("{fa-user}", "个人中心"), new UserDelegate());
         return builder.addItems(items).build();

@@ -16,11 +16,10 @@ import java.util.List;
  * Created on 7/11/2018.
  * Description:将首页数据的集合拆分成对应的类型
  */
-public class IndexDataConverter extends DataConverter {
+public class IndexDataConverter extends DataConverter<GoodsListEntity> {
     @Override
     public ArrayList<MultipleItemEntity> convert() {
-
-        final List<GoodsListEntity.ResultsEntity> dataList = getJsonData().results;
+        final List<GoodsListEntity.ResultsEntity> dataList = getData().results;
         final int size = dataList.size();
 
         int type = 0;

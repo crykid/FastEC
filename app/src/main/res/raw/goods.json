@@ -1,6 +1,6 @@
 {
   "count": 104,
-  "next": "http://192.168.1.104:8000/goods/?page=2",
+  "next": "http://192.168.1.7:8000/goods/?page=2",
   "previous": null,
   "results": [
     {
@@ -24,7 +24,7 @@
           "image": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1532100001&di=81226fbd55c4c6f82772ddcc3f2887ad&imgtype=jpg&er=1&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F8b82b9014a90f6037cb445933312b31bb151edda.jpg"
         },
         {
-          "image": "http://192.168.1.104:8000/media/goods/images/9_P_1448944791617.jpg"
+          "image": "http://192.168.1.7:8000/media/goods/images/9_P_1448944791617.jpg"
         }
       ],
       "goods_sn": "",
@@ -198,7 +198,7 @@
       "goods_brief": "",
       "goods_desc": "<p><img src=\"/media/goods/images/2_20170719161405_249.jpg\" title=\"\" alt=\"2.jpg\"/></p><p><img src=\"/media/goods/images/2_20170719161414_628.jpg\" title=\"\" alt=\"2.jpg\"/></p><p><img src=\"/media/goods/images/2_20170719161435_381.jpg\" title=\"\" alt=\"2.jpg\"/></p>",
       "ship_free": true,
-      "goods_front_image": "http://192.168.1.104:8000/media/goods/images/7_P_1448945104883.jpg",
+      "goods_front_image": "http://192.168.1.7:8000/media/goods/images/7_P_1448945104883.jpg",
       "is_new": false,
       "is_hot": false,
       "add_time": "2018-01-22T19:12:25.609748"
@@ -241,10 +241,10 @@
       },
       "images": [
         {
-          "image": "http://192.168.1.104:8000/media/goods/images/47_P_1448946213263.jpg"
+          "image": "http://192.168.1.7:8000/media/goods/images/47_P_1448946213263.jpg"
         },
         {
-          "image": "http://192.168.1.104:8000/media/goods/images/47_P_1448946213157.jpg"
+          "image": "http://192.168.1.7:8000/media/goods/images/47_P_1448946213157.jpg"
         }
       ],
       "goods_sn": "",

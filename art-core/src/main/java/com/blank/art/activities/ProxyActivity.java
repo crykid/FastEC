@@ -12,6 +12,7 @@ import com.blank.art.R;
 import com.blank.art.delegates.ArtDelegate;
 
 import me.yokeyword.fragmentation.SupportActivity;
+import qiu.niorgai.StatusBarCompat;
 
 /**
  * Created by : blank

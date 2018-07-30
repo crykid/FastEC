@@ -3,6 +3,7 @@ package com.blank.fastec;
 import android.app.Application;
 
 import com.blank.art.app.Art;
+import com.blank.art.retrofit.intercepter.AddCookieInterceptor;
 import com.blank.fastec.event.TestEvent;
 import com.blank.art.ec.database.DatabaseManager;
 import com.blank.art.ec.icon.FontEcModule;
@@ -32,6 +33,7 @@ public class ArtApplication extends Application {
                 //取到了res-raw-rest.json文件
                 .withInterceptor(new DebugInterceptor("goods/", R.raw.goods))
                 .withInterceptor(new ParamsLogInterceptor(new HttpLogger()).setLevel(ParamsLogInterceptor.Level.BODY))
+                .withInterceptor(new AddCookieInterceptor())
 
                 .withJavascriptInterface("ART")
                 .withWebEvent("test", new TestEvent())
@@ -45,7 +47,7 @@ public class ArtApplication extends Application {
         //Stetho默认配置
 //        Stetho.initializeWithDefaults(this);
 
-        //需要的时候可以使用，因为这个东西打印的log太多，影响调试，所以不需要使用的时候取消初始化
+        //Stetho自定义配置（需要的时候可以使用，因为这个东西打印的log太多，影响调试，所以不需要使用的时候取消初始化）
 //        initStetho();
 
     }

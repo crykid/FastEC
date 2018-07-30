@@ -2,6 +2,7 @@ package com.blank.art.delegates.web;
 
 import android.annotation.TargetApi;
 import android.os.Build;
+import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
@@ -18,6 +19,18 @@ public class WebViewInitializer {
     public static WebView createWebView(WebView webView) {
 
         WebView.setWebContentsDebuggingEnabled(true);
+
+        //cookie相关
+        final CookieManager cookieManager = CookieManager.getInstance();
+        cookieManager.setAcceptCookie(true);
+
+        //android 5.0以后cookie跨域默认是关闭的
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            cookieManager.setAcceptThirdPartyCookies(webView, true);
+        }
+
+        cookieManager.setAcceptFileSchemeCookies(true);
+
 
         //不能横向滚动
         webView.setHorizontalScrollBarEnabled(false);

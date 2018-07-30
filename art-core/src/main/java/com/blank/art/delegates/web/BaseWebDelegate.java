@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.webkit.WebView;
 
+import com.blank.art.app.Art;
+import com.blank.art.app.ConfigTypes;
 import com.blank.art.delegates.ArtDelegate;
 import com.blank.art.delegates.web.route.RouteKeys;
 
@@ -14,10 +16,11 @@ import java.lang.ref.WeakReference;
 /**
  * Created by : blank
  * Created on : 2018/7/30 at 14:04
- * Description:
+ * Description:webview基类
  */
 
-public abstract class WebDelegate extends ArtDelegate implements IWebViewInitializer {
+public abstract class BaseWebDelegate extends ArtDelegate implements IWebViewInitializer {
+
 
     private WebView mWebView = null;
 
@@ -27,7 +30,9 @@ public abstract class WebDelegate extends ArtDelegate implements IWebViewInitial
     //WebView是否可用
     private boolean mIsWebViewAvailable = false;
 
-    public WebDelegate() {
+    private ArtDelegate mTopDelegate = null;
+
+    public BaseWebDelegate() {
     }
 
     /**
@@ -62,13 +67,31 @@ public abstract class WebDelegate extends ArtDelegate implements IWebViewInitial
                 mWebView = initializer.initWebView(mWebView);
                 mWebView.setWebViewClient(initializer.initWebViewClient());
                 mWebView.setWebChromeClient(initializer.initWebChromeClient());
-                mWebView.addJavascriptInterface(ArtWebInterface.create(this), "ART");
+
+                //TODO:坑爹的老师啊，暂时在这里添加
+//                EventManager.getInstance().addEvent("test", new TestEvent());
+
+                final String JAVASCRIPT_INTERFACE_NAME = Art.getConfiguration(ConfigTypes.JAVASCRIPT_INTERFACE);
+
+                mWebView.addJavascriptInterface(ArtWebInterface.create(this), JAVASCRIPT_INTERFACE_NAME);
+
                 //webView初始化完成
                 mIsWebViewAvailable = true;
             } else {
                 throw new NullPointerException("Initializer is null!");
             }
         }
+    }
+
+    public void setTopDelegate(ArtDelegate delegate) {
+        this.mTopDelegate = delegate;
+    }
+
+    public ArtDelegate getTopDelegate() {
+        if (mTopDelegate == null) {
+            mTopDelegate = this;
+        }
+        return mTopDelegate;
     }
 
     public WebView getWebView() {

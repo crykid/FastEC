@@ -8,7 +8,7 @@ import android.webkit.URLUtil;
 import android.webkit.WebView;
 
 import com.blank.art.delegates.ArtDelegate;
-import com.blank.art.delegates.web.WebDelegate;
+import com.blank.art.delegates.web.BaseWebDelegate;
 import com.blank.art.delegates.web.WebDelegateImpl;
 
 /**
@@ -30,14 +30,15 @@ public class Router {
         return Holder.INSTANCE;
     }
 
-    public final boolean handleWebUrl(WebDelegate delegate, String url) {
+    public final boolean handleWebUrl(BaseWebDelegate delegate, String url) {
         //如果包含电话协议
         if (url.contains("tel:")) {
             makePhoneCall(delegate.getContext(), url);
             return true;
         }
 
-        final ArtDelegate parentDelegate = delegate.getParentDelegate();
+        final ArtDelegate parentDelegate = delegate.getTopDelegate();
+
         final WebDelegateImpl webDelegate = WebDelegateImpl.create(url);
         if (parentDelegate == null) {
             delegate.start(webDelegate);
@@ -67,11 +68,11 @@ public class Router {
         }
     }
 
-    public void loadPage(WebDelegate delegate, String url) {
+    public void loadPage(BaseWebDelegate delegate, String url) {
         if (delegate != null) {
             loadPage(delegate.getWebView(), url);
         } else {
-            throw new NullPointerException("WebDelegate is null!");
+            throw new NullPointerException("BaseWebDelegate is null!");
         }
     }
 

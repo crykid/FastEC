@@ -1,12 +1,15 @@
 package com.blank.art.delegates.web;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.blank.art.app.Art;
+import com.blank.art.delegates.IPageLoadListener;
 import com.blank.art.delegates.web.chromeclient.WebChromeClientImpl;
 import com.blank.art.delegates.web.client.WebViewClientImpl;
 import com.blank.art.delegates.web.route.RouteKeys;
@@ -15,10 +18,15 @@ import com.blank.art.delegates.web.route.Router;
 /**
  * Created by : blank
  * Created on : 2018/7/30 at 15:12
- * Description:
+ * Description: 一个h5页面绑定（套壳）一个webdelegate
  */
 
-public class WebDelegateImpl extends WebDelegate {
+public class WebDelegateImpl extends BaseWebDelegate {
+
+
+    private IPageLoadListener mPageLoadListener = null;
+
+    private static final Handler HANDLER = Art.getHandler();
 
     public static WebDelegateImpl create(String url) {
         final Bundle args = new Bundle();
@@ -56,11 +64,16 @@ public class WebDelegateImpl extends WebDelegate {
     @Override
     public WebViewClient initWebViewClient() {
         final WebViewClientImpl client = new WebViewClientImpl(this);
+        client.setPageLoadListener(mPageLoadListener);
         return client;
     }
 
     @Override
     public WebChromeClient initWebChromeClient() {
         return new WebChromeClientImpl();
+    }
+
+    public void setPageLoadListener(IPageLoadListener pageLoadListener) {
+        this.mPageLoadListener = pageLoadListener;
     }
 }

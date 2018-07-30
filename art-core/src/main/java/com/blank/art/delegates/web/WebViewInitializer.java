@@ -30,6 +30,8 @@ public class WebViewInitializer {
 
         //初始化WebSettings
         final WebSettings settings = webView.getSettings();
+        //开放javascript通道
+        settings.setJavaScriptEnabled(true);
         final String ua = settings.getUserAgentString();
         settings.setUserAgentString(ua + USER_AGENT);
 

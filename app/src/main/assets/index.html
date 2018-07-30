@@ -10,5 +10,22 @@
 <body>
 <h1>这是本地页面</h1>
 <a href="second.html">跳转到第二个页面</a>
+<button id="test">测试点击事件</button>
+<script type="text/javascript">
+
+    function nativeCall(){
+        alert('原生调用了')}
+
+    document.getElementById('test').onclick = function(){
+    var command = {
+        'action':'test'
+    }
+    ART.event(JSON.stringify(command));
+    };
+
+
+
+
+</script>
 </body>
 </html>

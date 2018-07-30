@@ -1,6 +1,10 @@
 package com.blank.art.delegates.web;
 
+import android.webkit.JavascriptInterface;
+
 import com.alibaba.fastjson.JSON;
+import com.blank.art.delegates.web.event.Event;
+import com.blank.art.delegates.web.event.EventManager;
 
 /**
  * Created by : blank
@@ -9,18 +13,38 @@ import com.alibaba.fastjson.JSON;
  */
 
 public class ArtWebInterface {
-    private final WebDelegate DELEGATE;
+    private final BaseWebDelegate DELEGATE;
 
-    private ArtWebInterface(WebDelegate delegate) {
+    private ArtWebInterface(BaseWebDelegate delegate) {
         this.DELEGATE = delegate;
     }
 
-    static ArtWebInterface create(WebDelegate database) {
-        return new ArtWebInterface(database);
+    static ArtWebInterface create(BaseWebDelegate delegate) {
+        return new ArtWebInterface(delegate);
     }
 
+    /**
+     * Android4.4以后必须添加的注解
+     *
+     * @param params
+     * @return
+     */
+    @JavascriptInterface
     public String event(String params) {
         final String action = JSON.parseObject(params).getString("action");
+
+        final Event event = EventManager.getInstance().createEvent(action);
+
+        if (event != null) {
+
+            event.setAction(action);
+            event.setDelegate(DELEGATE);
+            event.setContext(DELEGATE.getContext());
+            event.setUrl(DELEGATE.getUrl());
+
+            return event.execute(params);
+        }
+
         return null;
     }
 }

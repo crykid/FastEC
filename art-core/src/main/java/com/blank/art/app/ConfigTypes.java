@@ -3,7 +3,7 @@ package com.blank.art.app;
 /**
  * Created by : blank
  * Created on : 2018/6/26 at 10:36
- * Description:
+ * Description:全局配置项
  */
 
 public enum ConfigTypes {
@@ -28,6 +28,7 @@ public enum ConfigTypes {
      * 拦截器配置
      */
     INTERCEPTOR,
+
     /**
      * 微信appId
      */
@@ -36,7 +37,19 @@ public enum ConfigTypes {
      * 微信appSecret
      */
     WECHAT_APP_SECRET,
+
+
     ACTIVITY,
+
+    /**
+     * javascript（h5/js与原生交互需要）接口
+     */
+    JAVASCRIPT_INTERFACE,
+
+    /**
+     * Hander配置项
+     */
+    HANDLER,
 
 
 }

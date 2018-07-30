@@ -65,7 +65,7 @@ public class RestCreator {
     }
 
     private static final class RetrofitHolder {
-        private static final String BASE_URL = (String) Art.getConfigurations().get(ConfigTypes.API_HOST.name());
+        private static final String BASE_URL = (String) Art.getConfigurations().get(ConfigTypes.API_HOST);
         private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(ScalarsConverterFactory.create())

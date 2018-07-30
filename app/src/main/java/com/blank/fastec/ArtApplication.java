@@ -3,6 +3,7 @@ package com.blank.fastec;
 import android.app.Application;
 
 import com.blank.art.app.Art;
+import com.blank.fastec.event.TestEvent;
 import com.blank.art.ec.database.DatabaseManager;
 import com.blank.art.ec.icon.FontEcModule;
 import com.blank.art.retrofit.intercepter.DebugInterceptor;
@@ -14,7 +15,7 @@ import com.joanzapata.iconify.fonts.FontAwesomeModule;
 /**
  * Created by : blank
  * Created on : 2018/6/26 at 10:28
- * Description: application
+ * Description: application,全局配置类
  */
 
 public class ArtApplication extends Application {
@@ -23,7 +24,7 @@ public class ArtApplication extends Application {
         super.onCreate();
 
         Art.init(this)
-                .withApiHost("http://172.32.25.80:8000/")
+                .withApiHost("http://192.168.1.7:8000/")
                 //引入默认的iconfont
                 .withIcon(new FontAwesomeModule())
                 //引入自己的字体图标
@@ -31,6 +32,9 @@ public class ArtApplication extends Application {
                 //取到了res-raw-rest.json文件
                 .withInterceptor(new DebugInterceptor("goods/", R.raw.goods))
                 .withInterceptor(new ParamsLogInterceptor(new HttpLogger()).setLevel(ParamsLogInterceptor.Level.BODY))
+
+                .withJavascriptInterface("ART")
+                .withWebEvent("test", new TestEvent())
 //                .withWechatAppId("")
 //                .withWechatAppSecret("")
                 .configure();

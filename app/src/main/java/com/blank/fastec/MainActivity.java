@@ -10,6 +10,7 @@ import com.blank.art.app.ISignListener;
 import com.blank.art.delegates.ArtDelegate;
 import com.blank.art.ec.launcher.LauncherDelegate;
 import com.blank.art.ec.main.EcBottomDelegate;
+import com.blank.art.ec.main.index.IndexDelegate;
 import com.blank.art.ec.sign.SignInDelegate;
 import com.blank.art.ui.launcher.ILauncherListener;
 import com.blank.art.ui.launcher.OnLuncherFinishTag;
@@ -38,6 +39,7 @@ public class MainActivity extends ProxyActivity implements
 
     @Override
     public void onSignInSuccess() {
+        startWithPop(new EcBottomDelegate());
         Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
 
     }

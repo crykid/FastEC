@@ -24,7 +24,7 @@ import butterknife.OnClick;
 /**
  * Created by blank.
  * Created on 7/11/2018.
- * Description:
+ * Description:主页-商品列表
  */
 public class IndexDelegate extends BottomItemDelegate {
     private static final String TAG = "IndexDelegate";

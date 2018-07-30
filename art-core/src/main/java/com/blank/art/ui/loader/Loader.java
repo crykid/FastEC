@@ -55,7 +55,7 @@ public class Loader {
         final Window dialogWidow = dialog.getWindow();
 
         if (dialogWidow != null) {
-            WindowManager.LayoutParams lp = dialogWidow.getAttributes();
+            final WindowManager.LayoutParams lp = dialogWidow.getAttributes();
             lp.width = deviceWidth / LOADER_SIZE_SCALE;
             lp.height = deviceHeight / LOADER_SIZE_SCALE;
             //设置偏移量

@@ -83,7 +83,8 @@ public class SubCategoriesDelegate extends ArtDelegate {
                         final List<SubCategoryEntiry> data = new SubCategoryListDataConveter().convert(response);
 
                         final SubCategoryAdapter adapter = new SubCategoryAdapter(R.layout.item_subcategory_content, R.layout.item_subcategory_header, data);
-                        mRecyclerView.setAdapter(adapter);
+                        if (mRecyclerView != null)
+                            mRecyclerView.setAdapter(adapter);
                     }
                 })
                 .build()

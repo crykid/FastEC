@@ -47,4 +47,5 @@ public abstract class BottomItemDelegate extends ArtDelegate implements View.OnK
         return false;
 
     }
+
 }

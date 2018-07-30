@@ -41,7 +41,7 @@ public abstract class BaseDelegate extends SwipeBackFragment {
     }
 
     @Override
-    final public void onDestroyView() {
+    public void onDestroyView() {
         super.onDestroyView();
         if (mUnbinder != null) {
             mUnbinder.unbind();

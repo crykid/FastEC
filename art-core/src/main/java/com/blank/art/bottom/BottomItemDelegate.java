@@ -9,7 +9,7 @@ import com.blank.art.delegates.ArtDelegate;
 /**
  * Created by blank.
  * Created on 7/11/2018.
- * Description:
+ * Description:主页面承载类fragment基类
  */
 public abstract class BottomItemDelegate extends ArtDelegate implements View.OnKeyListener {
 

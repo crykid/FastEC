@@ -10,7 +10,7 @@ import com.blank.art.ec.R;
 /**
  * Created by blank.
  * Created on 7/11/2018.
- * Description:
+ * Description:购物车承载类fragment
  */
 public class ShoppingCartDelegate extends BottomItemDelegate {
     @Override

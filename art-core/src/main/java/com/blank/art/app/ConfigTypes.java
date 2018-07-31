@@ -8,9 +8,13 @@ package com.blank.art.app;
 
 public enum ConfigTypes {
     /**
-     * 域名
+     * api服务器域名
      */
     API_HOST,
+    /**
+     *
+     */
+    WEB_HOST,
     /**
      * 全局上下文
      */

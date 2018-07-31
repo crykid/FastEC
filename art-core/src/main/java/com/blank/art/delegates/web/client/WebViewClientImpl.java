@@ -2,15 +2,19 @@ package com.blank.art.delegates.web.client;
 
 import android.graphics.Bitmap;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
+import android.webkit.CookieManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.blank.art.app.Art;
+import com.blank.art.app.ConfigTypes;
 import com.blank.art.delegates.IPageLoadListener;
 import com.blank.art.delegates.web.BaseWebDelegate;
 import com.blank.art.delegates.web.route.Router;
 import com.blank.art.ui.loader.Loader;
+import com.blank.art.util.storage.ArtPreference;
 
 
 /**
@@ -73,9 +77,37 @@ public class WebViewClientImpl extends WebViewClient {
 
     }
 
+    /**
+     * 同步跨域cookie
+     * <p>
+     * 获取浏览器的cookie，并存储到本地，然后配置到原生的API请求中
+     * {@link com.blank.art.retrofit.intercepter.AddCookieInterceptor}
+     * </p>
+     */
+    private void syncCookie() {
+        final CookieManager manager = CookieManager.getInstance();
+        /*
+        注意，这里的cookie和API请求的Cookie是不一样的，这个在网页不可见
+         */
+        final String WEB_HOST = Art.getConfiguration(ConfigTypes.WEB_HOST);
+        //取出webhost对应的cookie
+        if (WEB_HOST != null) {
+            //如果有cookie，则取出cookie存放到本地，
+            if (manager.hasCookies()) {
+                final String cookieStr = manager.getCookie(WEB_HOST);
+                if (!TextUtils.isEmpty(cookieStr)) {
+
+                    ArtPreference.addCustomAppProfile("cookie", cookieStr);
+                }
+            }
+        }
+
+    }
+
     @Override
     public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);
+        syncCookie();
         if (mPageLoadListener != null) {
             mPageLoadListener.onLoadEnd();
         }

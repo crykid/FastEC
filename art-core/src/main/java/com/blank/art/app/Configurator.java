@@ -168,6 +168,17 @@ public class Configurator {
         return this;
     }
 
+    /**
+     * 浏览器加载的host
+     *
+     * @param host
+     * @return
+     */
+    public final Configurator withWebHost(String host) {
+        CONFIGS.put(ConfigTypes.WEB_HOST, host);
+        return this;
+    }
+
 
     /**
      * 检查是否配置完成

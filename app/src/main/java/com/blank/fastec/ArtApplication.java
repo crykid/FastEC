@@ -26,6 +26,7 @@ public class ArtApplication extends Application {
 
         Art.init(this)
                 .withApiHost("http://192.168.1.7:8000/")
+                .withWebHost("https://www.example.com/")
                 //引入默认的iconfont
                 .withIcon(new FontAwesomeModule())
                 //引入自己的字体图标
@@ -33,6 +34,7 @@ public class ArtApplication extends Application {
                 //取到了res-raw-rest.json文件
                 .withInterceptor(new DebugInterceptor("goods/", R.raw.goods))
                 .withInterceptor(new ParamsLogInterceptor(new HttpLogger()).setLevel(ParamsLogInterceptor.Level.BODY))
+                //添加同步cookie拦截器
                 .withInterceptor(new AddCookieInterceptor())
 
                 .withJavascriptInterface("ART")

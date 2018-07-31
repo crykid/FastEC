@@ -14,7 +14,7 @@ import com.blank.art.delegates.web.WebDelegateImpl;
 /**
  * Created by : blank
  * Created on : 2018/7/30 at 15:23
- * Description:
+ * Description: web页面跳转路由
  */
 
 public class Router {

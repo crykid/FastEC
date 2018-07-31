@@ -29,6 +29,7 @@ public class ArtWebInterface {
      * @param params
      * @return
      */
+    @SuppressWarnings("unused")
     @JavascriptInterface
     public String event(String params) {
         final String action = JSON.parseObject(params).getString("action");

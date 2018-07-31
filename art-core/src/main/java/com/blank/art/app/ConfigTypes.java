@@ -12,7 +12,7 @@ public enum ConfigTypes {
      */
     API_HOST,
     /**
-     *
+     *web服务器域名
      */
     WEB_HOST,
     /**
@@ -23,6 +23,7 @@ public enum ConfigTypes {
      * 是否初始化
      */
     CONFIG_READY,
+
     /**
      * 自定义图标、文字
      */

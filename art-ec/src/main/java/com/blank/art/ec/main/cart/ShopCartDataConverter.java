@@ -22,7 +22,8 @@ public class ShopCartDataConverter extends DataConverter<ShopCartEntity> {
 
         int size = realList.size();
 
-        for (ShopCartEntity.ResultsBean bean : realList) {
+        for (int i = 0; i < size; i++) {
+            ShopCartEntity.ResultsBean bean = realList.get(i);
             final MultipleItemEntity entity1 = MultipleItemEntity.builder()
                     .setField(MultipleFields.ITEM_TYPE, ShopCartItemType.SHOP_CART_ITEM)
                     .setField(MultipleFields.ID, bean.id)
@@ -32,6 +33,7 @@ public class ShopCartDataConverter extends DataConverter<ShopCartEntity> {
                     .setField(ShopCartItemFields.SELECTED, false)
                     .setField(ShopCartItemFields.PRICE, bean.shopPrice)
                     .setField(ShopCartItemFields.COUNT, bean.count)
+                    .setField(ShopCartItemFields.POSITION, i)
                     .build();
             datalist.add(entity1);
 

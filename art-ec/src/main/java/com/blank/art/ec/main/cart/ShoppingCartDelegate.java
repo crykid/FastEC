@@ -2,6 +2,7 @@ package com.blank.art.ec.main.cart;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,7 +14,11 @@ import com.blank.art.ec.R2;
 import com.blank.art.ec.entry.ShopCartEntity;
 import com.blank.art.retrofit.RestClient;
 import com.blank.art.retrofit.callback.ISuccess;
+import com.blank.art.ui.recycler.MultipleItemEntity;
 import com.joanzapata.iconify.widget.IconTextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -38,6 +43,16 @@ public class ShoppingCartDelegate extends BottomItemDelegate {
     IconTextView itvSeletAll;
 
 
+    private ShopCartAdapter mAdapter;
+
+    private int mCurrentCount = 0;
+    private int mTotalCount = 0;
+
+
+    private final int SELECT_MODE_ALL = 1;
+    private final int SELECT_MODE_NONE = 0;
+
+
     @Override
     public Object getLyout() {
         return R.layout.delegate_cart;
@@ -51,6 +66,7 @@ public class ShoppingCartDelegate extends BottomItemDelegate {
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
+        itvSeletAll.setTag(0);
         RestClient.builder()
                 .url("cart/")
                 .loader(getContext())
@@ -59,25 +75,59 @@ public class ShoppingCartDelegate extends BottomItemDelegate {
                     public void onSuccess(ShopCartEntity response) {
 
                         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                        ShopCartAdapter adapter = new ShopCartAdapter(new ShopCartDataConverter().setData(response).convert());
-                        mRecyclerView.setAdapter(adapter);
-//                        Toast.makeText(getContext(), response.toString(), Toast.LENGTH_SHORT).show();
+                        mAdapter = new ShopCartAdapter(new ShopCartDataConverter().setData(response).convert());
+                        mRecyclerView.setAdapter(mAdapter);
                     }
                 })
                 .build()
                 .get();
     }
 
-
+    @SuppressWarnings("unused")
     @OnClick({R2.id.tv_cart_clear, R2.id.tv_cart_remove_selected, R2.id.itv_cart_selet_all})
     public void onViewClicked(View view) {
         int id = view.getId();
         if (id == R.id.tv_cart_clear) {
+            mAdapter.getData().clear();
+            mAdapter.notifyDataSetChanged();
 
         } else if (id == R.id.tv_cart_remove_selected) {
+            clearCartItem();
 
         } else if (id == R.id.itv_cart_selet_all) {
+            final int SELECT_MODE = (int) itvSeletAll.getTag();
+            if (SELECT_MODE == SELECT_MODE_NONE) {
+                itvSeletAll.setTextColor(ContextCompat.getColor(getContext(), R.color.theme));
+                itvSeletAll.setTag(SELECT_MODE_ALL);
+                mAdapter.setSelectedAll(true);
+            } else {
+                itvSeletAll.setTextColor(ContextCompat.getColor(getContext(), R.color.wechat_black));
+                itvSeletAll.setTag(SELECT_MODE_NONE);
+                mAdapter.setSelectedAll(false);
+            }
+            mAdapter.notifyItemRangeChanged(0, mAdapter.getItemCount());
+        }
+    }
 
+    private void clearCartItem() {
+        final List<MultipleItemEntity> data = mAdapter.getData();
+        //要删除的数据
+        List<MultipleItemEntity> deleteEntities = new ArrayList<>();
+        for (MultipleItemEntity e : data) {
+            final boolean selected = e.getField(ShopCartItemFields.SELECTED);
+            if (selected) {
+                deleteEntities.add(e);
+            }
+        }
+
+        for (MultipleItemEntity entity : deleteEntities) {
+            int removePosition;
+            if (mAdapter.getData().contains(entity)) {
+                removePosition = mAdapter.getData().indexOf(entity);
+                mAdapter.remove(removePosition);
+
+                mAdapter.notifyItemRangeChanged(removePosition, mAdapter.getItemCount() - 1);
+            }
         }
     }
 }

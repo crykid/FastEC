@@ -9,13 +9,14 @@
     <!--选中图标-->
     <com.joanzapata.iconify.widget.IconTextView
         android:id="@+id/itv_item_cart_select"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center"
         android:layout_marginLeft="@dimen/dp_10"
         android:gravity="center"
         android:text="{fa-check-circle}"
         android:textColor="@android:color/darker_gray"
+        android:textSize="20sp"
         tools:ignore="HardcodedText" />
     <!--商品图片-->
     <android.support.v7.widget.AppCompatImageView
@@ -56,7 +57,6 @@
         <!--商品信息结束-->
 
 
-
     </android.support.v7.widget.LinearLayoutCompat>
     <!--商品数量、数量控制-->
     <android.support.v7.widget.LinearLayoutCompat
@@ -66,8 +66,7 @@
         android:layout_marginRight="@dimen/dp_10"
         android:layout_weight="1"
         android:gravity="bottom"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
 
         <com.joanzapata.iconify.widget.IconTextView
             android:id="@+id/itv_item_cart_minus"

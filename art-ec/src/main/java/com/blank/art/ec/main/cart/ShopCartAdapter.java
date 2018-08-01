@@ -1,7 +1,6 @@
 package com.blank.art.ec.main.cart;
 
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.widget.ImageView;
@@ -48,6 +47,17 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
         super.convert(holder, entity);
         switch (holder.getItemViewType()) {
             case ShopCartItemType.SHOP_CART_ITEM:
+
+                final boolean selected_current = entity.getField(ShopCartItemFields.SELECTED);
+
+                if (selected_current) {
+
+                    holder.setTextColor(R.id.itv_item_cart_select, ContextCompat.getColor(Art.getApplicationContext(), R.color.theme));
+                } else {
+                    holder.setTextColor(R.id.itv_item_cart_select, ContextCompat.getColor(Art.getApplicationContext(), R.color.wechat_black));
+
+                }
+
                 holder.setText(R.id.atv_item_cart_goods_title, entity.getField(ShopCartItemFields.TITLE));
                 holder.setText(R.id.atv_item_cart_goods_desc, entity.getField(ShopCartItemFields.DESC));
                 holder.setText(R.id.atv_item_cart_goods_price, entity.getField(ShopCartItemFields.PRICE) + "");
@@ -81,6 +91,12 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                 break;
             default:
                 break;
+        }
+    }
+
+    public void setSelectedAll(boolean selectedAll) {
+        for (MultipleItemEntity entity : mData) {
+            entity.setField(ShopCartItemFields.SELECTED, selectedAll);
         }
     }
 }

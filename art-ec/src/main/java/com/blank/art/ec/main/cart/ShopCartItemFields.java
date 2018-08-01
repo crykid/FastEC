@@ -6,5 +6,5 @@ package com.blank.art.ec.main.cart;
  * Description:
  */
 public enum ShopCartItemFields {
-    SELECTED, TITLE, DESC, COUNT, PRICE
+    SELECTED, TITLE, DESC, COUNT, PRICE,POSITION
 }

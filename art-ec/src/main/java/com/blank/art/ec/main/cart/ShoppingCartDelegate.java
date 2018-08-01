@@ -6,6 +6,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.ViewStubCompat;
 import android.view.View;
 
 import com.blank.art.bottom.BottomItemDelegate;
@@ -42,11 +43,11 @@ public class ShoppingCartDelegate extends BottomItemDelegate {
     @BindView(R2.id.itv_cart_selet_all)
     IconTextView itvSeletAll;
 
+    @BindView(R2.id.vsbc_cart)
+    ViewStubCompat vsb;
+
 
     private ShopCartAdapter mAdapter;
-
-    private int mCurrentCount = 0;
-    private int mTotalCount = 0;
 
 
     private final int SELECT_MODE_ALL = 1;
@@ -128,6 +129,13 @@ public class ShoppingCartDelegate extends BottomItemDelegate {
 
                 mAdapter.notifyItemRangeChanged(removePosition, mAdapter.getItemCount() - 1);
             }
+        }
+    }
+
+    private void checkItemCount() {
+        final int count = mAdapter.getItemCount();
+        if (count == 0) {
+//            vsb.
         }
     }
 }

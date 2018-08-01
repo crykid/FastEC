@@ -5,6 +5,7 @@
     android:layout_weight="8">
 
     <android.support.v7.widget.AppCompatTextView
+        android:layout_centerInParent="true"
         android:id="@+id/atv_item_cart_sub_tobuy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

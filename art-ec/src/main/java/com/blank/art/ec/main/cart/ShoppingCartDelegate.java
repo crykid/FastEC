@@ -1,5 +1,6 @@
 package com.blank.art.ec.main.cart;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -8,6 +9,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.ViewStubCompat;
 import android.view.View;
+import android.view.ViewStub;
+import android.widget.Toast;
 
 import com.blank.art.bottom.BottomItemDelegate;
 import com.blank.art.ec.R;
@@ -44,7 +47,7 @@ public class ShoppingCartDelegate extends BottomItemDelegate {
     IconTextView itvSeletAll;
 
     @BindView(R2.id.vsbc_cart)
-    ViewStubCompat vsb;
+    ViewStubCompat vsbNoItem;
 
 
     private ShopCartAdapter mAdapter;
@@ -52,6 +55,8 @@ public class ShoppingCartDelegate extends BottomItemDelegate {
 
     private final int SELECT_MODE_ALL = 1;
     private final int SELECT_MODE_NONE = 0;
+
+    private ShopCartEntity mShopCartEntity = null;
 
 
     @Override
@@ -68,20 +73,32 @@ public class ShoppingCartDelegate extends BottomItemDelegate {
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
         itvSeletAll.setTag(0);
-        RestClient.builder()
-                .url("cart/")
-                .loader(getContext())
-                .success(new ISuccess<ShopCartEntity>() {
-                    @Override
-                    public void onSuccess(ShopCartEntity response) {
 
-                        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                        mAdapter = new ShopCartAdapter(new ShopCartDataConverter().setData(response).convert());
-                        mRecyclerView.setAdapter(mAdapter);
-                    }
-                })
-                .build()
-                .get();
+        initRecyclerView();
+        fetchCartData();
+
+//        RestClient.builder()
+//                .url("cart/")
+//                .loader(getContext())
+//                .success(new ISuccess<ShopCartEntity>() {
+//                    @Override
+//                    public void onSuccess(ShopCartEntity response) {
+//
+////                        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+////                        mAdapter = new ShopCartAdapter(new ShopCartDataConverter().setData(response).convert());
+////                        mRecyclerView.setAdapter(mAdapter);
+////                        checkItemCount();
+//
+//
+//                        //如果是加载更多
+//                        mAdapter.addData(new ShopCartDataConverter().setData(response).convert());
+//                        checkItemCount();
+//                        //如果是刷新
+////                        mAdapter.setNewData(new ShopCartDataConverter().setData(response).convert());
+//                    }
+//                })
+//                .build()
+//                .get();
     }
 
     @SuppressWarnings("unused")
@@ -130,12 +147,47 @@ public class ShoppingCartDelegate extends BottomItemDelegate {
                 mAdapter.notifyItemRangeChanged(removePosition, mAdapter.getItemCount() - 1);
             }
         }
+        checkItemCount();
     }
 
     private void checkItemCount() {
         final int count = mAdapter.getItemCount();
         if (count == 0) {
-//            vsb.
+            @SuppressLint("RestrictedApi") final View stubView = vsbNoItem.inflate();
+            final AppCompatTextView tvToBuy = stubView.findViewById(R.id.atv_item_cart_sub_tobuy);
+            tvToBuy.setOnClickListener(v -> {
+                //TODO：这里应该跳转到主页等等操作
+                Toast.makeText(getContext(), "你该购物了", Toast.LENGTH_SHORT).show();
+            });
+            mRecyclerView.setVisibility(View.GONE);
+        } else {
+            mRecyclerView.setVisibility(View.VISIBLE);
         }
+    }
+
+    private void fetchCartData() {
+        RestClient.builder()
+                .url("cart/")
+                .loader(getContext())
+                .success(new ISuccess<ShopCartEntity>() {
+                    @Override
+                    public void onSuccess(ShopCartEntity response) {
+
+                        //如果是加载更多
+                        mAdapter.addData(new ShopCartDataConverter().setData(response).convert());
+                        checkItemCount();
+                        //如果是刷新
+//                        mAdapter.setNewData(new ShopCartDataConverter().setData(response).convert());
+                    }
+                })
+                .build()
+                .get();
+    }
+
+    private void initRecyclerView() {
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mAdapter = new ShopCartAdapter(null);
+        mRecyclerView.setAdapter(mAdapter);
+//        checkItemCount();
     }
 }

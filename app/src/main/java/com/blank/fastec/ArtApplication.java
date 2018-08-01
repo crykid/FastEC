@@ -25,8 +25,8 @@ public class ArtApplication extends Application {
         super.onCreate();
 
         Art.init(this)
-//                .withApiHost("http://192.168.2.102:8000/")
-                .withApiHost("http://172.32.25.80:8000/")
+                .withApiHost("http://192.168.1.7:8000/")
+//                .withApiHost("http://172.32.25.80:8000/")
                 .withWebHost("https://www.example.com/")
                 //引入默认的iconfont
                 .withIcon(new FontAwesomeModule())

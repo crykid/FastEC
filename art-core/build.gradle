@@ -113,5 +113,6 @@ dependencies {
 
     //rxjava
     api 'io.reactivex.rxjava2:rxjava:2.2.0-SNAPSHOT'
+    implementation files('libs/alipaySdk-20180601.jar')
 }
 

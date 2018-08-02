@@ -15,6 +15,7 @@ import com.blank.art.bottom.BottomItemDelegate;
 import com.blank.art.ec.R;
 import com.blank.art.ec.R2;
 import com.blank.art.ec.entry.ShopCartEntity;
+import com.blank.art.pay.FastPay;
 import com.blank.art.retrofit.RestClient;
 import com.blank.art.retrofit.callback.ISuccess;
 import com.blank.art.ui.recycler.MultipleItemEntity;
@@ -22,6 +23,7 @@ import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.WeakHashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -42,6 +44,8 @@ public class ShoppingCartDelegate extends BottomItemDelegate {
     AppCompatTextView tvRemoveSelected;
     @BindView(R2.id.atv_cart_totalprice)
     AppCompatTextView atvTotalprice;
+    @BindView(R2.id.atv_cart_pay)
+    AppCompatTextView atvPay;
     @BindView(R2.id.rlv_cart_cart)
     RecyclerView mRecyclerView;
     @BindView(R2.id.itv_cart_selet_all)
@@ -103,7 +107,7 @@ public class ShoppingCartDelegate extends BottomItemDelegate {
     }
 
     @SuppressWarnings("unused")
-    @OnClick({R2.id.tv_cart_clear, R2.id.tv_cart_remove_selected, R2.id.itv_cart_selet_all})
+    @OnClick({R2.id.tv_cart_clear, R2.id.tv_cart_remove_selected, R2.id.itv_cart_selet_all, R2.id.atv_cart_pay})
     public void onViewClicked(View view) {
         int id = view.getId();
         if (id == R.id.tv_cart_clear) {
@@ -125,6 +129,8 @@ public class ShoppingCartDelegate extends BottomItemDelegate {
                 mAdapter.setSelectedAll(false);
             }
             mAdapter.notifyItemRangeChanged(0, mAdapter.getItemCount());
+        } else if (id == R.id.atv_cart_pay) {
+            FastPay.create(this).startPayDialog();
         }
     }
 
@@ -199,6 +205,25 @@ public class ShoppingCartDelegate extends BottomItemDelegate {
         });
 
 //        checkItemCount();
+    }
+
+    private void createOrder() {
+        final WeakHashMap<String, Object> params = new WeakHashMap<>();
+        params.put("amount", 1.00);
+        params.put("goods_id", "123");
+
+        RestClient.builder()
+                .url("")
+                .params(params)
+                .loader(getContext())
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(Object response) {
+                        //应该返回orderToken
+                    }
+                })
+                .build()
+                .post();
     }
 
 }

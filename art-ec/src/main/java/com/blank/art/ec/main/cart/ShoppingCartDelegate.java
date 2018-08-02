@@ -9,7 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.ViewStubCompat;
 import android.view.View;
-import android.view.ViewStub;
 import android.widget.Toast;
 
 import com.blank.art.bottom.BottomItemDelegate;
@@ -188,6 +187,10 @@ public class ShoppingCartDelegate extends BottomItemDelegate {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mAdapter = new ShopCartAdapter(null);
         mRecyclerView.setAdapter(mAdapter);
+
+        mAdapter.setCartItemListener(itemTotalPrice -> {
+
+        });
 //        checkItemCount();
     }
 }

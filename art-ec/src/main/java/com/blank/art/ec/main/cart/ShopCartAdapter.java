@@ -30,6 +30,16 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
      * @param data A new list is created out of this one to avoid mutable list
      */
 //    private final Context mContext;
+
+    private ICartItemListener mCartItemListener;
+
+    public void setCartItemListener(ICartItemListener cartItemListener) {
+        this.mCartItemListener = cartItemListener;
+    }
+
+    //购物车总价值
+    private double mTotalPrice = 0.00;
+
     private CartItemSelectListener mCartItemSelectListener = null;
 
     public void setmCartItemCountChangedListener(CartItemCountChangedListener listener) {
@@ -50,6 +60,13 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
     public ShopCartAdapter(List<MultipleItemEntity> data) {
         super(data);
         addItemType(ShopCartItemType.SHOP_CART_ITEM, R.layout.item_shopping_cart);
+        for (MultipleItemEntity entity : data) {
+            if (entity.getField(ShopCartItemFields.SELECTED)) {
+                final double price = entity.getField(ShopCartItemFields.PRICE);
+                final int count = entity.getField(ShopCartItemFields.COUNT);
+                mTotalPrice += price * count;
+            }
+        }
     }
 
     @TargetApi(Build.VERSION_CODES.M)

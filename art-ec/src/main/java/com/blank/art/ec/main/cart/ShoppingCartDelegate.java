@@ -193,8 +193,12 @@ public class ShoppingCartDelegate extends BottomItemDelegate {
         mAdapter.setCartItemListener(itemTotalPrice -> {
             final double price = mAdapter.getTotalPrice();
             atvTotalprice.setText(String.valueOf(price));
+            if (itemTotalPrice >= 0) {
+                //TODO:something
+            }
         });
 
 //        checkItemCount();
     }
+
 }

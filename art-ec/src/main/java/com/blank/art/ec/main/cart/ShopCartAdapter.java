@@ -3,13 +3,10 @@ package com.blank.art.ec.main.cart;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.AppCompatTextView;
 import android.widget.ImageView;
 
 import com.blank.art.app.Art;
 import com.blank.art.ec.R;
-import com.blank.art.retrofit.RestClient;
-import com.blank.art.retrofit.callback.ISuccess;
 import com.blank.art.ui.recycler.MultipleFields;
 import com.blank.art.ui.recycler.MultipleItemEntity;
 import com.blank.art.ui.recycler.MultipleRecyclerAdapter;
@@ -65,7 +62,7 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                 final boolean selected_current = entity.getField(ShopCartItemFields.SELECTED);
                 final int count = entity.getField(ShopCartItemFields.COUNT);
                 final double price = entity.getField(ShopCartItemFields.PRICE);
-                final String id = entity.getField(MultipleFields.ID);
+                final String id = entity.getField(MultipleFields.ID) + "";
 
                 if (selected_current) {
 

@@ -40,6 +40,8 @@ public class ShoppingCartDelegate extends BottomItemDelegate {
     AppCompatTextView tvCartTitle;
     @BindView(R2.id.tv_cart_remove_selected)
     AppCompatTextView tvRemoveSelected;
+    @BindView(R2.id.atv_cart_totalprice)
+    AppCompatTextView atvTotalprice;
     @BindView(R2.id.rlv_cart_cart)
     RecyclerView mRecyclerView;
     @BindView(R2.id.itv_cart_selet_all)
@@ -189,8 +191,10 @@ public class ShoppingCartDelegate extends BottomItemDelegate {
         mRecyclerView.setAdapter(mAdapter);
 
         mAdapter.setCartItemListener(itemTotalPrice -> {
-
+            final double price = mAdapter.getTotalPrice();
+            atvTotalprice.setText(String.valueOf(price));
         });
+
 //        checkItemCount();
     }
 }

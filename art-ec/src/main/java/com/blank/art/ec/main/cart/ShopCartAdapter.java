@@ -40,17 +40,17 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
     //购物车总价值
     private double mTotalPrice = 0.00;
 
-    private CartItemSelectListener mCartItemSelectListener = null;
-
-    public void setmCartItemCountChangedListener(CartItemCountChangedListener listener) {
-        this.mCartItemCountChangedListener = listener;
-    }
-
-    private CartItemCountChangedListener mCartItemCountChangedListener = null;
-
-    public void setCartItemSelectListener(CartItemSelectListener cartItemSelectListener) {
-        this.mCartItemSelectListener = cartItemSelectListener;
-    }
+//    private CartItemSelectListener mCartItemSelectListener = null;
+//
+//    public void setmCartItemCountChangedListener(CartItemCountChangedListener listener) {
+//        this.mCartItemCountChangedListener = listener;
+//    }
+//
+//    private CartItemCountChangedListener mCartItemCountChangedListener = null;
+//
+//    public void setCartItemSelectListener(CartItemSelectListener cartItemSelectListener) {
+//        this.mCartItemSelectListener = cartItemSelectListener;
+//    }
 
     private static final RequestOptions options = new RequestOptions()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -106,15 +106,17 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                     if (selected) {
 
                         holder.setTextColor(R.id.itv_item_cart_select, ContextCompat.getColor(Art.getApplicationContext(), R.color.wechat_black));
+                        mTotalPrice -= price * count;
                         //
-                        if (mCartItemSelectListener != null) {
-                            mCartItemSelectListener.onItemDisSelected(entity.getField(MultipleFields.ID), count, price);
-                        }
+//                        if (mCartItemSelectListener != null) {
+//                            mCartItemSelectListener.onItemDisSelected(entity.getField(MultipleFields.ID), count, price);
+//                        }
                     } else {
                         holder.setTextColor(R.id.itv_item_cart_select, ContextCompat.getColor(Art.getApplicationContext(), R.color.theme));
-                        if (mCartItemSelectListener != null) {
-                            mCartItemSelectListener.onItemSelected(entity.getField(MultipleFields.ID), count, price);
-                        }
+//                        if (mCartItemSelectListener != null) {
+//                            mCartItemSelectListener.onItemSelected(entity.getField(MultipleFields.ID), count, price);
+//                        }
+                        mTotalPrice += price + count;
 
                     }
                     entity.setField(ShopCartItemFields.SELECTED, !selected);
@@ -129,9 +131,15 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                         //TODO:这里应该执行网络请求，执行成功后再执行以下代码
                         entity.setField(ShopCartItemFields.COUNT, localCount);
                         holder.setText(R.id.atv_item_cart_goods_count, String.valueOf(localCount));
-                        if (mCartItemCountChangedListener != null) {
-                            mCartItemCountChangedListener.onCountMinus(id, localCount, price);
+//                        if (mCartItemCountChangedListener != null) {
+//                            mCartItemCountChangedListener.onCountMinus(id, localCount, price);
+//                        }
+                        if (mCartItemListener != null) {
+                            mTotalPrice = mTotalPrice - price;
+                            final double itemTotal = localCount * price;
+                            mCartItemListener.onItemClick(itemTotal);
                         }
+
 //                        RestClient.builder()
 //                                .url("")
 //                                .params("count", currentGoodsCurrent)
@@ -150,13 +158,18 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                 });
                 holder.setOnClickListener(R.id.itv_item_cart_plus, v -> {
 
-                    int currentGoodsCurrent = entity.getField(ShopCartItemFields.COUNT);
-                    currentGoodsCurrent++;
+                    int localCount = entity.getField(ShopCartItemFields.COUNT);
+                    localCount++;
                     //TODO:这里应该执行网络请求，执行成功后再执行以下代码
-                    entity.setField(ShopCartItemFields.COUNT, currentGoodsCurrent);
-                    holder.setText(R.id.atv_item_cart_goods_count, String.valueOf(currentGoodsCurrent + 1));
-                    if (mCartItemCountChangedListener != null) {
-                        mCartItemCountChangedListener.onCountPlus(id, currentGoodsCurrent, price);
+                    entity.setField(ShopCartItemFields.COUNT, localCount);
+                    holder.setText(R.id.atv_item_cart_goods_count, String.valueOf(localCount + 1));
+//                    if (mCartItemCountChangedListener != null) {
+//                        mCartItemCountChangedListener.onCountPlus(id, localCount, price);
+//                    }
+                    if (mCartItemListener != null) {
+                        mTotalPrice = mTotalPrice + price;
+                        final double itemTotal = localCount * price;
+                        mCartItemListener.onItemClick(itemTotal);
                     }
                 });
 
@@ -172,31 +185,33 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
         }
     }
 
-    /**
-     * 接口中无需传递变化的数量，因为每次调用时候，都是++，或--
-     * <p>在计算总价格的时候，只需要在总价格 + / -price 就可以</p>
-     * <p><strong>目前存在的问题：</strong>item数量的变化，需要请求接口，是在adapter中，还是所依赖的delegate中</p>
-     */
-    public interface CartItemCountChangedListener {
-        /**
-         * @param goodsId    商品id
-         * @param totalCount 变化后的总数量
-         * @param price      商品价格
-         */
-        void onCountPlus(String goodsId, int totalCount, double price);
-
-        void onCountMinus(String goodsId, int totalCount, double price);
+    //    /**
+//     * 接口中无需传递变化的数量，因为每次调用时候，都是++，或--
+//     * <p>在计算总价格的时候，只需要在总价格 + / -price 就可以</p>
+//     * <p><strong>目前存在的问题：</strong>item数量的变化，需要请求接口，是在adapter中，还是所依赖的delegate中</p>
+//     */
+//    public interface CartItemCountChangedListener {
+//        /**
+//         * @param goodsId    商品id
+//         * @param totalCount 变化后的总数量
+//         * @param price      商品价格
+//         */
+//        void onCountPlus(String goodsId, int totalCount, double price);
+//
+//        void onCountMinus(String goodsId, int totalCount, double price);
+//    }
+//
+//    public interface CartItemSelectListener {
+//        /**
+//         * @param goodsId    被选中的商品id
+//         * @param totalCount 被选中的商品总数量
+//         * @param price      被选中的商品价格
+//         */
+//        void onItemSelected(String goodsId, int totalCount, double price);
+//
+//        void onItemDisSelected(String goodsId, int totalCount, double price);
+//    }
+    public double getTotalPrice() {
+        return mTotalPrice;
     }
-
-    public interface CartItemSelectListener {
-        /**
-         * @param goodsId    被选中的商品id
-         * @param totalCount 被选中的商品总数量
-         * @param price      被选中的商品价格
-         */
-        void onItemSelected(String goodsId, int totalCount, double price);
-
-        void onItemDisSelected(String goodsId, int totalCount, double price);
-    }
-
 }

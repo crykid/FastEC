@@ -118,6 +118,7 @@
                 android:textColor="@android:color/darker_gray" />
 
             <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/atv_cart_totalprice"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

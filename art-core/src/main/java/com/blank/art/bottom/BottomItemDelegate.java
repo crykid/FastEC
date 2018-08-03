@@ -1,6 +1,5 @@
 package com.blank.art.bottom;
 
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -11,7 +10,7 @@ import com.blank.art.delegates.ArtDelegate;
  * Created on 7/11/2018.
  * Description:主页面承载类fragment基类
  */
-public abstract class BottomItemDelegate extends ArtDelegate implements View.OnKeyListener {
+public abstract class BottomItemDelegate extends ArtDelegate {
 
     private long mExitTime = 0;
     private static final int EXIT_TIME = 2000;
@@ -20,32 +19,32 @@ public abstract class BottomItemDelegate extends ArtDelegate implements View.OnK
     public void onResume() {
         super.onResume();
         View rootView = getView();
-        if (rootView != null) {
-            //keylistener生效
-            rootView.setFocusableInTouchMode(true);
-            rootView.requestFocus();
-            rootView.setOnKeyListener(this);
-        }
+
+//        if (rootView != null) {
+//            //keylistener生效
+//            rootView.setFocusableInTouchMode(true);
+//            rootView.requestFocus();
+//        }
     }
 
+
+    /**
+     * 也可以实现View.OnKeyListener实现以下功能
+     *
+     * @return
+     */
     @Override
-    public boolean onKey(View view, int keyCode, KeyEvent event) {
+    public boolean onBackPressedSupport() {
 
-        //点击了返回键
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
-            if (System.currentTimeMillis() - EXIT_TIME > mExitTime) {
-                Toast.makeText(getContext(), "再次点击退出", Toast.LENGTH_SHORT).show();
-                mExitTime = System.currentTimeMillis();
-            } else {
-                _mActivity.finish();
-                if (mExitTime != 0) {
-                    mExitTime = 0;
-                }
+        if (System.currentTimeMillis() - EXIT_TIME > mExitTime) {
+            Toast.makeText(getContext(), "再次点击退出", Toast.LENGTH_SHORT).show();
+            mExitTime = System.currentTimeMillis();
+        } else {
+            _mActivity.finish();
+            if (mExitTime != 0) {
+                mExitTime = 0;
             }
-            return true;
         }
-        return false;
-
+        return true;
     }
-
 }

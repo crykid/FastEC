@@ -11,11 +11,13 @@ import android.support.v7.widget.ViewStubCompat;
 import android.view.View;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.blank.art.bottom.BottomItemDelegate;
 import com.blank.art.ec.R;
 import com.blank.art.ec.R2;
 import com.blank.art.ec.entry.ShopCartEntity;
 import com.blank.art.pay.FastPay;
+import com.blank.art.pay.IALiPayResult;
 import com.blank.art.retrofit.RestClient;
 import com.blank.art.retrofit.callback.ISuccess;
 import com.blank.art.ui.recycler.MultipleItemEntity;
@@ -33,7 +35,7 @@ import butterknife.OnClick;
  * Created on 7/11/2018.
  * Description:购物车承载类fragment
  */
-public class ShoppingCartDelegate extends BottomItemDelegate {
+public class ShoppingCartDelegate extends BottomItemDelegate implements IALiPayResult {
 
 
     @BindView(R2.id.tv_cart_clear)
@@ -131,6 +133,8 @@ public class ShoppingCartDelegate extends BottomItemDelegate {
             mAdapter.notifyItemRangeChanged(0, mAdapter.getItemCount());
         } else if (id == R.id.atv_cart_pay) {
             FastPay.create(this).startPayDialog();
+
+            createOrder();
         }
     }
 
@@ -209,6 +213,7 @@ public class ShoppingCartDelegate extends BottomItemDelegate {
 
     private void createOrder() {
         final WeakHashMap<String, Object> params = new WeakHashMap<>();
+        //TODO:需要app服务器约定的字段
         params.put("amount", 1.00);
         params.put("goods_id", "123");
 
@@ -216,14 +221,45 @@ public class ShoppingCartDelegate extends BottomItemDelegate {
                 .url("")
                 .params(params)
                 .loader(getContext())
-                .success(new ISuccess() {
+                .success(new ISuccess<String>() {
                     @Override
-                    public void onSuccess(Object response) {
-                        //应该返回orderToken
+                    public void onSuccess(String response) {
+                        //返回和app服务器约定的字段
+                        final int orderId = JSON.parseObject(response).getInteger("result");
+
+                        //订单创建成功后，拉起支付
+                        FastPay.create(ShoppingCartDelegate.this)
+                                .setPayResultCallback(ShoppingCartDelegate.this)
+                                .setOrderId(orderId)
+                                .startPayDialog();
                     }
                 })
                 .build()
                 .post();
     }
 
+    @Override
+    public void onPaySuccess() {
+
+    }
+
+    @Override
+    public void onPaying() {
+
+    }
+
+    @Override
+    public void onPayFail() {
+
+    }
+
+    @Override
+    public void onPayCancel() {
+
+    }
+
+    @Override
+    public void onPayConnectError() {
+
+    }
 }

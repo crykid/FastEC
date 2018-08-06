@@ -1,7 +1,7 @@
 package com.blank.art.ec.main.sort.content;
 
 import com.blank.art.ec.R;
-import com.blank.art.ec.entry.SubCategoryEntiry;
+import com.blank.art.ec.entity.SubCategoryEntity;
 import com.chad.library.adapter.base.BaseSectionQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
@@ -13,7 +13,7 @@ import java.util.List;
  * Description:
  */
 
-public class SubCategoryAdapter extends BaseSectionQuickAdapter<SubCategoryEntiry, BaseViewHolder> {
+public class SubCategoryAdapter extends BaseSectionQuickAdapter<SubCategoryEntity, BaseViewHolder> {
     /**
      * Same as QuickAdapter#QuickAdapter(Context,int) but with
      * some initialization data.
@@ -22,21 +22,21 @@ public class SubCategoryAdapter extends BaseSectionQuickAdapter<SubCategoryEntir
      * @param sectionHeadResId The section head layout id for each item
      * @param data             A new list is created out of this one to avoid mutable list
      */
-    public SubCategoryAdapter(int layoutResId, int sectionHeadResId, List<SubCategoryEntiry> data) {
+    public SubCategoryAdapter(int layoutResId, int sectionHeadResId, List<SubCategoryEntity> data) {
         super(layoutResId, sectionHeadResId, data);
     }
 
     @Override
-    protected void convertHead(BaseViewHolder helper, SubCategoryEntiry item) {
-//        SubCategoryEntiry sub = item.getField(MultipleFields.LIST);
+    protected void convertHead(BaseViewHolder helper, SubCategoryEntity item) {
+//        SubCategoryEntity sub = item.getField(MultipleFields.LIST);
         helper.setText(R.id.atv_item_subcat_header, item.header);
         helper.setVisible(R.id.atv_item_subcat_more, item.mIsMore);
         helper.addOnClickListener(R.id.atv_item_subcat_more);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, SubCategoryEntiry item) {
-//        SubCategoryEntiry sub = item.getField(MultipleFields.LIST);
+    protected void convert(BaseViewHolder helper, SubCategoryEntity item) {
+//        SubCategoryEntity sub = item.getField(MultipleFields.LIST);
 
         helper.setText(R.id.atv_item_subcat_content_name, item.t.name);
 

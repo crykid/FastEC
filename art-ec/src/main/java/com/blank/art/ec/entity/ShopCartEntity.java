@@ -1,4 +1,4 @@
-package com.blank.art.ec.entry;
+package com.blank.art.ec.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
 

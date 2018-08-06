@@ -9,8 +9,8 @@ import android.view.View;
 import com.blank.art.delegates.ArtDelegate;
 import com.blank.art.ec.R;
 import com.blank.art.ec.R2;
-import com.blank.art.ec.entry.CategoriesEntiry;
-import com.blank.art.ec.entry.SubCategoryEntiry;
+import com.blank.art.ec.entity.CategoriesEntity;
+import com.blank.art.ec.entity.SubCategoryEntity;
 import com.blank.art.ec.main.sort.list.SubCategoryListDataConveter;
 import com.blank.art.retrofit.RestClient;
 import com.blank.art.retrofit.callback.ISuccess;
@@ -77,10 +77,10 @@ public class SubCategoriesDelegate extends ArtDelegate {
     private void initData() {
         RestClient.builder()
                 .url("categorys/" + mContentId + "/")
-                .success(new ISuccess<CategoriesEntiry>() {
+                .success(new ISuccess<CategoriesEntity>() {
                     @Override
-                    public void onSuccess(CategoriesEntiry response) {
-                        final List<SubCategoryEntiry> data = new SubCategoryListDataConveter().convert(response);
+                    public void onSuccess(CategoriesEntity response) {
+                        final List<SubCategoryEntity> data = new SubCategoryListDataConveter().convert(response);
 
                         final SubCategoryAdapter adapter = new SubCategoryAdapter(R.layout.item_subcategory_content, R.layout.item_subcategory_header, data);
                         if (mRecyclerView != null)

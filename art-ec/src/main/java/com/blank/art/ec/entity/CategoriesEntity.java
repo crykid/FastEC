@@ -1,4 +1,4 @@
-package com.blank.art.ec.entry;
+package com.blank.art.ec.entity;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -13,9 +13,9 @@ import java.util.List;
  * Description:商品分类列表item entity
  */
 
-public class CategoriesEntiry implements Parcelable{
+public class CategoriesEntity implements Parcelable{
 
-    public CategoriesEntiry() {
+    public CategoriesEntity() {
     }
 
     /**
@@ -116,7 +116,7 @@ public class CategoriesEntiry implements Parcelable{
     }
 
 
-    protected CategoriesEntiry(Parcel in) {
+    protected CategoriesEntity(Parcel in) {
         id = in.readInt();
         name = in.readString();
         code = in.readString();
@@ -126,15 +126,15 @@ public class CategoriesEntiry implements Parcelable{
         addTime = in.readString();
     }
 
-    public static final Creator<CategoriesEntiry> CREATOR = new Creator<CategoriesEntiry>() {
+    public static final Creator<CategoriesEntity> CREATOR = new Creator<CategoriesEntity>() {
         @Override
-        public CategoriesEntiry createFromParcel(Parcel in) {
-            return new CategoriesEntiry(in);
+        public CategoriesEntity createFromParcel(Parcel in) {
+            return new CategoriesEntity(in);
         }
 
         @Override
-        public CategoriesEntiry[] newArray(int size) {
-            return new CategoriesEntiry[size];
+        public CategoriesEntity[] newArray(int size) {
+            return new CategoriesEntity[size];
         }
     };
 

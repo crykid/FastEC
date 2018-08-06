@@ -16,7 +16,7 @@ import com.blank.art.delegates.ArtDelegate;
 import com.blank.art.ec.R;
 import com.blank.art.ec.R2;
 import com.blank.art.ec.database.UserProfileEntry;
-import com.blank.art.ec.entry.LoginEntry;
+import com.blank.art.ec.entity.LoginEntry;
 import com.blank.art.retrofit.RestClient;
 import com.blank.art.retrofit.callback.IError;
 import com.blank.art.retrofit.callback.IFailure;

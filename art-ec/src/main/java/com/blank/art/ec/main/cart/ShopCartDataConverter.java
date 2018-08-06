@@ -1,6 +1,6 @@
 package com.blank.art.ec.main.cart;
 
-import com.blank.art.ec.entry.ShopCartEntity;
+import com.blank.art.ec.entity.ShopCartEntity;
 import com.blank.art.ui.recycler.DataConverter;
 import com.blank.art.ui.recycler.MultipleFields;
 import com.blank.art.ui.recycler.MultipleItemEntity;

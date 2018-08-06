@@ -1,4 +1,4 @@
-package com.blank.art.ec.entry;
+package com.blank.art.ec.entity;
 
 import com.chad.library.adapter.base.entity.SectionEntity;
 
@@ -8,17 +8,17 @@ import com.chad.library.adapter.base.entity.SectionEntity;
  * Description:
  */
 
-public class SubCategoryEntiry extends SectionEntity<CategoriesEntiry.SubCatBeanX.SubCatBean> {
+public class SubCategoryEntity extends SectionEntity<CategoriesEntity.SubCatBeanX.SubCatBean> {
 
     public boolean mIsMore = false;
     public int mId = -1;
 
 
-    public SubCategoryEntiry(CategoriesEntiry.SubCatBeanX.SubCatBean subCatBean) {
+    public SubCategoryEntity(CategoriesEntity.SubCatBeanX.SubCatBean subCatBean) {
         super(subCatBean);
     }
 
-    public SubCategoryEntiry(boolean isHeader, String header) {
+    public SubCategoryEntity(boolean isHeader, String header) {
         super(isHeader, header);
     }
 }

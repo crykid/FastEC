@@ -15,7 +15,7 @@ import com.alibaba.fastjson.JSON;
 import com.blank.art.bottom.BottomItemDelegate;
 import com.blank.art.ec.R;
 import com.blank.art.ec.R2;
-import com.blank.art.ec.entry.ShopCartEntity;
+import com.blank.art.ec.entity.ShopCartEntity;
 import com.blank.art.pay.FastPay;
 import com.blank.art.pay.IALiPayResult;
 import com.blank.art.retrofit.RestClient;

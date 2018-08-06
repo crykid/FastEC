@@ -52,8 +52,8 @@ dependencies {
     api 'me.yokeyword:fragmentation-swipeback:1.3.5'
 
     //butterknife依赖
-    api 'com.jakewharton:butterknife:8.4.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    api 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
     //retrofit
     api 'com.squareup.retrofit2:retrofit:2.4.0'
@@ -114,5 +114,8 @@ dependencies {
     //rxjava
     api 'io.reactivex.rxjava2:rxjava:2.2.0-SNAPSHOT'
     implementation files('libs/alipaySdk-20180601.jar')
+
+    //圆形imageview
+    api 'de.hdodenhof:circleimageview:2.2.0'
 }
 

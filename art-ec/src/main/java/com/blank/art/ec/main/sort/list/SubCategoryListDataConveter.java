@@ -1,7 +1,7 @@
 package com.blank.art.ec.main.sort.list;
 
-import com.blank.art.ec.entry.CategoriesEntiry;
-import com.blank.art.ec.entry.SubCategoryEntiry;
+import com.blank.art.ec.entity.CategoriesEntity;
+import com.blank.art.ec.entity.SubCategoryEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,30 +15,30 @@ import java.util.List;
 public class SubCategoryListDataConveter {
 
 
-    public ArrayList<SubCategoryEntiry> convert(CategoriesEntiry catDetail) {
+    public ArrayList<SubCategoryEntity> convert(CategoriesEntity catDetail) {
         //这是一个对象，对象包含subcat
-        ArrayList<SubCategoryEntiry> dataList = new ArrayList<>();
+        ArrayList<SubCategoryEntity> dataList = new ArrayList<>();
         //取出对象的subcat
-        List<CategoriesEntiry.SubCatBeanX> subCats = catDetail.subCat;
+        List<CategoriesEntity.SubCatBeanX> subCats = catDetail.subCat;
         final int size = subCats.size();
         //取出subcat的每一个对象
         for (int i = 0; i < size; i++) {
-            CategoriesEntiry.SubCatBeanX subCat = subCats.get(i);
+            CategoriesEntity.SubCatBeanX subCat = subCats.get(i);
 
-            SubCategoryEntiry subCategoryEntiry = new SubCategoryEntiry(true, subCat.name);
+            SubCategoryEntity subCategoryEntity = new SubCategoryEntity(true, subCat.name);
 
-            subCategoryEntiry.mId = subCat.id;
-            subCategoryEntiry.mIsMore = true;
+            subCategoryEntity.mId = subCat.id;
+            subCategoryEntity.mIsMore = true;
 
-            dataList.add(subCategoryEntiry);
+            dataList.add(subCategoryEntity);
 
             //取出第二层sub的subcatlist
-            List<CategoriesEntiry.SubCatBeanX.SubCatBean> subCatBeans = subCat.subCat;
+            List<CategoriesEntity.SubCatBeanX.SubCatBean> subCatBeans = subCat.subCat;
             int subSize = subCatBeans.size();
             //取出第三层的sub对象
             for (int j = 0; j < subSize; j++) {
-                CategoriesEntiry.SubCatBeanX.SubCatBean bean = subCatBeans.get(j);
-                SubCategoryEntiry entiry = new SubCategoryEntiry(bean);
+                CategoriesEntity.SubCatBeanX.SubCatBean bean = subCatBeans.get(j);
+                SubCategoryEntity entiry = new SubCategoryEntity(bean);
 
                 dataList.add(entiry);
             }

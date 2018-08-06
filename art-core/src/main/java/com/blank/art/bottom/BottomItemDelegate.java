@@ -1,6 +1,5 @@
 package com.blank.art.bottom;
 
-import android.view.View;
 import android.widget.Toast;
 
 import com.blank.art.delegates.ArtDelegate;
@@ -18,7 +17,7 @@ public abstract class BottomItemDelegate extends ArtDelegate {
     @Override
     public void onResume() {
         super.onResume();
-        View rootView = getView();
+//        View rootView = getView();
 
 //        if (rootView != null) {
 //            //keylistener生效

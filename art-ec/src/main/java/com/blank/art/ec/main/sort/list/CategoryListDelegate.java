@@ -9,7 +9,7 @@ import android.view.View;
 import com.blank.art.delegates.ArtDelegate;
 import com.blank.art.ec.R;
 import com.blank.art.ec.R2;
-import com.blank.art.ec.entry.CategoriesEntiry;
+import com.blank.art.ec.entity.CategoriesEntity;
 import com.blank.art.retrofit.RestClient;
 import com.blank.art.retrofit.callback.ISuccess;
 import com.blank.art.ui.recycler.MultipleItemEntity;
@@ -50,9 +50,9 @@ public class CategoryListDelegate extends ArtDelegate {
         RestClient.builder()
                 .url("categorys/")
                 .loader(getContext())
-                .success(new ISuccess<List<CategoriesEntiry>>() {
+                .success(new ISuccess<List<CategoriesEntity>>() {
                              @Override
-                             public void onSuccess(List<CategoriesEntiry> response) {
+                             public void onSuccess(List<CategoriesEntity> response) {
                                  final List<MultipleItemEntity> data =
                                          new CategoryListDataConverter().setData(response).convert();
                                  final CategoryListAdapter adapter = new CategoryListAdapter(data, getParentDelegate());

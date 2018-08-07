@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 
 import com.blank.art.delegates.web.event.Event;
 import com.blank.art.delegates.web.event.EventManager;
+import com.blankj.utilcode.util.Utils;
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 
@@ -61,6 +62,8 @@ public class Configurator {
 
 
     public final void configure() {
+        //初始化工具类
+        Utils.init(Art.getApplicationContext());
         initIcons();
         CONFIGS.put(ConfigTypes.CONFIG_READY, true);
     }

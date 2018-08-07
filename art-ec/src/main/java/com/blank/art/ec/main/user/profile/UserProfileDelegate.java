@@ -38,30 +38,29 @@ public class UserProfileDelegate extends ArtDelegate {
 
         final ListBean avatar = new ListBean.Builder()
                 .setItemType(ListItemType.ITEM_TYPE_AVATOR)
-                .setId(3)
+                .setId(1)
                 .setText("头像")
                 .setImageUrl("http://s1.sinaimg.cn/mw690/006LDoUHzy7auXElZGE40&690")
                 .build();
         final ListBean name = new ListBean.Builder()
                 .setItemType(ListItemType.ITEM_TYPE_ARROW)
-                .setId(1)
+                .setId(2)
                 .setText("姓名")
                 .setValue("卢先生")
                 .build();
         final ListBean gender = new ListBean.Builder()
                 .setItemType(ListItemType.ITEM_TYPE_ARROW)
-                .setId(1)
+                .setId(3)
                 .setText("性别")
                 .setValue("男")
                 .build();
 
         final ListBean birth = new ListBean.Builder()
                 .setItemType(ListItemType.ITEM_TYPE_ARROW)
-                .setId(2)
+                .setId(4)
                 .setText("出生日期")
                 .setValue("1994-01-26")
                 .build();
-
 
 
         final List<ListBean> data = new ArrayList<>();
@@ -76,7 +75,7 @@ public class UserProfileDelegate extends ArtDelegate {
         mRecyclerView.setLayoutManager(manager);
         final ListAdapter adapter = new ListAdapter(data);
         mRecyclerView.setAdapter(adapter);
-//        mRecyclerView.addOnItemTouchListener(new UserProfileClickListener(this));
+        mRecyclerView.addOnItemTouchListener(new UserProfileClickListener(this));
     }
 
 

@@ -34,6 +34,7 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':art-annotations')
+    //noinspection GradleCompatible
     api 'com.android.support.test:runner:1.0.2'
     api 'com.android.support.test.espresso:espresso-core:3.0.2'
     api 'com.android.support.constraint:constraint-layout:1.1.2'
@@ -117,5 +118,16 @@ dependencies {
 
     //圆形imageview
     api 'de.hdodenhof:circleimageview:2.2.0'
+
+    //图片剪裁,包含so
+    api 'com.github.yalantis:ucrop:2.2.2-native'
+
+    //动态权限
+    api "com.github.hotchemi:permissionsdispatcher:2.4.0"
+    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:2.4.0"
+
+    //工具包
+    compile 'com.blankj:utilcode:1.7.1'
+
 }
 

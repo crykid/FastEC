@@ -2,10 +2,18 @@ package com.blank.art.delegates;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
+import com.blank.art.util.callback.CallbackManager;
+import com.blank.art.util.callback.CallbackType;
+import com.blank.art.util.callback.IGlobalCallback;
 import com.blank.art.util.camera.ArtCamera;
+import com.blank.art.util.camera.CameraImageBean;
+import com.blank.art.util.camera.RequestCode;
+import com.yalantis.ucrop.UCrop;
 
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;
@@ -55,22 +63,7 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
     }
 
     private void showRationaleDialog(final PermissionRequest request) {
-//        new AlertDialog.Builder(getContext())
-//                .setPositiveButton("同意使用", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        request.proceed();
-//                    }
-//                })
-//                .setNegativeButton("拒绝使用", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        request.cancel();
-//                    }
-//                })
-//                .setCancelable(false)
-//                .setMessage("权限管理")
-//                .show();
+
         new AlertDialog.Builder(getContext())
                 .setPositiveButton("同意使用", (dialog, which) -> {
                     dialog.cancel();
@@ -84,5 +77,52 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
                 }).setCancelable(false)
                 .setMessage("权限管理")
                 .show();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case RequestCode.REQUESTCODE_TAKE_PHOTE:
+                    final Uri resultUri = CameraImageBean.getInstance().getPath();
+                    UCrop.of(resultUri, resultUri)
+                            .withMaxResultSize(400, 400)
+                            .start(getContext(), this);
+                    break;
+                case RequestCode.REQUESTCODE_PICK_PHOTE:
+                    if (data != null) {
+                        final Uri pickResult = data.getData();
+                        final String pickCropPath = ArtCamera.createCropFile().getPath();
+
+                        UCrop.of(pickResult, Uri.parse(pickCropPath))//传入相同的地址：将裁剪后的结果覆盖原来的
+                                .withMaxResultSize(400, 800)
+                                .start(getContext(), this);
+                    }
+                    break;
+                case RequestCode.REQUESTCODE_CROP_PHOTE:
+                    final Uri cropUri = UCrop.getOutput(data);
+                    //拿到裁剪后的数据进行处理
+                    final IGlobalCallback<Uri> callback = CallbackManager
+                            .getInstance()
+                            .getCallback(CallbackType.ON_CROP);
+                    if (callback != null) {
+                        callback.executeCallback(cropUri);
+                    }
+                    break;
+                case RequestCode.REQUESTCODE_CROP_ERROR:
+
+                    Toast.makeText(getContext(), "剪裁出错", Toast.LENGTH_SHORT).show();
+
+                    break;
+                case RequestCode.REQUESTCODE_SCAN:
+
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
     }
 }

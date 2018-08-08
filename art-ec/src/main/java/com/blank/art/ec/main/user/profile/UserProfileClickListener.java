@@ -2,14 +2,23 @@ package com.blank.art.ec.main.user.profile;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.support.v7.widget.AppCompatTextView;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.blank.art.delegates.ArtDelegate;
 import com.blank.art.ec.R;
 import com.blank.art.ec.main.user.list.ListBean;
+import com.blank.art.retrofit.RestClient;
+import com.blank.art.retrofit.callback.ISuccess;
+import com.blank.art.util.callback.CallbackManager;
+import com.blank.art.util.callback.CallbackType;
+import com.blank.art.util.callback.IGlobalCallback;
 import com.blank.art.util.dialog.DateDialogUtil;
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
 
@@ -35,8 +44,35 @@ public class UserProfileClickListener extends SimpleClickListener {
         switch (id) {
             case 1:
                 //开启相机或选择图片
-                DELEGATE.startCameraWithCheck();
 
+                CallbackManager.getInstance()
+                        .addCallback(CallbackType.ON_CROP, new IGlobalCallback<Uri>() {
+                            @Override
+                            public void executeCallback(Uri args) {
+                                Log.d(TAG, "executeCallback: " + args.toString());
+                                final ImageView avatar = view.findViewById(R.id.img_arrow_avatar);
+                                Glide.with(DELEGATE)
+                                        .load(args)
+                                        .into(avatar);
+                                RestClient.builder()
+                                        .url("文件服务器地址")
+                                        .loader(DELEGATE.getContext())
+                                        .file(args.getPath())
+                                        .success(new ISuccess() {
+                                            @Override
+                                            public void onSuccess(Object response) {
+                                                //1.通知app服务器更新信息
+                                                //2.更新本地用户数据
+
+                                            }
+                                        })
+                                        .build()
+                                        .upload();
+
+                            }
+
+                        });
+                DELEGATE.startCameraWithCheck();
                 break;
             case 2:
                 //

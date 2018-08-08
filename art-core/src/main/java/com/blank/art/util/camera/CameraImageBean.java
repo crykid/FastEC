@@ -21,6 +21,6 @@ public class CameraImageBean {
     }
 
     public void setPath(Uri path) {
-        this.mPath = mPath;
+        this.mPath = path;
     }
 }

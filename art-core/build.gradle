@@ -4,7 +4,7 @@ apply plugin: 'com.jakewharton.butterknife'
 
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
 
 
 
@@ -32,14 +32,19 @@ android {
 }
 
 dependencies {
+    configurations.all {
+        exclude group: 'com.android.support', module: 'support-v13'
+    }
+
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':art-annotations')
+
     //noinspection GradleCompatible
     api 'com.android.support.test:runner:1.0.2'
     api 'com.android.support.test.espresso:espresso-core:3.0.2'
     api 'com.android.support.constraint:constraint-layout:1.1.2'
-    api 'com.android.support:appcompat-v7:26.1.0'
-    api 'com.android.support:design:26.1.0'
+    api 'com.android.support:appcompat-v7:27.1.1'
+    api 'com.android.support:design:27.1.1'
     androidTestImplementation 'junit:junit:4.12'
 
     //字体图标
@@ -86,7 +91,7 @@ dependencies {
     api 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
 
     //RecyclerView
-    api 'com.android.support:recyclerview-v7:26.1.0'
+    api 'com.android.support:recyclerview-v7:27.1.1'
 
     //RecyclerView adapter 依赖，加号表示动态寻找最新版本
 
@@ -121,13 +126,16 @@ dependencies {
 
     //图片剪裁,包含so
     api 'com.github.yalantis:ucrop:2.2.2-native'
+    //删除ucrop中的support依赖，因为它与本项目的support版本不一致
+    api('com.github.yalantis:ucrop:2.2.2-native') {
+        exclude group: 'com.android.support', module: 'support-v7:27.1.0'
+    }
 
     //动态权限
-    api "com.github.hotchemi:permissionsdispatcher:2.4.0"
+    api 'com.github.hotchemi:permissionsdispatcher:2.4.0'
     annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:2.4.0"
 
     //工具包
     api 'com.blankj:utilcode:1.7.1'
-
 }
 

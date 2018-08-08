@@ -63,9 +63,9 @@ public class Configurator {
 
     public final void configure() {
         //初始化工具类
-        Utils.init(Art.getApplicationContext());
         initIcons();
         CONFIGS.put(ConfigTypes.CONFIG_READY, true);
+        Utils.init(Art.getApplicationContext());
     }
 
 

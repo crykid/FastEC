@@ -35,7 +35,7 @@ public class UserProfileClickListener extends SimpleClickListener {
         switch (id) {
             case 1:
                 //开启相机或选择图片
-
+                DELEGATE.startCameraWithCheck();
 
                 break;
             case 2:

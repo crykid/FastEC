@@ -23,6 +23,7 @@ public class ListAdapter extends BaseMultiItemQuickAdapter<ListBean, BaseViewHol
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .centerCrop()
             .dontAnimate();
+
     /**
      * Same as QuickAdapter#QuickAdapter(Context,int) but with
      * some initialization data.
@@ -41,7 +42,12 @@ public class ListAdapter extends BaseMultiItemQuickAdapter<ListBean, BaseViewHol
             case ListItemType.ITEM_TYPE_ARROW:
                 holder.setText(R.id.atv_item_user_arrow_text, item.getText());
                 holder.setText(R.id.atv_item_user_arrow_value, item.getValue());
-//                holder.setText(R.id.itv_item_user_arrow_arrow,)
+//                holder.itemView.setOnClickListener(v -> {
+//                            if (item.getListener() != null){
+//                                item.getListener().onCheckedChanged();
+//                            }
+//                        }
+//                );
                 break;
             case ListItemType.ITEM_TYPE_AVATOR:
                 Glide.with(mContext)

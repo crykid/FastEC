@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import com.blank.art.bottom.BottomItemDelegate;
 import com.blank.art.ec.R;
 import com.blank.art.ec.R2;
+import com.blank.art.ec.main.user.address.AddressesDelegate;
 import com.blank.art.ec.main.user.list.ListAdapter;
 import com.blank.art.ec.main.user.list.ListBean;
 import com.blank.art.ec.main.user.list.ListItemType;
@@ -50,11 +51,12 @@ public class UserDelegate extends BottomItemDelegate {
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         mArgs = new Bundle();
-
+        //初始化用户页面列表item
         final ListBean address = new ListBean.Builder()
                 .setItemType(ListItemType.ITEM_TYPE_ARROW)
                 .setId(1)
                 .setText("地址管理")
+                .setDelegate(new AddressesDelegate())
                 .build();
 
         final ListBean settings = new ListBean.Builder()
@@ -63,17 +65,20 @@ public class UserDelegate extends BottomItemDelegate {
                 .setText("设置")
                 .build();
         final ListBean profile = new ListBean.Builder()
-                .setItemType(ListItemType.ITEM_TYPE_AVATOR)
-                .setId(2)
-                .setText("")
+                .setItemType(ListItemType.ITEM_TYPE_ARROW)
+                .setId(3)
+                .setText("关于来尝鲜")
                 .build();
 
         final List<ListBean> data = new ArrayList<>();
         data.add(address);
         data.add(settings);
+        data.add(profile);
         ListAdapter adapter = new ListAdapter(data);
         rvUserSetting.setLayoutManager(new LinearLayoutManager(getContext()));
         rvUserSetting.setAdapter(adapter);
+        //添加自定义列表item点击事件处理
+        rvUserSetting.addOnItemTouchListener(new UserClickListener(this));
 
     }
 

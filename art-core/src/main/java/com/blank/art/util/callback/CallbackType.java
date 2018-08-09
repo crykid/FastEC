@@ -7,6 +7,6 @@ package com.blank.art.util.callback;
  */
 
 public enum CallbackType {
-    ON_CROP
+    OPEN_PUSH, STOP_PUSH, ON_CROP
 
 }

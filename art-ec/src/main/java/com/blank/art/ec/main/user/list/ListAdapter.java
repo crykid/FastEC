@@ -1,5 +1,6 @@
 package com.blank.art.ec.main.user.list;
 
+import android.support.v7.widget.SwitchCompat;
 import android.widget.ImageView;
 
 import com.blank.art.ec.R;
@@ -32,14 +33,15 @@ public class ListAdapter extends BaseMultiItemQuickAdapter<ListBean, BaseViewHol
      */
     public ListAdapter(List<ListBean> data) {
         super(data);
-        addItemType(ListItemType.ITEM_TYPE_ARROW, R.layout.item_user_arrow);
-        addItemType(ListItemType.ITEM_TYPE_AVATOR, R.layout.item_user_avator);
+        addItemType(ListItemType.ITEM_TYPE_NORMAL, R.layout.arrow_item_normal);
+        addItemType(ListItemType.ITEM_TYPE_AVATOR, R.layout.arrow_item_avator);
+        addItemType(ListItemType.ITEM_TYPE_SWITCH, R.layout.arrow_item_switch);
     }
 
     @Override
     protected void convert(BaseViewHolder holder, ListBean item) {
         switch (holder.getItemViewType()) {
-            case ListItemType.ITEM_TYPE_ARROW:
+            case ListItemType.ITEM_TYPE_NORMAL:
                 holder.setText(R.id.atv_item_user_arrow_text, item.getText());
                 holder.setText(R.id.atv_item_user_arrow_value, item.getValue());
 //                holder.itemView.setOnClickListener(v -> {
@@ -54,6 +56,13 @@ public class ListAdapter extends BaseMultiItemQuickAdapter<ListBean, BaseViewHol
                         .load(item.getImageUrl())
                         .apply(OPTIONS)
                         .into((ImageView) holder.getView(R.id.img_arrow_avatar));
+                break;
+
+            case ListItemType.ITEM_TYPE_SWITCH:
+                holder.setText(R.id.tv_arrow_switch_text, item.getText());
+                final SwitchCompat switchCompat = holder.getView(R.id.list_item_switch);
+                switchCompat.setChecked(true);
+                switchCompat.setOnCheckedChangeListener(item.getListener());
                 break;
             default:
                 break;

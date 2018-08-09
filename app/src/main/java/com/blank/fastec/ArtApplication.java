@@ -1,12 +1,16 @@
 package com.blank.fastec;
 
 import android.app.Application;
+import android.support.annotation.NonNull;
 
 import com.blank.art.app.Art;
 import com.blank.art.ec.database.DatabaseManager;
 import com.blank.art.ec.icon.FontEcModule;
 import com.blank.art.retrofit.intercepter.AddCookieInterceptor;
 import com.blank.art.retrofit.intercepter.DebugInterceptor;
+import com.blank.art.util.callback.CallbackManager;
+import com.blank.art.util.callback.CallbackType;
+import com.blank.art.util.callback.IGlobalCallback;
 import com.blank.art.util.logutil.HttpLogger;
 import com.blank.art.util.logutil.ParamsLogInterceptor;
 import com.blank.fastec.event.TestEvent;
@@ -49,9 +53,26 @@ public class ArtApplication extends Application {
 //                .withWechatAppSecret("")
                 .configure();
 
-        //极光推送
-        JPushInterface.setDebugMode(true);
-        JPushInterface.init(this);
+        CallbackManager.getInstance()
+                .addCallback(CallbackType.OPEN_PUSH, new IGlobalCallback() {
+                    @Override
+                    public void executeCallback(@NonNull Object args) {
+                        if (JPushInterface.isPushStopped(Art.getApplicationContext())) {
+                            //极光推送
+                            JPushInterface.setDebugMode(true);
+                            JPushInterface.init(Art.getApplicationContext());
+                        }
+                    }
+                })
+                .addCallback(CallbackType.STOP_PUSH, new IGlobalCallback() {
+                    @Override
+                    public void executeCallback(@NonNull Object args) {
+                        if (!JPushInterface.isPushStopped(Art.getApplicationContext())) {
+                            JPushInterface.stopPush(Art.getApplicationContext());
+                        }
+                    }
+                });
+
 
         //初始化数据库
         DatabaseManager.getInstance().init(this);

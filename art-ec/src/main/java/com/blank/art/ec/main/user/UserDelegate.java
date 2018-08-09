@@ -16,6 +16,7 @@ import com.blank.art.ec.main.user.list.ListBean;
 import com.blank.art.ec.main.user.list.ListItemType;
 import com.blank.art.ec.main.user.order.OrderListDelegate;
 import com.blank.art.ec.main.user.profile.UserProfileDelegate;
+import com.blank.art.ec.main.user.settings.SettingDelegate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,19 +54,20 @@ public class UserDelegate extends BottomItemDelegate {
         mArgs = new Bundle();
         //初始化用户页面列表item
         final ListBean address = new ListBean.Builder()
-                .setItemType(ListItemType.ITEM_TYPE_ARROW)
+                .setItemType(ListItemType.ITEM_TYPE_NORMAL)
                 .setId(1)
                 .setText("地址管理")
                 .setDelegate(new AddressesDelegate())
                 .build();
 
         final ListBean settings = new ListBean.Builder()
-                .setItemType(ListItemType.ITEM_TYPE_ARROW)
+                .setItemType(ListItemType.ITEM_TYPE_NORMAL)
                 .setId(2)
+                .setDelegate(new SettingDelegate())
                 .setText("设置")
                 .build();
         final ListBean profile = new ListBean.Builder()
-                .setItemType(ListItemType.ITEM_TYPE_ARROW)
+                .setItemType(ListItemType.ITEM_TYPE_NORMAL)
                 .setId(3)
                 .setText("关于来尝鲜")
                 .build();
@@ -73,7 +75,7 @@ public class UserDelegate extends BottomItemDelegate {
         final List<ListBean> data = new ArrayList<>();
         data.add(address);
         data.add(settings);
-        data.add(profile);
+//        data.add(profile);
         ListAdapter adapter = new ListAdapter(data);
         rvUserSetting.setLayoutManager(new LinearLayoutManager(getContext()));
         rvUserSetting.setAdapter(adapter);

@@ -43,20 +43,20 @@ public class UserProfileDelegate extends ArtDelegate {
                 .setImageUrl("http://s1.sinaimg.cn/mw690/006LDoUHzy7auXElZGE40&690")
                 .build();
         final ListBean name = new ListBean.Builder()
-                .setItemType(ListItemType.ITEM_TYPE_ARROW)
+                .setItemType(ListItemType.ITEM_TYPE_NORMAL)
                 .setId(2)
                 .setText("姓名")
                 .setValue("卢先生")
                 .build();
         final ListBean gender = new ListBean.Builder()
-                .setItemType(ListItemType.ITEM_TYPE_ARROW)
+                .setItemType(ListItemType.ITEM_TYPE_NORMAL)
                 .setId(3)
                 .setText("性别")
                 .setValue("男")
                 .build();
 
         final ListBean birth = new ListBean.Builder()
-                .setItemType(ListItemType.ITEM_TYPE_ARROW)
+                .setItemType(ListItemType.ITEM_TYPE_NORMAL)
                 .setId(4)
                 .setText("出生日期")
                 .setValue("1994-01-26")

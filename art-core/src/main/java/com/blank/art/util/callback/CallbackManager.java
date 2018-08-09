@@ -5,7 +5,7 @@ import java.util.WeakHashMap;
 /**
  * Created by : blank
  * Created on : 2018/8/8 at 23:28
- * Description:全局回调管理
+ * Description:全局回调管理(跨module)
  */
 
 public class CallbackManager {

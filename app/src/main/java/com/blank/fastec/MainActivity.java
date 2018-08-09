@@ -10,11 +10,11 @@ import com.blank.art.app.ISignListener;
 import com.blank.art.delegates.ArtDelegate;
 import com.blank.art.ec.launcher.LauncherDelegate;
 import com.blank.art.ec.main.EcBottomDelegate;
-import com.blank.art.ec.main.index.IndexDelegate;
 import com.blank.art.ec.sign.SignInDelegate;
 import com.blank.art.ui.launcher.ILauncherListener;
 import com.blank.art.ui.launcher.OnLuncherFinishTag;
 
+import cn.jpush.android.api.JPushInterface;
 import qiu.niorgai.StatusBarCompat;
 
 public class MainActivity extends ProxyActivity implements
@@ -28,7 +28,7 @@ public class MainActivity extends ProxyActivity implements
         //将全局的activity加入配置文件中
         Art.getConfigurator().withActivity(this);
         //设置沉浸式状态栏
-        StatusBarCompat.translucentStatusBar(this,true);
+        StatusBarCompat.translucentStatusBar(this, true);
     }
 
     @Override
@@ -63,5 +63,17 @@ public class MainActivity extends ProxyActivity implements
             default:
                 break;
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JPushInterface.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        JPushInterface.onResume(this);
     }
 }

@@ -3,15 +3,17 @@ package com.blank.fastec;
 import android.app.Application;
 
 import com.blank.art.app.Art;
-import com.blank.art.retrofit.intercepter.AddCookieInterceptor;
-import com.blank.fastec.event.TestEvent;
 import com.blank.art.ec.database.DatabaseManager;
 import com.blank.art.ec.icon.FontEcModule;
+import com.blank.art.retrofit.intercepter.AddCookieInterceptor;
 import com.blank.art.retrofit.intercepter.DebugInterceptor;
 import com.blank.art.util.logutil.HttpLogger;
 import com.blank.art.util.logutil.ParamsLogInterceptor;
+import com.blank.fastec.event.TestEvent;
 import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
+
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * Created by : blank
@@ -46,6 +48,10 @@ public class ArtApplication extends Application {
 //                .withWechatAppId("")
 //                .withWechatAppSecret("")
                 .configure();
+
+        //极光推送
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
 
         //初始化数据库
         DatabaseManager.getInstance().init(this);

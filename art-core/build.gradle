@@ -13,8 +13,10 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+
+
 
     }
 
@@ -140,5 +142,7 @@ dependencies {
 
     //工具包
     api 'com.blankj:utilcode:1.7.1'
+
+
 }
 

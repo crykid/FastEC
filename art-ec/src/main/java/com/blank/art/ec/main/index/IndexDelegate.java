@@ -18,7 +18,6 @@ import com.blank.art.ec.R2;
 import com.blank.art.ec.main.EcBottomDelegate;
 import com.blank.art.ec.main.index.search.SearchDelegate;
 import com.blank.art.ui.recycler.BaseDecoration;
-import com.blank.art.ui.refresh.RefreshHandler;
 import com.blank.art.util.callback.CallbackManager;
 import com.blank.art.util.callback.CallbackType;
 import com.blank.art.util.callback.IGlobalCallback;
@@ -52,7 +51,7 @@ public class IndexDelegate extends BottomItemDelegate implements View.OnFocusCha
     private RefreshHandler mRefreshHandler = null;
 
     @Override
-    public Object getLyout() {
+    public Object getLayout() {
         return R.layout.delegate_index;
     }
 

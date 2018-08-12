@@ -54,7 +54,7 @@ public abstract class BaseBottomDegelate extends ArtDelegate implements View.OnC
     public abstract LinkedHashMap<BottomTabBean, BottomItemDelegate> setItems(ItemBuilder builder);
 
     @Override
-    public Object getLyout() {
+    public Object getLayout() {
         return R.layout.delegate_bottom;
     }
 

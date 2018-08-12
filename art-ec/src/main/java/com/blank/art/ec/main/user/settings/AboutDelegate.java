@@ -15,7 +15,7 @@ import com.blank.art.ec.R;
 
 public class AboutDelegate extends ArtDelegate {
     @Override
-    public Object getLyout() {
+    public Object getLayout() {
         return R.layout.delegate_about;
     }
 

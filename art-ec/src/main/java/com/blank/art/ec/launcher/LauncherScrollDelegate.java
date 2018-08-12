@@ -33,7 +33,7 @@ public class LauncherScrollDelegate extends ArtDelegate {
 
 
     @Override
-    public Object getLyout() {
+    public Object getLayout() {
         mConvenientBanner = new ConvenientBanner<Integer>(getContext());
         return mConvenientBanner;
     }

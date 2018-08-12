@@ -55,7 +55,7 @@ public class SignInDelegate extends ArtDelegate {
     private ISignListener mISignListener = null;
 
     @Override
-    public Object getLyout() {
+    public Object getLayout() {
         return R.layout.delegate_signin;
     }
 

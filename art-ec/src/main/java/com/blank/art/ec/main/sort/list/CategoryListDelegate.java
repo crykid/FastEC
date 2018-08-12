@@ -29,7 +29,7 @@ public class CategoryListDelegate extends ArtDelegate {
     RecyclerView mRecyclerView;
 
     @Override
-    public Object getLyout() {
+    public Object getLayout() {
         return R.layout.delegate_category_list;
     }
 

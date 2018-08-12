@@ -4,9 +4,6 @@ apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion 27
-
-
-
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 26
@@ -142,7 +139,6 @@ dependencies {
 
     //dm77/barcodescanner二维码扫描,内核可定制，内核使用c写的
     implementation 'me.dm7.barcodescanner:zbar:1.9.8'
-
 
 }
 

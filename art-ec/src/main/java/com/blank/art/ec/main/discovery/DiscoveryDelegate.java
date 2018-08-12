@@ -23,7 +23,7 @@ public class DiscoveryDelegate extends BottomItemDelegate {
     ContentFrameLayout cflWebcontainer;
 
     @Override
-    public Object getLyout() {
+    public Object getLayout() {
         return R.layout.delegate_discovery;
     }
 

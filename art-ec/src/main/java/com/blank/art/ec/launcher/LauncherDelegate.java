@@ -47,7 +47,7 @@ public class LauncherDelegate extends ArtDelegate implements ITimerListener {
     private ILauncherListener mILauncherListener = null;
 
     @Override
-    public Object getLyout() {
+    public Object getLayout() {
         return R.layout.delegate_launcher;
     }
 

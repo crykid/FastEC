@@ -6,7 +6,6 @@ import android.view.View;
 
 import com.bigkoo.convenientbanner.holder.Holder;
 import com.blank.art.R;
-import com.blank.art.entity.GoodsListEntity;
 import com.bumptech.glide.Glide;
 
 /**
@@ -14,7 +13,7 @@ import com.bumptech.glide.Glide;
  * Created on 7/12/2018.
  * Description:一般的banner
  */
-public class ImageHolder extends Holder<GoodsListEntity.ResultsEntity.ImagesEntity> {
+public class ImageHolder extends Holder<String> {
     private final Context mContext;
     private AppCompatImageView mImageView;
 
@@ -30,8 +29,8 @@ public class ImageHolder extends Holder<GoodsListEntity.ResultsEntity.ImagesEnti
     }
 
     @Override
-    public void updateUI(GoodsListEntity.ResultsEntity.ImagesEntity data) {
-        Glide.with(mContext).load(data.image).into(mImageView);
+    public void updateUI(String data) {
+        Glide.with(mContext).load(data).into(mImageView);
 
     }
 }

@@ -35,7 +35,7 @@ public class SettingDelegate extends ArtDelegate {
     Unbinder unbinder;
 
     @Override
-    public Object getLyout() {
+    public Object getLayout() {
         return R.layout.delegate_settings;
     }
 

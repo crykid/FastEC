@@ -1,17 +1,18 @@
-package com.blank.art.ui.refresh;
+package com.blank.art.ec.main.index;
 
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
-import com.blank.art.entity.GoodsListEntity;
+import com.blank.art.ec.entity.GoodsListEntity;
 import com.blank.art.retrofit.RestClient;
 import com.blank.art.retrofit.callback.IError;
 import com.blank.art.retrofit.callback.IFailure;
 import com.blank.art.retrofit.callback.ISuccess;
 import com.blank.art.ui.recycler.DataConverter;
 import com.blank.art.ui.recycler.MultipleRecyclerAdapter;
+import com.blank.art.ui.refresh.PagesEntity;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
 

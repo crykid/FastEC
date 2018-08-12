@@ -67,7 +67,7 @@ public class ShoppingCartDelegate extends BottomItemDelegate implements IALiPayR
 
 
     @Override
-    public Object getLyout() {
+    public Object getLayout() {
         return R.layout.delegate_cart;
     }
 

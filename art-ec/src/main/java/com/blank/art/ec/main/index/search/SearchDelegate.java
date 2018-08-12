@@ -41,7 +41,7 @@ public class SearchDelegate extends ArtDelegate {
 
 
     @Override
-    public Object getLyout() {
+    public Object getLayout() {
         return R.layout.delegate_search;
     }
 

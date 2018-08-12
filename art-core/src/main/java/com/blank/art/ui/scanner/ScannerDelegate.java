@@ -23,7 +23,7 @@ public class ScannerDelegate extends ArtDelegate implements ZBarScannerView.Resu
     private ScanView mScanView = null;
 
     @Override
-    public Object getLyout() {
+    public Object getLayout() {
         return mScanView;
     }
 

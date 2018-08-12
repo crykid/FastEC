@@ -26,7 +26,7 @@ public class SortDelegate extends BottomItemDelegate {
     ContentFrameLayout cflSortContentContainer;
 
     @Override
-    public Object getLyout() {
+    public Object getLayout() {
         return R.layout.delegate_sort;
     }
 

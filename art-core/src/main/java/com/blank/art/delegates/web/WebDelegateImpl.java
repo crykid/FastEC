@@ -38,7 +38,7 @@ public class WebDelegateImpl extends BaseWebDelegate {
 
 
     @Override
-    public Object getLyout() {
+    public Object getLayout() {
         return getWebView();
     }
 

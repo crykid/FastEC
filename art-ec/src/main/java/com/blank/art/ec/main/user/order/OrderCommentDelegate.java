@@ -42,7 +42,7 @@ public class OrderCommentDelegate extends ArtDelegate {
     AutoPhotoLayout aplPhotoLayout;
 
     @Override
-    public Object getLyout() {
+    public Object getLayout() {
         return R.layout.delegate_order_comment;
     }
 

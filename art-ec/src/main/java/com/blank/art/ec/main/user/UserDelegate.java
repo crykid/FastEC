@@ -45,7 +45,7 @@ public class UserDelegate extends BottomItemDelegate {
     public final static String ORDER_TYPE = "ORDER_TYPE";
 
     @Override
-    public Object getLyout() {
+    public Object getLayout() {
         return R.layout.delegate_user;
     }
 

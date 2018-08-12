@@ -31,7 +31,7 @@ public class AddressesDelegate extends ArtDelegate  {
     AddressesAdapter mAdapter;
 
     @Override
-    public Object getLyout() {
+    public Object getLayout() {
         return R.layout.delegate_addresses;
     }
 

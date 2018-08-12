@@ -1,0 +1,36 @@
+{
+  "id": 10,
+  "images": [
+    {
+      "image": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1532100001&di=81226fbd55c4c6f82772ddcc3f2887ad&imgtype=jpg&er=1&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F8b82b9014a90f6037cb445933312b31bb151edda.jpg"
+    },
+    {
+      "image": "http://192.168.1.7:8000/media/goods/images/9_P_1448944791617.jpg"
+    }
+  ],
+  "goods_sn": "",
+  "name": "爱食派内牛腱子肉1000g",
+  "click_num": 0,
+  "sold_num": 0,
+  "fav_num": 0,
+  "goods_num": 0,
+  "market_price": 202.0,
+  "shop_price": 168.0,
+  "goods_brief": "你是人间四月天",
+  "tabs": [
+    {
+      "name": "商品详情",
+      "pictures": [
+        "http://192.168.1.7:8000/media/goods/images/9_P_1448944791617.jpg",
+        "http://192.168.1.7:8000/media/goods/images/9_P_1448944791617.jpg"
+      ]
+    },
+    {
+      "name": "规格参数",
+      "pictures": [
+        "http://192.168.1.7:8000/media/goods/images/9_P_1448944791617.jpg",
+        "http://192.168.1.7:8000/media/goods/images/9_P_1448944791617.jpg"
+      ]
+    }
+  ]
+}

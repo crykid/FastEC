@@ -58,7 +58,7 @@ public class SubCategoriesDelegate extends ArtDelegate {
     }
 
     @Override
-    public Object getLyout() {
+    public Object getLayout() {
         return R.layout.delegate_list_content;
     }
 

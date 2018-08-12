@@ -16,8 +16,6 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
 
-
-
     }
 
     buildTypes {
@@ -49,7 +47,6 @@ dependencies {
     androidTestImplementation 'junit:junit:4.12'
 
     api 'com.android.support:cardview-v7:27.1.1'
-
 
     //字体图标
     api 'com.joanzapata.iconify:android-iconify-ionicons:2.2.2'
@@ -142,6 +139,9 @@ dependencies {
 
     //工具包
     api 'com.blankj:utilcode:1.7.1'
+
+    //dm77/barcodescanner二维码扫描,内核可定制，内核使用c写的
+    implementation 'me.dm7.barcodescanner:zbar:1.9.8'
 
 
 }

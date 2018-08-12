@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * Created by : blank
  * Created on : 2018/8/11 at 12:20
- * Description:
+ * Description:仿微信、qq图片选择
  */
 
 public class AutoPhotoLayout extends LinearLayoutCompat {

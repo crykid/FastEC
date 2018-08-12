@@ -1,6 +1,7 @@
 package com.blank.art.ec.main.index;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -9,6 +10,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import com.blank.art.bottom.BottomItemDelegate;
 import com.blank.art.ec.R;
@@ -16,6 +18,9 @@ import com.blank.art.ec.R2;
 import com.blank.art.ec.main.EcBottomDelegate;
 import com.blank.art.ui.recycler.BaseDecoration;
 import com.blank.art.ui.refresh.RefreshHandler;
+import com.blank.art.util.callback.CallbackManager;
+import com.blank.art.util.callback.CallbackType;
+import com.blank.art.util.callback.IGlobalCallback;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import butterknife.BindView;
@@ -54,6 +59,14 @@ public class IndexDelegate extends BottomItemDelegate {
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         mRefreshHandler = RefreshHandler.create(mSwipeRefreshLayout, mRecyclerView, new IndexDataConverter());
         mRefreshHandler.firstPage("goods/");
+
+        CallbackManager.getInstance().addCallback(CallbackType.ON_SCAN, new IGlobalCallback<String>() {
+            @Override
+            public void executeCallback(@NonNull String args) {
+                //实际需要根据扫描结果区分做不同的处理
+                Toast.makeText(getContext(), args, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -90,6 +103,7 @@ public class IndexDelegate extends BottomItemDelegate {
     public void onViewClicked(View view) {
         int i = view.getId();
         if (i == R.id.itv_index_scan) {
+            startScanWithCheck(getParentDelegate());
         } else if (i == R.id.itv_index_message) {
         }
     }

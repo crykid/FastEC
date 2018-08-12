@@ -67,7 +67,7 @@ public class OrderListDelegate extends ArtDelegate {
                                 new OrderListDataConverter().setData(response.orders).convert();
                         final OrderListAdapter adapter = new OrderListAdapter(data);
                         mRecyclerView.setAdapter(adapter);
-//                        mRecyclerView.addOnItemTouchListener(new OrderListClickListener(OrderListDelegate.this));
+                        mRecyclerView.addOnItemTouchListener(new OrderListClickListener(OrderListDelegate.this));
                     }
                 })
                 .build()

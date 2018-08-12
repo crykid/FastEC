@@ -12,12 +12,9 @@ import com.blank.art.app.AccountManager;
 import com.blank.art.app.IUserChecker;
 import com.blank.art.delegates.ArtDelegate;
 import com.blank.art.ec.R;
-import com.blank.art.ec.sign.SignUpDelegate;
 import com.blank.art.ui.launcher.ILauncherListener;
 import com.blank.art.ui.launcher.LauncherHolderCreater;
 import com.blank.art.ui.launcher.OnLuncherFinishTag;
-import com.blank.art.ui.launcher.ScrollLauncherTag;
-import com.blank.art.util.storage.ArtPreference;
 
 import java.util.ArrayList;
 
@@ -48,9 +45,9 @@ public class LauncherScrollDelegate extends ArtDelegate {
 
     private void initBanner() {
         Log.d(TAG, "initBanner: ");
-        INTEGERS.add(R.drawable.launcher_00);
-        INTEGERS.add(R.drawable.launcher_01);
-        INTEGERS.add(R.drawable.launcher_02);
+        INTEGERS.add(R.drawable.ic_launcher);
+        INTEGERS.add(R.drawable.ic_launcher);
+        INTEGERS.add(R.drawable.ic_launcher);
 
         mConvenientBanner
                 .setPages(new LauncherHolderCreater(R.layout.delegate_launcher_scroll), INTEGERS)

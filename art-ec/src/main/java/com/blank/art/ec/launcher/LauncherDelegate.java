@@ -39,7 +39,6 @@ public class LauncherDelegate extends ArtDelegate implements ITimerListener {
     @BindView(value = R2.id.tv_launcher_timer)
     AppCompatTextView tvLauncherTimer;
 
-    Unbinder unbinder;
 
     private Timer mTimer = null;
 

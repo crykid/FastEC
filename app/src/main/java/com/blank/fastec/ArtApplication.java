@@ -13,6 +13,7 @@ import com.blank.art.util.callback.CallbackType;
 import com.blank.art.util.callback.IGlobalCallback;
 import com.blank.art.util.logutil.HttpLogger;
 import com.blank.art.util.logutil.ParamsLogInterceptor;
+import com.blank.fastec.event.ShareEvent;
 import com.blank.fastec.event.TestEvent;
 import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
@@ -49,6 +50,8 @@ public class ArtApplication extends Application {
 
                 .withJavascriptInterface("ART")
                 .withWebEvent("test", new TestEvent())
+                .withWebEvent("share", new ShareEvent())
+
 //                .withWechatAppId("")
 //                .withWechatAppSecret("")
                 .configure();
@@ -76,7 +79,7 @@ public class ArtApplication extends Application {
 
         //初始化数据库
         DatabaseManager.getInstance().init(this);
-
+//        ShareSdk
         //Stetho默认配置
 //        Stetho.initializeWithDefaults(this);
 

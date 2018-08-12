@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/launcher_00" />
+        android:src="@drawable/ic_launcher" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/tv_launcher_timer"

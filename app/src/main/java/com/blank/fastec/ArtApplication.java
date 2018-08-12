@@ -44,6 +44,7 @@ public class ArtApplication extends Application {
                 .withInterceptor(new DebugInterceptor("goods/", R.raw.goods))
                 .withInterceptor(new DebugInterceptor("order_list/", R.raw.orders))
                 .withInterceptor(new DebugInterceptor("addresses/", R.raw.addresses))
+                .withInterceptor(new DebugInterceptor("search/", R.raw.addresses))
                 .withInterceptor(new ParamsLogInterceptor(new HttpLogger()).setLevel(ParamsLogInterceptor.Level.BODY))
                 //添加同步cookie拦截器
                 .withInterceptor(new AddCookieInterceptor())

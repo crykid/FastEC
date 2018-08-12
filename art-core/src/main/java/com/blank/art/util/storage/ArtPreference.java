@@ -89,7 +89,7 @@ public class ArtPreference {
     }
 
     public static String getCustomAppProfile(String key) {
-        return getAppPreference().getString("key", "");
+        return getAppPreference().getString(key, "");
     }
 
     public static String getToken() {
@@ -102,4 +102,6 @@ public class ArtPreference {
                 .putString(PREFERENCES_KEY_TOKEN, token)
                 .apply();
     }
+
+
 }

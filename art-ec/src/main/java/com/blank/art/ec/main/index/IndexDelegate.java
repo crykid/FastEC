@@ -16,6 +16,7 @@ import com.blank.art.bottom.BottomItemDelegate;
 import com.blank.art.ec.R;
 import com.blank.art.ec.R2;
 import com.blank.art.ec.main.EcBottomDelegate;
+import com.blank.art.ec.main.index.search.SearchDelegate;
 import com.blank.art.ui.recycler.BaseDecoration;
 import com.blank.art.ui.refresh.RefreshHandler;
 import com.blank.art.util.callback.CallbackManager;
@@ -31,7 +32,7 @@ import butterknife.OnClick;
  * Created on 7/11/2018.
  * Description:主页-商品列表
  */
-public class IndexDelegate extends BottomItemDelegate {
+public class IndexDelegate extends BottomItemDelegate implements View.OnFocusChangeListener {
     private static final String TAG = "IndexDelegate";
 
     @BindView(R2.id.rlv_index)
@@ -59,7 +60,7 @@ public class IndexDelegate extends BottomItemDelegate {
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         mRefreshHandler = RefreshHandler.create(mSwipeRefreshLayout, mRecyclerView, new IndexDataConverter());
         mRefreshHandler.firstPage("goods/");
-
+        etSearchEdit.setOnFocusChangeListener(this);
         CallbackManager.getInstance().addCallback(CallbackType.ON_SCAN, new IGlobalCallback<String>() {
             @Override
             public void executeCallback(@NonNull String args) {
@@ -67,6 +68,8 @@ public class IndexDelegate extends BottomItemDelegate {
                 Toast.makeText(getContext(), args, Toast.LENGTH_SHORT).show();
             }
         });
+
+
     }
 
     @Override
@@ -105,6 +108,16 @@ public class IndexDelegate extends BottomItemDelegate {
         if (i == R.id.itv_index_scan) {
             startScanWithCheck(getParentDelegate());
         } else if (i == R.id.itv_index_message) {
+        } else if (i == R.id.et_search_edit) {
+
+        }
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus){
+            getParentDelegate().getSupportDelegate().start(new SearchDelegate());
+
         }
     }
 }

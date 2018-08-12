@@ -86,6 +86,10 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener, Bas
                 .build()
                 .get();
     }
+    private void pagging(String url){
+
+    }
+
 
     @Override
     public void onRefresh() {

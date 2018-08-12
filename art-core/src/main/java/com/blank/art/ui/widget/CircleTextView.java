@@ -12,7 +12,7 @@ import android.util.AttributeSet;
 /**
  * Created by : blank
  * Created on : 2018/8/12 at 17:40
- * Description:
+ * Description:圆形TextView
  */
 
 public class CircleTextView extends AppCompatTextView {
@@ -49,7 +49,7 @@ public class CircleTextView extends AppCompatTextView {
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.setDrawFilter(FILTER);
-        canvas.drawCircle(getWidth() / 2, getHeight() / 2, Math.max(getWidth(), getHeight()), PAINT);
+        canvas.drawCircle(getWidth() / 2, getHeight() / 2, Math.max(getWidth() / 2, getHeight() / 2), PAINT);
         super.onDraw(canvas);
 
     }

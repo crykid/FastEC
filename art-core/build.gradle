@@ -140,5 +140,10 @@ dependencies {
     //dm77/barcodescanner二维码扫描,内核可定制，内核使用c写的
     implementation 'me.dm7.barcodescanner:zbar:1.9.8'
 
+    //View动画依赖
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.daimajia.easing:library:1.0.1@aar'
+    compile 'com.daimajia.androidanimations:library:1.1.3@aar'
+
 }
 

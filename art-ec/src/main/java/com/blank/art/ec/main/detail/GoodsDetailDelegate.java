@@ -20,17 +20,25 @@ import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.blank.art.delegates.ArtDelegate;
 import com.blank.art.ec.R;
 import com.blank.art.ec.R2;
+import com.blank.art.ec.animation.BezierAnimation;
+import com.blank.art.ec.animation.BezierUtil;
 import com.blank.art.ec.entity.GoodsDetailEntity;
 import com.blank.art.retrofit.RestClient;
 import com.blank.art.retrofit.callback.ISuccess;
 import com.blank.art.ui.banner.HolderCreator;
 import com.blank.art.ui.widget.CircleTextView;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.daimajia.androidanimations.library.YoYo;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
@@ -39,7 +47,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
  * Created on: 2018/7/14.1:04
  * Description:商品详情
  */
-public class GoodsDetailDelegate extends ArtDelegate implements AppBarLayout.OnOffsetChangedListener {
+public class GoodsDetailDelegate extends ArtDelegate implements AppBarLayout.OnOffsetChangedListener, BezierUtil.AnimationListener {
 
 
     @BindView(R2.id.goods_detail_toolbar)
@@ -69,6 +77,35 @@ public class GoodsDetailDelegate extends ArtDelegate implements AppBarLayout.OnO
 
     private int mGoodsId = -1;
 
+    private String mGoodsThumbUrl = null;
+    private int mShopCount = 0;
+
+    private static final RequestOptions OPTIONS = new RequestOptions()
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .centerCrop()
+            //不要动画
+            .dontAnimate()
+            //重写大小
+            .override(100, 100);
+
+
+    @OnClick(R2.id.rl_add_shop_cart)
+    void onClick(View view) {
+        final CircleImageView animImg = new CircleImageView(getContext());
+        Glide.with(this)
+                .load(mGoodsThumbUrl)
+                .apply(OPTIONS)
+                .into(animImg);
+        BezierAnimation.addCart(this, mRlAddShopCart, mIconShopCart, animImg, this);
+    }
+
+
+    private void setShopCartCount(GoodsDetailEntity goodsDetail) {
+        mGoodsThumbUrl = goodsDetail.goodsFrontImage;
+        if (mShopCount == 0) {
+            mCircleTextView.setVisibility(View.GONE);
+        }
+    }
 
     public static GoodsDetailDelegate create(@NonNull int goodsId) {
         final Bundle args = new Bundle();
@@ -98,6 +135,7 @@ public class GoodsDetailDelegate extends ArtDelegate implements AppBarLayout.OnO
         //设置变换的颜色
         mCollapsingToolbarLayout.setContentScrimColor(Color.WHITE);
         mAppBar.addOnOffsetChangedListener(this);
+        mCircleTextView.setCircleBackground(Color.RED);
         initData();
         initTabLayout();
     }
@@ -114,6 +152,7 @@ public class GoodsDetailDelegate extends ArtDelegate implements AppBarLayout.OnO
                         initBanner(response);
                         initGoodsInfo(response);
                         initPager(response);
+                        setShopCartCount(response);
                     }
                 })
                 .build()
@@ -167,6 +206,18 @@ public class GoodsDetailDelegate extends ArtDelegate implements AppBarLayout.OnO
 
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+
+    }
+
+    @Override
+    public void onAnimationEnd() {
+        YoYo.with(new ScaleUpAnimator())
+                .duration(500)
+                .playOn(mIconShopCart);
+        mShopCount++;
+        mCircleTextView.setVisibility(View.VISIBLE);
+        mCircleTextView.setText(String.valueOf(mShopCount));
+        //加入购物车操作
 
     }
 }

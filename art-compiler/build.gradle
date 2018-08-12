@@ -1,7 +1,13 @@
 apply plugin: 'java-library'
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':art-annotations')
+    //okhttp和retrofit公司出的，用于生成代码
+    implementation 'com.squareup:javapoet:1.8.0'
+    //生成相应的。。信息
+    implementation 'com.google.auto.service:auto-service:1.0-rc2'
+    implementation 'com.google.auto:auto-common:0.8'
 }
 
 sourceCompatibility = "1.7"

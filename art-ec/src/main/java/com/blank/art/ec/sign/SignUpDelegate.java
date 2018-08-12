@@ -1,5 +1,6 @@
 package com.blank.art.ec.sign;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
@@ -10,9 +11,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.blank.art.app.ISignListener;
 import com.blank.art.delegates.ArtDelegate;
 import com.blank.art.ec.R;
 import com.blank.art.ec.R2;
+import com.blank.art.ec.database.UserProfileEntry;
 import com.blank.art.retrofit.RestClient;
 import com.blank.art.retrofit.callback.IError;
 import com.blank.art.retrofit.callback.IFailure;
@@ -42,10 +45,11 @@ public class SignUpDelegate extends ArtDelegate {
     Button btnSignup;
     @BindView(R2.id.tv_sign_up_signin)
     AppCompatTextView tvSignUpSignin;
-    Unbinder unbinder;
+
+    private ISignListener mISignListener = null;
 
     @Override
-    public Object getLyout() {
+    public Object getLayout() {
         return R.layout.delegate_signuup;
     }
 
@@ -105,12 +109,15 @@ public class SignUpDelegate extends ArtDelegate {
         if (id == R.id.btn_sign_up_signup) {
             if (checkForm()) {
                 RestClient.builder()
-                        .url("sign_up")
-                        .params("", "")
-                        .success(new ISuccess<String>() {
+                        .url("users/")
+                        .params("username", editSignUpUsername.getText().toString())
+                        .params("code", "1122")
+                        .params("mobile", editSignUpUsername.getText().toString())
+                        .params("password", editSignUpPass.getText().toString())
+                        .success(new ISuccess<UserProfileEntry>() {
                             @Override
-                            public void onSuccess(String response) {
-
+                            public void onSuccess(UserProfileEntry response) {
+                                SignHandler.onSignUp(response, mISignListener);
                             }
                         })
                         .failure(new IFailure() {
@@ -132,6 +139,14 @@ public class SignUpDelegate extends ArtDelegate {
         } else if (id == R.id.tv_sign_up_signin) {
             startWithPop(new SignInDelegate());
 
+        }
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ISignListener) {
+            mISignListener = (ISignListener) activity;
         }
     }
 }

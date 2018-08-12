@@ -81,6 +81,17 @@ public class ArtPreference {
                 .getBoolean(key, false);
     }
 
+    public static void addCustomAppProfile(String key, String val) {
+        getAppPreference()
+                .edit()
+                .putString(key, val)
+                .apply();
+    }
+
+    public static String getCustomAppProfile(String key) {
+        return getAppPreference().getString(key, "");
+    }
+
     public static String getToken() {
         return getAppPreference().getString(PREFERENCES_KEY_TOKEN, "");
     }
@@ -91,4 +102,6 @@ public class ArtPreference {
                 .putString(PREFERENCES_KEY_TOKEN, token)
                 .apply();
     }
+
+
 }

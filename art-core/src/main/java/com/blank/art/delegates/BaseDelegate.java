@@ -27,10 +27,10 @@ public abstract class BaseDelegate extends SwipeBackFragment {
     final public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = null;
 
-        if (getLyout() instanceof Integer) {
-            rootView = inflater.inflate((Integer) getLyout(), container, false);
-        } else if (getLyout() instanceof View) {
-            rootView = (View) getLyout();
+        if (getLayout() instanceof Integer) {
+            rootView = inflater.inflate((Integer) getLayout(), container, false);
+        } else if (getLayout() instanceof View) {
+            rootView = (View) getLayout();
         }
         if (rootView != null) {
 
@@ -41,7 +41,7 @@ public abstract class BaseDelegate extends SwipeBackFragment {
     }
 
     @Override
-    final public void onDestroyView() {
+    public void onDestroyView() {
         super.onDestroyView();
         if (mUnbinder != null) {
             mUnbinder.unbind();
@@ -57,7 +57,7 @@ public abstract class BaseDelegate extends SwipeBackFragment {
      *
      * @return view的id或者view
      */
-    public abstract Object getLyout();
+    public abstract Object getLayout();
 
     public abstract void onBindView(@Nullable Bundle savedInstanceState, View rootView);
 }

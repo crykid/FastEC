@@ -1,5 +1,6 @@
 package com.blank.art.ec.sign;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
@@ -10,17 +11,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.blank.art.app.ISignListener;
 import com.blank.art.delegates.ArtDelegate;
 import com.blank.art.ec.R;
 import com.blank.art.ec.R2;
-import com.blank.art.ec.entry.LoginEntry;
+import com.blank.art.ec.database.UserProfileEntry;
+import com.blank.art.ec.entity.LoginEntry;
 import com.blank.art.retrofit.RestClient;
 import com.blank.art.retrofit.callback.IError;
 import com.blank.art.retrofit.callback.IFailure;
 import com.blank.art.retrofit.callback.IRequest;
 import com.blank.art.retrofit.callback.ISuccess;
-import com.blank.art.ui.Loader;
+import com.blank.art.ui.loader.Loader;
 import com.blank.art.util.storage.ArtPreference;
+import com.blank.art.wechat.ArtWechat;
+import com.blank.art.wechat.callbacks.IWeChatSigninCallback;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import butterknife.BindView;
@@ -47,8 +52,10 @@ public class SignInDelegate extends ArtDelegate {
     @BindView(R2.id.tv_sign_in_signup)
     AppCompatTextView tvSignInSignup;
 
+    private ISignListener mISignListener = null;
+
     @Override
-    public Object getLyout() {
+    public Object getLayout() {
         return R.layout.delegate_signin;
     }
 
@@ -62,7 +69,6 @@ public class SignInDelegate extends ArtDelegate {
     public void onViewClicked(View view) {
         int id = view.getId();
         if (id == R.id.btn_sign_up_signin) {
-            Toast.makeText(getContext(), "登录", Toast.LENGTH_SHORT).show();
             RestClient
                     .builder()
                     .url("login/")
@@ -84,6 +90,7 @@ public class SignInDelegate extends ArtDelegate {
                         public void onSuccess(LoginEntry response) {
                             ArtPreference.setToken(response.token);
                             Log.d(TAG, "onSuccess: " + response.token);
+                            fetchUserProfile();
                         }
                     })
                     .failure(new IFailure() {
@@ -103,12 +110,63 @@ public class SignInDelegate extends ArtDelegate {
 
         } else if (id == R.id.itv_sign_in_wechat) {
             Toast.makeText(getContext(), "微信登录", Toast.LENGTH_SHORT).show();
+            ArtWechat.getInstance().onSigninSuccess(new IWeChatSigninCallback() {
+                @Override
+                public void onSignInSuccess(String userInfo) {
+
+                }
+            }).signIn();
+
 
         } else if (id == R.id.tv_sign_in_signup) {
-            Toast.makeText(getContext(), "去注册", Toast.LENGTH_SHORT).show();
             start(new SignUpDelegate());
         }
 
+    }
+
+    private void fetchUserProfile() {
+        RestClient.builder()
+                .url("users/1/")
+                .request(new IRequest() {
+                    @Override
+                    public void onReqestStart() {
+
+                    }
+
+                    @Override
+                    public void onRequestEnd() {
+                        Loader.stopLoading();
+
+                    }
+                })
+                .success(new ISuccess<UserProfileEntry>() {
+                    @Override
+                    public void onSuccess(UserProfileEntry response) {
+                        SignHandler.onSignIn(response, mISignListener);
+                    }
+                })
+                .failure(new IFailure() {
+                    @Override
+                    public void onFailure() {
+
+                    }
+                })
+                .error(new IError() {
+                    @Override
+                    public void onError(int code, String message) {
+
+                    }
+                })
+                .build()
+                .get();
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ISignListener) {
+            mISignListener = (ISignListener) activity;
+        }
     }
 
 

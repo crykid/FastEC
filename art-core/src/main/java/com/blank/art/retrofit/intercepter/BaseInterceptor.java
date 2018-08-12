@@ -2,6 +2,8 @@ package com.blank.art.retrofit.intercepter;
 
 import android.support.annotation.RawRes;
 
+import com.blank.art.util.storage.ArtPreference;
+
 import java.io.IOException;
 import java.util.LinkedHashMap;
 
@@ -23,10 +25,13 @@ import okhttp3.ResponseBody;
 public class BaseInterceptor implements Interceptor {
 
 
-
     @Override
     public Response intercept(Chain chain) throws IOException {
-        return null;
+        Request original = chain.request();
+        Request request = original.newBuilder()
+                .header("Authorization", "JWT " + ArtPreference.getToken())
+                .build();
+        return chain.proceed(request);
     }
 
     /**

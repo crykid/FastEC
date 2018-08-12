@@ -22,7 +22,7 @@ public class MainDelegate extends ArtDelegate {
     private static final String TAG = "MainDelegate";
 
     @Override
-    public Object getLyout() {
+    public Object getLayout() {
         return R.layout.delegate_main;
     }
 

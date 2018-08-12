@@ -7,4 +7,13 @@ package com.blank.art.delegates;
  */
 
 public abstract class ArtDelegate extends PermissionCheckerDelegate {
+
+    /**
+     *
+     * @param <T>
+     * @return
+     */
+    public <T extends ArtDelegate> T getParentDelegate() {
+        return (T) getParentFragment();
+    }
 }

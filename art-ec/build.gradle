@@ -6,7 +6,7 @@ apply plugin: 'org.greenrobot.greendao'
 
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
 
     defaultConfig {
         minSdkVersion 15
@@ -25,14 +25,14 @@ android {
         }
     }
 
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':art-core')
-
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
-
-
-
 }

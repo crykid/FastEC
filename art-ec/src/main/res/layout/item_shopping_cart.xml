@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?><!--购物车item-->
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_marginBottom="5dp"
+    android:orientation="horizontal">
+
+    <!--选中图标-->
+    <com.joanzapata.iconify.widget.IconTextView
+        android:id="@+id/itv_item_cart_select"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:gravity="center"
+        android:text="{fa-check-circle}"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="20sp"
+        tools:ignore="HardcodedText" />
+    <!--商品图片-->
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/aiv_item_cart_goods"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10" />
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_10">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/atv_item_cart_goods_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="商品标题" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/atv_item_cart_goods_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="商品描述" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/atv_item_cart_goods_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="￥2.00"
+            android:textColor="@color/theme"
+            android:typeface="monospace" />
+        <!--商品信息结束-->
+
+
+    </android.support.v7.widget.LinearLayoutCompat>
+    <!--商品数量、数量控制-->
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_weight="1"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <com.joanzapata.iconify.widget.IconTextView
+            android:id="@+id/itv_item_cart_minus"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:gravity="center"
+            android:text="{fa-minus-square-o}"
+            android:textSize="24sp"
+            tools:ignore="HardcodedText" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/atv_item_cart_goods_count"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="18sp" />
+
+        <com.joanzapata.iconify.widget.IconTextView
+            android:id="@+id/itv_item_cart_plus"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:gravity="center"
+            android:text="{fa-plus-square-o}"
+            android:textSize="24sp"
+            tools:ignore="HardcodedText" />
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
+</android.support.v7.widget.LinearLayoutCompat>

@@ -12,7 +12,7 @@ import org.greenrobot.greendao.database.Database;
 
 public class DatabaseManager {
     private DaoSession mDaoSession = null;
-    private UserProfileDao mDao = null;
+    private UserProfileEntryDao mDao = null;
     private final String DATABASE_NAME = "fast_ec.db";
 
     private DatabaseManager() {
@@ -38,10 +38,10 @@ public class DatabaseManager {
         final Database db = helper.getWritableDb();
 
         mDaoSession = new DaoMaster(db).newSession();
-        mDao = mDaoSession.getUserProfileDao();
+        mDao = mDaoSession.getUserProfileEntryDao();
     }
 
-    public final UserProfileDao getDao() {
+    public final UserProfileEntryDao getDao() {
         return mDao;
     }
 }

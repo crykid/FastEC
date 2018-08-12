@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="horizontal">
+
+        <com.joanzapata.iconify.widget.IconTextView
+            android:id="@+id/itv_dialog_pay_ali"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="{fa-gratipay}"
+            android:textColor="@color/theme"
+            android:textSize="50sp" />
+
+        <com.joanzapata.iconify.widget.IconTextView
+            android:id="@+id/itv_dialog_pay_wechat"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="{fa-weixin}"
+            android:textColor="#04b00f"
+            android:textSize="50sp" />
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/abtn_dialog_pay_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:background="@color/theme"
+        android:gravity="center"
+        android:text="取消支付"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+
+</android.support.v7.widget.LinearLayoutCompat>
